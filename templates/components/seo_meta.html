@@ -1,0 +1,17 @@
+<!-- SEO Meta Tags -->
+<title>{% block title %}Nexora Consulting | Strategic Business Solutions{% endblock %}</title>
+<meta name="description" content="{% block meta_description %}Nexora Consulting provides strategic business solutions, assessments, and programmes to help your business grow and succeed.{% endblock %}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{% block og_title %}Nexora Consulting | Strategic Business Solutions{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Nexora Consulting provides strategic business solutions, assessments, and programmes to help your business grow and succeed.{% endblock %}">
+<meta property="og:image" content="{% block og_image %}{% endblock %}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{ request.build_absolute_uri }}">
+<meta property="twitter:title" content="{% block twitter_title %}Nexora Consulting | Strategic Business Solutions{% endblock %}">
+<meta property="twitter:description" content="{% block twitter_description %}Nexora Consulting provides strategic business solutions, assessments, and programmes to help your business grow and succeed.{% endblock %}">
+<meta property="twitter:image" content="{% block twitter_image %}{% endblock %}">
