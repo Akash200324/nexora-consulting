@@ -46,10 +46,7 @@ INSTALLED_APPS = [
     
     # Custom Apps
     'core',
-    'pages',
     'assessment',
-    'programmes',
-    'booking',
 ]
 
 MIDDLEWARE = [
