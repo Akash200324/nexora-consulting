@@ -1,0 +1,49 @@
+/* Assessment Page Custom CSS */
+/* All styles here should be isolated to the assessment page */
+
+.assessment-page-body {
+    /* Ensures we override the dark mode base body styling inherited from base.html */
+    background-color: #fff8f2 !important; /* surface color */
+    color: #1f1b12 !important; /* on-surface */
+}
+
+/* Assessment Navbar text overrides when NOT scrolled (transparent bg) */
+.assessment-page-body #main-navbar:not(.is-scrolled) .nav-brand-title,
+.assessment-page-body #main-navbar:not(.is-scrolled) .nav-desktop-link {
+    color: #11100f !important;
+}
+
+.assessment-page-body #main-navbar:not(.is-scrolled) .nav-brand-subtitle,
+.assessment-page-body #main-navbar:not(.is-scrolled) .nav-desktop-chevron {
+    color: #4c4640 !important;
+}
+
+.assessment-page-body #main-navbar:not(.is-scrolled) .nav-mobile-hamburger {
+    color: #11100f !important;
+}
+
+.assessment-page-body #main-navbar:not(.is-scrolled) .nav-desktop-link:hover {
+    color: #994629 !important; /* secondary color for hover state */
+}
+
+/* Premium Button Micro-interactions */
+#assessment-container button {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+    will-change: transform;
+}
+
+#assessment-container button:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+#assessment-container button:active {
+    transform: translateY(1px) scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Arrow hover movement is already handled by Tailwind group-hover:translate-x-1, 
+   but we can enhance it slightly */
+#assessment-container button:hover .material-symbols-outlined {
+    transform: translateX(4px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Impact Wave Coaching",
+  "description": "Executive Profit & Mindset Coaching platform for founders featuring the interactive Business Reality Assessment, case studies, and accelerator programs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,161 @@
+/* Mobile-specific CSS overrides for Nexora Consulting */
+/* Breakpoints: 768px (Tablet/Mobile) and 480px (Small Phone) */
+
+@media (max-width: 768px) {
+    /* Global fixes */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    /* Container padding consistency */
+    .max-w-7xl, .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* 1. Navbar / Mobile Menu */
+    #mobile-nav-drawer {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 40 !important;
+        background: rgba(15, 14, 13, 0.98) !important;
+        backdrop-filter: blur(10px) !important;
+        padding-top: 80px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow-y: auto !important;
+    }
+    #mobile-nav-drawer.hidden {
+        display: none !important;
+    }
+    
+    /* Move the hamburger above the overlay */
+    #main-navbar {
+        z-index: 50 !important;
+    }
+
+    /* 2. Hero Section */
+    #hero-section > div.absolute.inset-0 {
+        /* Fix the background image wrapper */
+        position: absolute !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    #hero-section img {
+        /* Crop/position the woman for mobile */
+        object-fit: cover !important;
+        object-position: 55% center !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    /* Strengthen the dark gradient on mobile for readability, but fade before her face */
+    #hero-section .hero-vignette-left {
+        background: linear-gradient(to right, rgba(14, 14, 14, 0.95) 0%, rgba(14, 14, 14, 0.6) 35%, transparent 60%) !important;
+    }
+    
+    /* 3. Philosophy Section */
+    #philosophy-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+    #philosophy-section h2 {
+        font-size: clamp(32px, 8vw, 40px) !important;
+        line-height: 1.2 !important;
+    }
+    #philosophy-section img {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 8px !important;
+    }
+
+    /* 4. Assessment Section */
+    #assessment-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+    #assessment-widget-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+    }
+    #assessment-section h2 {
+        font-size: clamp(28px, 7vw, 36px) !important;
+    }
+
+    /* 5. Success Story */
+    #success-story-section {
+        background-size: cover !important;
+        background-position: center !important;
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+    #success-story-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+    #success-story-card {
+        width: 100% !important;
+        padding: 24px !important;
+    }
+    
+    /* 6. Steps Section ("Your Next Move Is Simple") */
+    #steps-section {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+        min-height: auto !important; /* Disable desktop pinning height */
+    }
+    #steps-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+    }
+    /* Disable absolute positioning used for pinning on desktop */
+    #steps-section .grid > div {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        opacity: 1 !important; /* Managed by scroll-animations.js but default 1 */
+        transform: none !important;
+        pointer-events: auto !important;
+        visibility: visible !important;
+        height: auto !important;
+    }
+
+    /* 7. Programs (FGA / BPA) */
+    #programs-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 32px !important;
+    }
+    #program-card-fga, #program-card-bpa {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 24px !important;
+    }
+    #programs-section h2 {
+        font-size: clamp(32px, 8vw, 40px) !important;
+    }
+
+    /* Testimonials */
+    #testimonials-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #philosophy-section h2, #programs-section h2 {
+        font-size: 32px !important;
+    }
+}

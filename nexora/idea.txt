@@ -1,0 +1,2742 @@
+I am building the Impact Wave website using Django.
+
+This is a real production website, not a demo.
+
+Before writing any page UI, analyze this project and establish a clean, scalable Django architecture.
+
+PROJECT PURPOSE:
+Nexora Consulting is an international business coaching / growth platform.
+
+The Phase 1 conversion journey is:
+
+HOME
+↓
+EXPLORE
+↓
+BUSINESS REALITY ASSESSMENT
+↓
+ASSESSMENT RESULT
+↓
+ASSESSMENT ROUTING
+↓
+FGA OR BPA
+↓
+DISCOVERY CALL / BOOKING
+
+The website will also contain:
+ABOUT
+CONTACT
+LEGAL PAGES
+
+TECH STACK:
+
+Python
+Django
+PostgreSQL
+HTML5
+CSS3
+JavaScript
+
+IMPORTANT:
+Do not use React, Next.js, Vue or another frontend framework unless there is an explicit reason and I approve it.
+
+Use Django templates with reusable components.
+
+ARCHITECTURE REQUIREMENTS:
+
+Create a clean Django project structure suitable for production.
+
+Separate concerns properly.
+
+Use reusable:
+- base template
+- navbar
+- footer
+- buttons
+- typography styles
+- section components
+- forms
+- modal/overlay components where needed
+
+Keep HTML, CSS and JavaScript organized.
+
+Do not put the entire website into one HTML file.
+
+Create logical Django apps where appropriate.
+
+Suggested areas:
+
+core
+pages
+assessment
+programmes
+booking
+
+You may adjust this structure if you have a better Django architecture, but explain the reason before making major structural changes.
+
+DESIGN SYSTEM:
+
+Impact Wave brand colors:
+
+Deep Espresso:
+#171513
+
+Warm Ivory:
+#F7F3EC
+
+Sand:
+#E8DED0
+
+Terracotta:
+#C96B4B
+
+Muted Gold:
+#B89A67
+
+Typography:
+
+Display:
+Cormorant Garamond / DM Serif Display
+
+Body/UI:
+Manrope
+
+The website must feel:
+
+premium
+editorial
+modern
+international
+human
+strategic
+
+It must NOT feel:
+
+generic corporate
+SaaS
+template-based
+card-heavy
+AI-generated
+
+IMPORTANT DESIGN PRINCIPLE:
+
+The approved Home and Explore designs use:
+- large typography
+- editorial layouts
+- asymmetric compositions
+- premium photography
+- scroll-driven storytelling
+- subtle interactions
+- strong visual hierarchy
+
+Do not replace these with generic Bootstrap-style layouts.
+
+RESPONSIVENESS:
+
+The website must work properly on:
+
+desktop
+tablet
+mobile
+
+Do not simply shrink desktop layouts.
+
+FUNCTIONALITY:
+
+Prepare the architecture so the assessment can eventually:
+- collect answers
+- calculate results
+- store relevant data
+- determine routing
+- send the user to FGA or BPA
+- connect to booking
+
+Do not fake backend functionality with hardcoded frontend values.
+
+SECURITY:
+
+Use Django best practices.
+
+Keep secrets out of source code.
+
+Prepare environment-variable configuration for:
+DATABASE
+SECRET_KEY
+DEBUG
+EMAIL
+THIRD-PARTY API KEYS
+
+Do not commit .env files.
+
+SEO:
+
+Prepare reusable:
+title
+meta description
+Open Graph
+canonical URL
+
+configuration through Django templates.
+
+TRACKING:
+
+Prepare the architecture for:
+Google Analytics
+Meta Pixel
+LinkedIn Insight Tag
+
+Do not hardcode tracking IDs.
+
+GIT:
+
+Initialize the project as a Git repository if it isn't already.
+
+Create a sensible .gitignore.
+
+Do not commit:
+.env
+database files
+virtual environments
+cache files
+secret keys
+
+IMPORTANT WORKFLOW:
+
+Do NOT start building all pages.
+
+First:
+1. Inspect the project.
+2. Create the Django architecture.
+3. Set up the environment.
+4. Create the base template.
+5. Create the design system.
+6. Create reusable components.
+7. Run the project.
+8. Verify that the foundation works.
+
+After completing these steps, STOP.
+
+Tell me:
+- what you created
+- the folder structure
+- how to run the project
+- what remains to be built
+
+Do not proceed to building the Home page until I explicitly tell you to.
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+The Home page frontend code and all required images/assets have now been added to the projectfolder name stitch.
+
+Your task is to integrate this existing Home page into the Django architecture.
+
+IMPORTANT:
+DO NOT REDESIGN THE HOME PAGE.
+
+DO NOT change:
+- layout
+- typography
+- colors
+- image placement
+- section order
+- spacing
+- button placement
+- animations
+- visual style
+- content wording
+
+The supplied Home page design is already approved.
+
+Your job is to IMPLEMENT it correctly in Django.
+
+==================================================
+1. INSPECT THE EXISTING CODE FIRST
+==================================================
+
+Before changing anything:
+
+Inspect:
+- existing Django structure
+- Home page HTML
+- CSS
+- JavaScript
+- images
+- fonts
+- icons
+- animations
+- external libraries
+
+Identify what is currently static and what should eventually become dynamic.
+
+Do not immediately modify files.
+
+First provide a short implementation plan.
+
+==================================================
+2. CONVERT HOME PAGE TO DJANGO TEMPLATE
+==================================================
+
+Convert the existing Home page into a proper Django template.
+
+Use:
+
+templates/
+    base.html
+    pages/
+        home.html
+
+If the project architecture already has an appropriate structure, follow it instead of unnecessarily creating duplicate folders.
+
+Extend the base template:
+
+{% extends "base.html" %}
+
+Move reusable elements into components where appropriate:
+
+navbar
+footer
+buttons
+reusable UI elements
+
+Do NOT split every small element into unnecessary files.
+
+==================================================
+3. STATIC FILES
+==================================================
+
+Move/organize frontend assets correctly.
+
+Use Django static files for:
+
+CSS
+JavaScript
+images
+icons
+fonts where appropriate
+
+Use:
+
+{% load static %}
+
+and proper Django static paths.
+
+Do NOT use broken relative paths.
+
+Check every image URL.
+
+Make sure every supplied image loads correctly.
+
+==================================================
+4. FONTS
+==================================================
+
+Preserve the approved typography from the supplied design.
+
+Do not substitute fonts without a reason.
+
+If the fonts are locally supplied, organize them correctly.
+
+If external font loading is being used, make sure it is implemented cleanly.
+
+==================================================
+5. HOME URL
+==================================================
+
+Create the proper Django view and URL for Home.
+
+Example:
+
+/
+
+should render the Home page.
+
+Use a proper Django view rather than hardcoding the page outside Django.
+
+==================================================
+6. PRESERVE ALL INTERACTIONS
+==================================================
+
+The existing Home page contains visual interactions/animations.
+
+Preserve them.
+
+Verify:
+
+- navbar behaviour
+- scroll animations
+- image animations
+- hover effects
+- CTA animations
+- section transitions
+- mobile menu
+- buttons
+- links
+
+Do not replace custom interactions with generic animations.
+
+If JavaScript currently depends on a specific DOM structure, preserve that structure.
+
+==================================================
+7. RESPONSIVE CHECK
+==================================================
+
+Test the Home page at:
+
+Desktop:
+1440px
+1280px
+
+Tablet:
+1024px
+768px
+
+Mobile:
+430px
+390px
+375px
+
+Do not redesign the page for mobile.
+
+Adapt it while preserving the approved visual hierarchy.
+
+Fix:
+
+horizontal overflow
+broken image crops
+text overlapping
+buttons going outside containers
+navigation issues
+excessive spacing
+animation problems
+
+==================================================
+8. ACCESSIBILITY
+==================================================
+
+Add where appropriate:
+
+alt text
+semantic HTML
+button labels
+keyboard accessibility
+visible focus states
+
+Do not compromise the visual design.
+
+==================================================
+9. PERFORMANCE
+==================================================
+
+Optimize the implementation without changing the visual output.
+
+Check:
+
+- image sizes
+- unnecessary JavaScript
+- duplicated CSS
+- unused libraries
+- unnecessary animations
+- loading behaviour
+
+Do not remove an animation simply because it is visually complex.
+
+==================================================
+10. SEO FOUNDATION
+==================================================
+
+Add proper:
+
+page title
+meta description
+viewport
+Open Graph foundation
+
+Use Django template blocks so these can later be customized per page.
+
+Example:
+
+{% block title %}...{% endblock %}
+
+Do not invent SEO claims.
+
+Use the approved Home page content.
+
+==================================================
+11. CTA LINKS
+==================================================
+
+Do not leave important CTA buttons pointing to "#".
+
+Where the destination already exists, connect the CTA to the correct Django URL.
+
+For example:
+
+TAKE THE ASSESSMENT
+→ Assessment page
+
+EXPLORE
+→ Explore page
+
+Use Django URL names:
+
+{% url '...' %}
+
+rather than hardcoded paths where appropriate.
+
+If a destination does not exist yet, clearly identify it instead of inventing a destination.
+
+==================================================
+12. DO NOT BUILD OTHER PAGES YET
+==================================================
+
+For this task, ONLY complete the Home page integration.
+
+Do NOT start building:
+
+Explore
+Assessment
+Result
+Routing
+FGA
+BPA
+Booking
+
+We will integrate those separately.
+
+==================================================
+13. FINAL VERIFICATION
+==================================================
+
+After implementation:
+
+Run the Django development server.
+
+Check:
+
+/
+ 
+Confirm:
+
+✓ Home page loads
+✓ no template errors
+✓ no missing static files
+✓ no broken images
+✓ no console errors
+✓ CSS loads correctly
+✓ JavaScript loads correctly
+✓ animations work
+✓ navigation works
+✓ CTA links work where destinations exist
+✓ responsive layout works
+✓ no horizontal scrolling
+✓ design remains visually faithful to the supplied design
+
+IMPORTANT FINAL RULE:
+
+The supplied Home page is the source of truth for visual design.
+
+DO NOT “improve” the design.
+
+DO NOT make it more generic.
+
+DO NOT replace it with a Django-style template.
+
+DO NOT simplify the layout.
+
+Implement the design faithfully.
+
+After completing the work, report:
+
+1. Files created
+2. Files modified
+3. Django URLs added
+4. Static assets organized
+5. Any dependencies installed
+6. Any remaining issues
+7. How to run the project
+
+--------------------------------------------------------------------------------------------------
+
+I want you to use this website as the PRIMARY REFERENCE for the scrolling experience:
+
+https://designxhand.com/experience
+
+I want my Impact Wave Home page to have a VERY SIMILAR SCROLLING EXPERIENCE to this reference.
+
+IMPORTANT:
+
+I am NOT asking you to copy the visual design, branding, colors, typography, content, images, or layout of Design x Hand.
+
+My existing Impact Wave design is already approved and MUST remain.
+
+I want you to reproduce the FEEL AND BEHAVIOR of the scrolling experience.
+
+==================================================
+WHAT I LIKE ABOUT THE REFERENCE
+==================================================
+
+Study the reference carefully before implementing anything.
+
+I want the website to feel like the page is unfolding as the user scrolls.
+
+Scrolling should be the primary interaction.
+
+Instead of:
+
+scroll → section appears → scroll → next section appears
+
+I want:
+
+SCROLL
+↓
+CURRENT CONTENT MOVES
+↓
+TYPOGRAPHY CHANGES POSITION
+↓
+IMAGE ENTERS / EXITS
+↓
+NEW CONTENT TAKES FOCUS
+↓
+ELEMENTS OVERLAP
+↓
+NEXT VISUAL STATE
+↓
+CONTINUE SCROLLING
+
+The scroll itself should control the visual story.
+
+==================================================
+1. DO NOT USE BASIC REVEAL ANIMATIONS
+==================================================
+
+Remove the current basic animation approach.
+
+I do NOT want the page to mainly use:
+
+opacity: 0 → 1
+translateY(30px) → 0
+
+Those can be used as small supporting effects, but they must NOT be the primary animation system.
+
+The main animation must be scroll-progress driven.
+
+Use:
+
+GSAP
+ScrollTrigger
+scrub
+pin
+timelines
+clip-path
+transform
+scale
+position
+opacity
+
+where appropriate.
+
+==================================================
+2. CREATE A CONTINUOUS SCROLL STORY
+==================================================
+
+The website should feel like ONE continuous visual experience.
+
+Sections should not feel like isolated blocks.
+
+As one section leaves:
+
+- its typography can continue moving
+- an image can continue moving
+- a background word can drift
+- the next section can begin entering
+- selected elements can overlap
+
+Create transitions between sections.
+
+Avoid large dead spaces where nothing happens.
+
+==================================================
+3. TYPOGRAPHY MUST MOVE
+==================================================
+
+Typography is one of the main animation elements.
+
+Large headings should be animated according to scroll position.
+
+Use:
+
+line-by-line reveals
+vertical movement
+horizontal movement
+scale changes
+clip-path reveals
+position changes
+
+For example:
+
+A large heading enters from below.
+
+As the user continues scrolling:
+
+the heading moves upward.
+
+A second phrase enters.
+
+The first phrase becomes smaller/subdued.
+
+The second phrase becomes dominant.
+
+Then the next visual begins to take over.
+
+Do NOT animate every letter individually.
+
+Use sophisticated editorial line-based typography animation.
+
+==================================================
+4. IMAGES MUST PARTICIPATE IN THE STORY
+==================================================
+
+Images should not simply sit inside a container while text moves around them.
+
+Images should respond to scroll.
+
+Use:
+
+- scale
+- parallax
+- clip-path
+- position
+- subtle rotation where appropriate
+- masking
+- overlapping
+
+Example:
+
+Image starts slightly oversized:
+
+scale: 1.08
+
+As the user scrolls:
+
+scale gradually approaches 1.
+
+At the same time:
+
+image moves vertically at a different rate from the surrounding text.
+
+This creates depth.
+
+==================================================
+5. FLOATING LAYERS
+==================================================
+
+Create a visual depth system.
+
+BACKGROUND:
+
+Large decorative typography / shapes.
+
+Very slow movement.
+
+MIDDLE:
+
+Images and visual elements.
+
+Medium movement.
+
+FOREGROUND:
+
+Important typography and CTAs.
+
+Slightly faster movement.
+
+The result should feel like several layers are floating independently.
+
+Do NOT add random floating objects.
+
+Everything must have a purpose.
+
+==================================================
+6. HERO
+==================================================
+
+Keep my existing Impact Wave hero exactly as designed.
+
+Do NOT change:
+
+content
+image
+colors
+layout
+typography
+CTA
+navbar
+
+Only change its animation behavior.
+
+On load:
+
+- typography should reveal elegantly
+- image should reveal through a cinematic mask
+- CTA should enter naturally
+
+While scrolling:
+
+- image moves at a different rate
+- typography moves independently
+- hero content gradually transitions out
+- next section begins entering before the hero completely disappears
+
+The transition should feel continuous.
+
+==================================================
+7. PHILOSOPHY SECTION
+==================================================
+
+Keep the existing content and design.
+
+Turn it into a scroll-driven composition.
+
+As the user enters:
+
+main heading becomes dominant.
+
+Then:
+
+supporting text enters.
+
+Image/visual element moves independently.
+
+As the user continues scrolling:
+
+the heading moves away.
+
+The image remains slightly longer.
+
+The next section begins entering.
+
+This should feel like a sequence rather than a simple reveal.
+
+==================================================
+8. ASSESSMENT SECTION
+==================================================
+
+Keep the existing Assessment section.
+
+Create a stronger scroll interaction.
+
+As the section enters:
+
+headline moves into position.
+
+Assessment visual/card enters from a different direction.
+
+Supporting text follows.
+
+CTA becomes prominent.
+
+During scrolling:
+
+the card/image should have subtle floating movement.
+
+The typography and visual should move at different speeds.
+
+==================================================
+9. SUCCESS STORY
+==================================================
+
+Keep the existing design.
+
+Use:
+
+large image reveal
++
+scroll-linked movement
++
+editorial typography
++
+overlapping content
+
+The image should feel like it is being revealed as part of the story.
+
+Avoid a simple:
+
+fade image → fade text
+
+sequence.
+
+==================================================
+10. STEPS SECTION
+==================================================
+
+Current content:
+
+01 ASSESS
+02 DISCOVER
+03 GROW
+
+This should become the MAIN scroll-driven storytelling section.
+
+PIN the section on desktop.
+
+While pinned:
+
+01 ASSESS becomes the dominant state.
+
+As the user scrolls:
+
+ASSESS transitions away.
+
+DISCOVER enters the dominant position.
+
+Continue scrolling:
+
+DISCOVER transitions away.
+
+GROW enters the dominant position.
+
+But do NOT simply fade between them.
+
+Use:
+
+position movement
+scale
+opacity
+typography movement
+background typography
+image/visual movement
+layer transitions
+
+The user's scroll position should directly control the progression.
+
+After GROW completes:
+
+release the pinned section naturally.
+
+==================================================
+11. PROGRAMS — FGA / BPA
+==================================================
+
+Keep the existing FGA and BPA design.
+
+Make the cards/visuals feel slightly floating.
+
+As the user scrolls:
+
+FGA enters.
+
+Then BPA enters with a slight offset.
+
+Allow subtle overlap.
+
+Do not turn them into completely different cards.
+
+==================================================
+12. TESTIMONIALS
+==================================================
+
+Keep the current design.
+
+Use subtle scroll-linked movement between:
+
+quote
+name
+image
+
+The quote can move slightly faster than the image.
+
+Create a layered editorial feel.
+
+==================================================
+13. SECTION TRANSITIONS
+==================================================
+
+This is VERY important.
+
+The reference does not feel like:
+
+SECTION 1
+empty space
+SECTION 2
+empty space
+SECTION 3
+
+I want the transitions to feel connected.
+
+For selected transitions:
+
+previous section content moves out
+
+while
+
+next section content starts moving in.
+
+Allow controlled overlap.
+
+Use z-index deliberately.
+
+Never allow important text to become unreadable.
+
+==================================================
+14. SCROLL PACING
+==================================================
+
+The reference experience feels deliberate.
+
+Do not make animations too fast.
+
+The user should be able to understand each visual state while scrolling.
+
+Use scrubbed timelines.
+
+The user should be able to scroll backward and see the animation reverse naturally.
+
+This is important.
+
+Scroll down:
+animation progresses.
+
+Scroll up:
+animation reverses.
+
+==================================================
+15. DO NOT FORCE SCROLLJACKING
+==================================================
+
+Do not completely take control away from the browser's natural scroll.
+
+The page should still feel responsive.
+
+Use pinned sections only for important storytelling moments.
+
+Do not pin every section.
+
+==================================================
+16. MOBILE
+==================================================
+
+On mobile:
+
+Keep the storytelling concept.
+
+But simplify it.
+
+Use:
+
+- typography movement
+- image reveals
+- subtle parallax
+- vertical transitions
+
+Reduce or disable:
+
+- long pinned sections
+- excessive overlapping
+- heavy mouse effects
+
+The mobile experience should remain fast and usable.
+
+==================================================
+17. MOUSE EFFECTS
+==================================================
+
+Only add subtle mouse movement to selected visual elements.
+
+Maximum movement:
+
+5–10px.
+
+Do not create an exaggerated cursor-following website.
+
+The primary interaction is SCROLL.
+
+==================================================
+18. VISUAL IDENTITY
+==================================================
+
+Keep Impact Wave exactly as it currently looks.
+
+Use the existing:
+
+Deep Espresso
+#171513
+
+Warm Ivory
+#F7F3EC
+
+Sand
+#E8DED0
+
+Terracotta
+#C96B4B
+
+Muted Gold
+#B89A67
+
+Keep the existing fonts.
+
+Keep the existing images.
+
+Keep the existing content.
+
+Keep the existing buttons.
+
+Keep the existing layout.
+
+ONLY change the interaction and motion system.
+
+==================================================
+19. TECHNICAL IMPLEMENTATION
+==================================================
+
+Use:
+
+GSAP
+ScrollTrigger
+Lenis
+
+Synchronize Lenis and ScrollTrigger correctly.
+
+Keep animation logic modular in:
+
+static/js/scroll-animations.js
+
+Do not rewrite home.html unnecessarily.
+
+Do not destroy existing home.js functionality.
+
+Use GSAP matchMedia() for responsive behavior.
+
+Respect:
+
+prefers-reduced-motion.
+
+==================================================
+20. FINAL QUALITY TARGET
+==================================================
+
+After implementation, I should be able to scroll through the Home page and feel:
+
+"This website is responding to my scrolling."
+
+NOT:
+
+"This website has some fade-in animations."
+
+The experience should feel:
+
+FLOATING
+CINEMATIC
+EDITORIAL
+CONTINUOUS
+INTERACTIVE
+PREMIUM
+MODERN
+
+The Design x Hand website is the PRIMARY REFERENCE for the scroll behavior:
+
+https://designxhand.com/experience
+
+Study its pacing, staged content, typography movement, image transitions and continuous storytelling.
+
+Do NOT copy its visual design.
+
+Adapt the interaction principles to my existing Impact Wave Home page.
+
+Before coding, inspect the current Home page and create an animation map showing:
+
+SECTION
+→ ELEMENTS ANIMATED
+→ ANIMATION TYPE
+→ SCROLL RANGE
+→ PINNED OR NOT
+→ MOBILE BEHAVIOR
+
+Then implement it.
+
+------------------------------------------------------------------------------------------------
+
+I need you to completely audit and fix the mobile responsiveness of the homepage.
+IMPORTANT:
+Do NOT change or redesign the approved desktop version.
+Do NOT delete, remove, or restructure any existing homepage sections.
+Do NOT change the desktop typography, colors, images, content, or animations.
+All existing sections must remain present.
+Only improve the responsive/mobile layout at widths ≤ 768px.
+Test primarily at 390×844 and 375×812, and also make sure it works between 320px–767px.
+This should feel like a premium mobile website, not a desktop website squeezed into a phone.
+Keep the existing brand colors, typography, imagery, and visual identity.
+1. MOBILE NAVBAR
+The current mobile navbar feels basic and unfinished.
+Fix it to feel like a premium mobile navigation.
+Requirements:
+Keep the logo properly sized and aligned.
+Hamburger icon should be clean and properly positioned.
+Navbar should have appropriate horizontal padding.
+Do not let the logo become too small.
+The hamburger should have a proper touch target.
+Add a clear Home link in the mobile navigation.
+Keep all important navigation items:Home
+For Founders
+For Teams
+Learn
+Free
+About
+
+Keep the main Take the Assessment CTA.
+Keep WhatsApp.
+The mobile menu should open as a polished full-width/near-full-width mobile navigation panel, not an awkward desktop dropdown.
+Add proper spacing between menu items.
+Prevent the menu from becoming excessively tall or visually empty.
+Make sure it doesn't cover or distort the page layout underneath.
+Add a smooth but lightweight open/close transition.
+2. HERO SECTION — VERY IMPORTANT
+The current mobile Hero does not feel properly composed.
+Do NOT simply scale down the desktop Hero.
+Create a proper mobile composition using the existing content and hero image.
+Requirements:
+Hero should fill the mobile viewport naturally.
+Maintain the cinematic background image.
+Image should cover the entire hero without looking stretched.
+Keep the dark gradient/vignette on the left side so text remains readable.
+Position the woman/image correctly for mobile instead of letting the image overpower the text.
+Text should have proper mobile hierarchy.
+Use approximately:
+Eyebrow → 16–18px
+Main headline → 42–48px, responsive with clamp()
+Supporting text → 16–18px
+Meta information → 12–14px
+CTA → full-width or near full-width mobile button
+The headline should not collide with the woman's face.
+The hero text should have proper top/left spacing and should visually sit in the intended safe area.
+Do NOT make the text extremely small just to fit everything.
+The mobile Hero should feel cinematic, premium and intentional.
+3. PHILOSOPHY / "YOUR BUSINESS SHOULD SUPPORT YOUR LIFE"
+Currently the mobile layout makes the image appear like a completely separate section underneath the text.
+Fix this.
+The mobile version should still feel like one designed composition.
+Requirements:
+Text first.
+Image underneath with intentional spacing.
+Image should not look like it belongs to another section.
+Keep the correct border radius.
+Maintain proper image proportions.
+Reduce unnecessary vertical gaps.
+Keep the watermark typography subtle and behind the content.
+Make sure the watermark does not interfere with readability.
+Typography should scale naturally for mobile.
+4. BUSINESS REALITY ASSESSMENT SECTION
+The current assessment section has poor mobile composition.
+Do NOT simply stack everything without design consideration.
+Requirements:
+Keep the section background and existing visual identity.
+Text should appear first.
+Assessment UI/card should follow naturally.
+Card should be responsive to the screen width.
+No horizontal overflow.
+Card should never become wider than the viewport.
+Maintain comfortable side margins around the card.
+Keep the CTA visible and properly sized.
+Preserve the existing assessment functionality.
+The section should feel like one continuous mobile composition.
+5. SUCCESS STORY SECTION
+This section currently has the same problem where the image/card relationship feels broken on mobile.
+Create a proper mobile layout:
+Introductory quote
+↓  
+Success Story card
+↓  
+Supporting content/image where applicable
+Do NOT delete any existing content.
+Make the card width responsive.
+Use approximately:
+20–24px horizontal page padding
+16–24px internal card padding
+Proper vertical spacing
+No overlapping text unless the overlap is intentionally designed.
+6. SUCCESS STORY BACKGROUND IMAGE
+The current mobile version loses the cinematic background image/visual treatment.
+Restore the intended background image treatment on mobile.
+Requirements:
+Background image must remain visible.
+Use background-size: cover.
+Position it appropriately for mobile.
+Add a dark overlay/gradient if required for text readability.
+Do not remove the background image just because the viewport is smaller.
+Maintain the cinematic feeling of the desktop version.
+7. "YOUR NEXT MOVE IS SIMPLE" SECTION
+This section currently has a major functional/layout problem.
+The 01 / 02 / 03 boxes are not working properly on mobile.
+For mobile:
+Do NOT use the desktop pinned-scroll interaction if it causes problems.
+Instead create a lightweight mobile interaction:
+01 — ASSESS
+content
+↓
+02 — DISCOVER
+content
+↓
+03 — GROW
+content
+Each item should:
+Be clearly visible.
+Have its own proper spacing.
+Have a clear active/inactive state if applicable.
+Animate into view lightly.
+Work correctly when scrolling both down and up.
+Never disappear unexpectedly.
+Never overlap each other.
+Never create excessive scroll height.
+Most importantly:
+Mobile scrolling must remain native and completely responsive.
+Do NOT reintroduce Lenis.
+Do NOT add heavy pinned ScrollTrigger animations on mobile.
+8. "CHOOSE YOUR PATH" SECTION
+The current FGA/BPA cards are far too large and badly positioned on mobile.
+Fix this.
+Mobile layout should be:
+Choose Your Path
+↓
+FGA card
+↓
+BPA card
+Each card should:
+Fit comfortably inside the viewport.
+Have around 16–20px side margins.
+Have reasonable height.
+Not become extremely tall.
+Not stretch unnecessarily.
+Have readable typography.
+Keep CTA buttons properly positioned.
+Maintain the existing color system.
+Have consistent spacing between the two cards.
+The cards should feel like premium mobile cards, not desktop cards stretched vertically.
+9. TESTIMONIAL / CUSTOMER SECTION
+The customer/testimonial section currently looks acceptable.
+Do not redesign this section unnecessarily.
+Only fix:
+Any overflow.
+Minor spacing issues.
+Typography scaling if required.
+Ensure it remains consistent with the rest of the mobile page.
+10. FOOTER
+The footer is already acceptable.
+Do not redesign it.
+Only make sure:
+No horizontal overflow.
+Text wraps correctly.
+Links remain readable.
+Columns stack properly on smaller screens.
+WhatsApp/contact elements remain usable.
+11. MOBILE TYPOGRAPHY SYSTEM
+Create a consistent responsive typography system.
+Do NOT randomly reduce font sizes section by section.
+Use responsive values such as:
+clamp()
+for major headings.
+Maintain the editorial serif + clean sans-serif combination already used on the desktop.
+Mobile should still feel like the same brand.
+12. MOBILE SPACING SYSTEM
+Use consistent mobile spacing.
+Recommended:
+Page horizontal padding: 20–24px
+Section vertical padding: 64–90px
+Card spacing: 20–24px
+Button height: approximately 48–54px
+Border radius should remain consistent with the desktop visual language.
+Avoid huge empty spaces.
+Avoid cramped sections.
+13. MOBILE ANIMATIONS
+Keep animations lightweight.
+The existing native-scroll architecture is working correctly.
+DO NOT REINTRODUCE LENIS.
+DO NOT use heavy pinned ScrollTriggers on mobile.
+For mobile use:
+opacity
+translateY
+scale
+small image reveals
+lightweight typography reveals
+Animations should work when scrolling down AND back up.
+No animation should make the page wait several seconds before responding.
+14. VERY IMPORTANT — DO NOT TOUCH DESKTOP
+Before making changes:
+Create a responsive CSS/media-query strategy so that changes are isolated to:
+@media (max-width: 768px)
+and, where necessary:
+@media (max-width: 480px)
+Do not modify the desktop layout unless absolutely necessary.
+15. TESTING
+After implementation, test at:
+320×568
+375×812
+390×844
+412×915
+768px width
+Check:
+No horizontal scrolling
+No elements overflowing
+No missing sections
+No deleted content
+No broken images
+No broken buttons
+No broken navbar
+No broken assessment functionality
+No broken animations
+Scrolling remains immediately responsive
+Scrolling upward also works correctly
+Hero remains intact
+Footer remains intact
+Before editing, make a backup/copy of templates/pages/home.html.
+Do not use fuzzy or broad replacement operations on home.html. Make targeted changes only to the mobile CSS/JS. If a structural change is absolutely required, identify the exact section first and modify only that section.
+Finally, report exactly which files were changed and confirm that no desktop layout or existing section was deleted or removed.
+
+------------------------------------------------------------------------------------------------------
+
+
+## ASSESSMENT PAGE — SECTION 1 INTEGRATION
+
+We are now starting the **Assessment Page**.
+
+The Assessment page will contain approximately **5 sections**, and we will implement them **one by one**.
+
+There is no need to rush or modify multiple sections at once.
+
+### IMPORTANT — FIRST SECTION ONLY
+
+For now, work ONLY on the first section that I provide.
+
+Do not build or modify the remaining Assessment sections yet.
+
+---
+
+# 1. PROJECT STRUCTURE FIRST
+
+Before implementing the section, inspect the existing Django project structure.
+
+I want the Assessment page to be organized cleanly and separately from the Home page.
+
+The Assessment-related files should have a clear structure so that each section can be easily found, edited, and maintained later.
+
+Use a clean structure such as:
+
+```text
+assessment/
+│
+├── templates/
+│   └── assessment/
+│       ├── assessment.html
+│       └── sections/
+│           ├── section_01.html
+│           ├── section_02.html
+│           ├── section_03.html
+│           ├── section_04.html
+│           └── section_05.html
+│
+├── static/
+│   └── assessment/
+│       ├── css/
+│       ├── js/
+│       └── images/
+│
+└── ...
+```
+
+However, **first inspect the current Django architecture** and adapt this structure to the existing project rather than blindly creating duplicate folders.
+
+The most important requirement is:
+
+**Assessment files must be clearly separated from Home page files.**
+
+Do not mix Assessment CSS/JS/images with:
+
+```text
+static/css/
+static/js/
+static/images/
+```
+
+unless there is a genuinely shared global asset.
+
+---
+
+# 2. SECTION NAMING
+
+This page/module should be called:
+
+**ASSESSMENT**
+
+The first section should have a clear name such as:
+
+**assessment_section_01**
+
+or another clean descriptive name based on the actual design/content I provide.
+
+Do not use random filenames.
+
+The folder structure should make it immediately obvious which files belong to the Assessment page.
+
+---
+
+# 3. I WILL PROVIDE THREE THINGS
+
+For this first section, I will provide:
+
+1. **The Stitch/React code**
+2. **The reference/design image**
+3. **The relevant assets/code from the Stitch ZIP**
+
+Treat the **reference image as the visual source of truth**.
+
+Treat the Stitch code as the implementation source.
+
+Compare both before making changes.
+
+---
+
+# 4. CONVERT STITCH/REACT INTO DJANGO
+
+Just like we did successfully with the Home page, I do NOT want the Assessment section to depend on running the React/Vite development server in production.
+
+Convert the Stitch implementation into the existing Django architecture.
+
+The final implementation should use:
+
+- Django HTML templates
+- Django template inheritance where appropriate
+- Django `{% static %}` paths for assets
+- HTML instead of JSX
+- Vanilla JavaScript where React state/interactions need to be reproduced
+- Existing Django architecture
+
+Do NOT simply dump the React code into a Django template.
+
+Convert it properly.
+
+For example:
+
+React:
+
+```jsx
+className="..."
+```
+
+should become:
+
+```html
+class="..."
+```
+
+React components should become clean Django template components/partials where appropriate.
+
+---
+
+# 5. DO NOT BREAK THE EXISTING HOME PAGE
+
+The Home page is now finalized and working correctly.
+
+**DO NOT modify the Home page design or behavior.**
+
+Do not change:
+
+- `home.html`
+- Home page animations
+- Home page CSS
+- Home page responsive behavior
+- Home page JavaScript
+- Hero
+- Existing sections
+- Existing GSAP animations
+
+If an asset/style is genuinely shared, identify it first before modifying it.
+
+Assessment-specific styling should preferably remain isolated.
+
+---
+
+# 6. DO NOT BUILD ALL 5 SECTIONS NOW
+
+Only implement the **first Assessment section** that I provide.
+
+Do NOT:
+
+- Guess the remaining sections
+- Create placeholder sections
+- Invent content
+- Modify future sections
+- Build the complete Assessment page yet
+
+We will do:
+
+**Section 1 → verify → Section 2 → verify → Section 3 → verify → Section 4 → verify → Section 5**
+
+one at a time.
+
+---
+
+# 7. VISUAL FIDELITY
+
+The reference image I provide should be treated as the visual target.
+
+Match:
+
+- Typography
+- Font sizes
+- Font weights
+- Colors
+- Spacing
+- Alignment
+- Image placement
+- Section height
+- Background
+- Borders
+- Cards
+- Buttons
+- Responsive behavior
+- Overall composition
+
+Do not redesign the section.
+
+Do not "improve" the design unless I specifically ask you to.
+
+---
+
+# 8. RESPONSIVE DESIGN
+
+The section must be responsive from the beginning.
+
+Do not create a desktop-only implementation and fix mobile later.
+
+Use the reference design and responsive principles to make it work across:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+For mobile, don't simply shrink everything.
+
+Reflow the layout properly where necessary.
+
+Typography should scale responsively using appropriate techniques such as `clamp()` where useful.
+
+---
+
+# 9. ANIMATIONS
+
+Do not add complicated animations yet unless they are clearly present in the Stitch design/code or I specifically request them.
+
+First priority:
+
+**Correct structure + correct visual implementation + responsive behavior.**
+
+We can add/refine premium scroll animations after the section itself is confirmed visually correct.
+
+Do NOT introduce Lenis.
+
+Do NOT introduce heavy ScrollTrigger logic.
+
+Our current Home page uses native scrolling because that fixed the previous performance problems.
+
+Keep that architecture.
+
+---
+
+# 10. ASSETS
+
+If the Stitch ZIP contains images, fonts, icons, or other assets required by this section:
+
+- Identify which assets are actually used.
+- Copy only the required assets into the appropriate Assessment asset folder.
+- Use Django static paths.
+- Do not duplicate assets unnecessarily.
+- Do not leave random unused assets inside the active Django folders.
+
+Keep the Assessment asset structure clean.
+
+---
+
+# 11. CODE QUALITY
+
+Before finishing:
+
+- Remove unnecessary React-specific code.
+- Remove unused imports.
+- Remove unused assets if they were copied only for testing.
+- Avoid duplicate CSS.
+- Avoid duplicate JavaScript.
+- Keep section-specific code isolated.
+- Follow the existing Django project's naming conventions.
+- Do not create unnecessary folders.
+
+The final structure should be easy for another developer to understand.
+
+---
+
+# 12. VERIFICATION
+
+After implementing Section 1:
+
+1. Run the Django development server.
+2. Open the Assessment page.
+3. Confirm the section renders correctly.
+4. Compare it against the reference image.
+5. Check desktop.
+6. Check mobile.
+7. Check browser console for errors.
+8. Confirm Home page still works.
+9. Confirm no existing Home page styles or scripts were accidentally affected.
+
+Then STOP.
+
+Do not continue to Section 2 until I provide it and approve Section 1.
+
+---
+
+## FINAL RULE
+
+**ONE SECTION AT A TIME.**
+
+First:
+
+**Assessment → Section 1**
+
+Build it cleanly.
+
+Convert Stitch → Django.
+
+Keep the code organized.
+
+Keep Assessment files isolated.
+
+Do not touch the finalized Home page.
+
+Do not build the other four sections.
+
+Once Section 1 is visually and technically correct, we will move to Section 2.
+
+--------------------------------------------------------------------------------------------
+The Stitch source for Assessment Section 1 has now been added to the project.
+
+You can proceed with Section 1.
+
+### STEP 1 — INSPECT FIRST
+
+Before changing any code, inspect the Stitch source and identify:
+
+- The exact Section 1 component
+- JSX/HTML structure
+- CSS/Tailwind styling
+- Images and assets actually used
+- Fonts/icons
+- JavaScript interactions
+- Responsive behavior
+
+Compare the Stitch implementation with the reference image I provided.
+
+Do not make assumptions about missing elements.
+
+---
+
+## STEP 2 — CONVERT STITCH → DJANGO
+
+Convert Section 1 from the Stitch/React implementation into proper Django HTML.
+
+Use:
+
+`templates/assessment/sections/section_01.html`
+
+The main Assessment page should be:
+
+`templates/assessment/assessment.html`
+
+Use proper Django template syntax and `{% static %}` for assets.
+
+Do NOT leave React/JSX dependencies in the final Django implementation.
+
+---
+
+## STEP 3 — KEEP THE STRUCTURE CLEAN
+
+Use the clean Assessment structure:
+
+```text
+templates/
+└── assessment/
+    ├── assessment.html
+    └── sections/
+        └── section_01.html
+
+static/
+└── assessment/
+    ├── css/
+    │   └── assessment.css
+    ├── js/
+    │   └── assessment.js
+    └── images/
+```
+
+Only place assets actually required by Assessment inside these folders.
+
+Do not create unnecessary duplicate files.
+
+---
+
+# STEP 4 — CREATE THE ASSESSMENT URL
+
+Make sure the Assessment page has a proper Django URL.
+
+For example, create/use an appropriate route such as:
+
+`/assessment/`
+
+But first inspect the existing `assessment` Django app and URL configuration and follow the project's existing routing conventions.
+
+Do NOT hardcode a URL inside HTML if a Django `{% url %}` route can be used.
+
+Use a named Django URL, for example:
+
+```django
+{% url 'assessment' %}
+```
+
+if that matches the project's URL naming convention.
+
+---
+
+# STEP 5 — CONNECT THE HOME PAGE CTA
+
+The existing Home page has the button:
+
+**TAKE THE FREE ASSESSMENT →**
+
+Connect this existing button so that clicking it takes the user to the new Assessment page.
+
+The flow should be:
+
+```text
+HOME PAGE
+     ↓
+TAKE THE FREE ASSESSMENT →
+     ↓
+/assessment/
+     ↓
+ASSESSMENT PAGE — SECTION 1
+```
+
+IMPORTANT:
+
+Do NOT redesign or reposition the Home page button.
+
+Do NOT change its animation or styling.
+
+Do NOT modify the finalized Home page layout.
+
+Only connect the button to the correct Django Assessment URL.
+
+Use Django URL reversing rather than hardcoding the path wherever possible.
+
+Also check whether there are multiple **TAKE THE FREE ASSESSMENT** buttons/CTAs on the Home page. If there are multiple buttons that are clearly intended to open the Assessment, make sure they all point to the same Assessment route.
+
+---
+
+# STEP 6 — DO NOT TOUCH THE HOME DESIGN
+
+The Home page is finalized.
+
+Do NOT modify:
+
+- Home HTML structure
+- Home CSS
+- Home JavaScript
+- Home animations
+- Home responsive behavior
+- Hero
+- Existing sections
+- Typography
+- Layout
+
+The only Home-page change allowed for this task is:
+
+**Connect the existing Assessment CTA to the Assessment page URL.**
+
+---
+
+# STEP 7 — MATCH THE STITCH DESIGN
+
+The Stitch source and reference image are the visual source of truth.
+
+Match Section 1 accurately:
+
+- Layout
+- Typography
+- Font sizes
+- Font weights
+- Colors
+- Spacing
+- Images
+- Buttons
+- Backgrounds
+- Borders
+- Alignment
+- Section height
+- Responsive behavior
+
+Do not redesign it.
+
+Do not add your own visual interpretation.
+
+---
+
+# STEP 8 — RESPONSIVE DESIGN
+
+Make Section 1 properly responsive.
+
+Test at:
+
+- Desktop
+- Tablet
+- 430px mobile
+- 390px mobile
+- 375px mobile
+
+Do not simply shrink the desktop layout.
+
+If the Stitch source has a specific mobile composition, reproduce it.
+
+---
+
+# STEP 9 — ANIMATION
+
+For now, do NOT add new cinematic scroll animations unless they already exist in the Stitch source.
+
+First make the section:
+
+**STRUCTURE → VISUAL DESIGN → RESPONSIVE → DJANGO FUNCTIONALITY**
+
+We can refine the Assessment animations later, section by section.
+
+Do NOT re-enable Lenis.
+
+Do NOT introduce heavy ScrollTrigger logic.
+
+Keep native scrolling for performance.
+
+---
+
+# STEP 10 — VERIFY EVERYTHING
+
+After implementation:
+
+1. Run the Django server.
+2. Open the Home page.
+3. Click **TAKE THE FREE ASSESSMENT →**.
+4. Confirm it correctly opens the Assessment page.
+5. Confirm the Assessment URL works directly.
+6. Verify Section 1 visually against the Stitch reference.
+7. Check desktop.
+8. Check mobile.
+9. Check browser console for errors.
+10. Confirm all Assessment assets load correctly.
+11. Confirm the Home page still looks exactly the same.
+12. Confirm no Home animations or responsive behavior were affected.
+
+### IMPORTANT
+
+**STOP AFTER SECTION 1.**
+
+Do not create Sections 2, 3, 4, or 5 yet.
+
+Do not modify unrelated pages.
+
+Once Section 1 is working correctly and the Home → Assessment routing is confirmed, stop and wait for me to provide Section 2.
+
+---------------------------------------------------------------------------------------------------------
+
+
+# ASSESSMENT PAGE — SECTION 2
+
+Section 1 of the Assessment page is now **fully completed and approved**.
+
+We are now moving to **Section 2 only**.
+
+I will provide:
+
+1. Section 2 reference/design image
+2. Section 2 Stitch/React source code
+3. Any required images/assets from the Stitch source
+
+Your job is to convert Section 2 into the existing Django Assessment architecture while keeping everything already completed untouched.
+
+---
+
+# 1. FIRST — INSPECT SECTION 2
+
+Before changing anything, inspect the Section 2 Stitch source carefully.
+
+Identify:
+
+- Complete HTML/JSX structure
+- All text/content
+- Images
+- Icons
+- Buttons
+- Fonts
+- Colors
+- Backgrounds
+- Spacing
+- Cards/containers
+- Responsive behavior
+- Existing animations
+- Any JavaScript interactions
+
+Compare the Stitch implementation with the **Section 2 reference image**.
+
+The reference image + Stitch source are the visual source of truth.
+
+Do not redesign the section based on your own interpretation.
+
+---
+
+# 2. KEEP THE ASSESSMENT STRUCTURE CLEAN
+
+Section 2 must remain isolated inside the Assessment page structure.
+
+Use:
+
+```text id="p8a4qx"
+templates/
+└── assessment/
+    ├── assessment.html
+    └── sections/
+        ├── section_01.html
+        └── section_02.html
+
+static/
+└── assessment/
+    ├── css/
+    │   └── assessment.css
+    ├── js/
+    │   └── assessment.js
+    └── images/
+```
+
+If Section 2 requires additional assets, place them in the appropriate Assessment folder.
+
+Do NOT create random folders or duplicate files.
+
+Keep the structure clean and easy to maintain.
+
+---
+
+# 3. CONVERT STITCH → DJANGO
+
+Convert the Section 2 Stitch/React implementation into **native Django HTML**.
+
+Create:
+
+```text id="yq9h9k"
+templates/assessment/sections/section_02.html
+```
+
+Do NOT leave React/JSX dependencies in the final Django implementation.
+
+Use Django template syntax where required.
+
+Use:
+
+```django
+{% load static %}
+```
+
+and proper:
+
+```django
+{% static '...' %}
+```
+
+paths for images/assets.
+
+Follow the same conversion approach we used successfully for Section 1.
+
+---
+
+# 4. ADD SECTION 2 TO ASSESSMENT PAGE
+
+Include Section 2 in:
+
+```text id="t3j2cq"
+templates/assessment/assessment.html
+```
+
+Use the existing Section 1 structure as the pattern.
+
+For example:
+
+```django
+{% include 'assessment/sections/section_01.html' %}
+{% include 'assessment/sections/section_02.html' %}
+```
+
+Do not merge Section 2 directly into `assessment.html` if the project is already using section partials.
+
+Keep each section independently manageable.
+
+---
+
+# 5. DO NOT TOUCH SECTION 1
+
+Section 1 is **APPROVED and FINAL**.
+
+Do NOT modify:
+
+- Section 1 HTML
+- Section 1 CSS
+- Section 1 JavaScript
+- Section 1 animations
+- Section 1 layout
+- Section 1 typography
+- Section 1 responsive behavior
+- Section 1 navbar
+- Section 1 footer
+
+If Section 2 needs styling that could conflict with Section 1, scope the CSS specifically to Section 2.
+
+For example:
+
+```css
+.assessment-section-02 {
+    ...
+}
+```
+
+Do NOT use broad global selectors that could accidentally change Section 1.
+
+---
+
+# 6. NAVBAR AND FOOTER
+
+Keep the **exact finalized navbar and footer from Section 1**.
+
+Do NOT create another navbar.
+
+Do NOT create another footer.
+
+Do NOT modify their implementation.
+
+The Assessment page should continue using:
+
+**Home-style navbar + Assessment-specific dark/light navbar behavior + HOME link**
+
+exactly as currently implemented.
+
+---
+
+# 7. MATCH SECTION 2 DESIGN
+
+Reproduce the Stitch/reference design accurately.
+
+Pay particular attention to:
+
+### Typography
+- Font family
+- Font size
+- Font weight
+- Line height
+- Letter spacing
+- Text hierarchy
+
+### Layout
+- Width
+- Height
+- Alignment
+- Padding
+- Margins
+- Grid/flex structure
+- Positioning
+
+### Visuals
+- Images
+- Backgrounds
+- Borders
+- Shadows
+- Gradients
+- Rounded corners
+- Decorative elements
+
+### Spacing
+
+Do not compress or expand elements unnecessarily.
+
+The final Django version should visually match the provided Section 2 reference.
+
+---
+
+# 8. RESPONSIVE BEHAVIOR
+
+Section 2 must be properly responsive.
+
+Do NOT simply scale the desktop version down.
+
+Check:
+
+- Desktop
+- Laptop
+- Tablet
+- 430px mobile
+- 390px mobile
+- 375px mobile
+
+If the Stitch design contains a different mobile composition, reproduce that composition.
+
+Make sure:
+
+- Text doesn't overlap
+- Images don't become distorted
+- Buttons don't become unnecessarily huge
+- Nothing gets cut off
+- Horizontal scrolling does not appear
+- Spacing remains intentional
+- Typography dynamically scales appropriately
+
+The mobile design should feel like a **real mobile website**, not a squeezed desktop website.
+
+---
+
+# 9. ANIMATIONS
+
+Use the animations provided by the Stitch source/reference where appropriate.
+
+The animation style should remain consistent with Section 1.
+
+Use:
+
+- Lightweight entrance animations
+- Subtle typography movement
+- Image reveals
+- Small floating effects
+- Button micro-interactions where appropriate
+
+But remember our previous performance issue.
+
+### DO NOT:
+
+- Re-enable Lenis
+- Add heavy smooth scrolling
+- Create huge pinned timelines
+- Use `scrub: 1`
+- Create unnecessary continuous ScrollTriggers
+- Add multiple competing animation systems
+- Create long `+=2000` / `+=3000` scroll distances
+- Cause the native scroll to become delayed
+
+Native scrolling must remain **instant and responsive**.
+
+Animations should enhance the page, not control the scrolling.
+
+---
+
+# 10. SECTION 2 ANIMATION ISOLATION
+
+Any Section 2 animations should be scoped specifically to Section 2.
+
+For example:
+
+```javascript
+const section02 = document.querySelector('.assessment-section-02');
+
+if (section02) {
+    // Section 2 animations
+}
+```
+
+Do not accidentally attach Section 2 animations to:
+
+- Section 1
+- Home page
+- Navbar
+- Footer
+- Other Assessment sections
+
+---
+
+# 11. DO NOT MODIFY THE HOME PAGE
+
+The Home page is completely finalized.
+
+Do NOT modify:
+
+- Home HTML
+- Home CSS
+- Home JS
+- Home animations
+- Home navbar
+- Home footer
+- Home responsive design
+- Hero
+- Any Home section
+
+The only connection between Home and Assessment is the existing:
+
+**TAKE THE FREE ASSESSMENT →**
+
+button.
+
+Leave that functionality unchanged.
+
+---
+
+# 12. VERIFY SECTION 1 → SECTION 2
+
+After implementing Section 2, test the transition:
+
+```text id="j4gc2d"
+Assessment Section 1
+        ↓
+        ↓
+Assessment Section 2
+```
+
+Make sure:
+
+- No visual gap caused by mistake
+- No unwanted overlap
+- No sudden layout jump
+- Section 1 remains unchanged
+- Section 2 starts at the correct position
+- Animations don't interfere with each other
+- Native scrolling remains smooth
+
+---
+
+# 13. TEST THE ENTIRE ASSESSMENT PAGE
+
+After implementation, verify:
+
+### Section 1
+✅ Still exactly as approved
+
+### Section 2
+✅ Matches Stitch/reference
+
+### Navbar
+✅ Still works
+
+### Footer
+✅ Still works
+
+### Desktop
+✅ Correct
+
+### Mobile
+✅ Correct
+
+### Scrolling
+✅ Native and responsive
+
+### Animations
+✅ Smooth and lightweight
+
+### Console
+✅ No JavaScript errors
+
+### Assets
+✅ All images/fonts/icons load correctly
+
+---
+
+# 14. IMPORTANT — STOP AFTER SECTION 2
+
+Do NOT start Section 3.
+
+Do NOT create placeholder sections for Section 3, 4, or 5.
+
+Do NOT modify unrelated pages.
+
+Complete only:
+
+**Assessment Section 2**
+
+Then stop and let me review it.
+
+If anything from the Stitch source is unclear or missing, do not guess. Tell me exactly what is missing before making a major structural decision.
+
+## FINAL RULE
+
+**Section 1 is locked.**
+
+**Home page is locked.**
+
+Only **Assessment Section 2** can be changed in this task.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+# NEXORA CONSULTING — GITHUB SETUP
+
+I have created a GitHub repository named:
+
+**`nexora-consulting`**
+
+I want this Django project properly connected to that repository and maintained with Git from now on.
+
+## 1. FIRST — INSPECT THE CURRENT PROJECT
+
+Before running any Git commands:
+
+- Inspect the current project structure.
+- Check whether Git is already initialized.
+- Run `git status`.
+- Check whether a `.gitignore` already exists.
+- Check whether a remote repository is already configured.
+- Do NOT delete, overwrite, or reset any existing project files.
+
+The current working project is the source of truth.
+
+---
+
+# 2. CONNECT THE PROJECT TO GITHUB
+
+Connect the existing local Nexora Consulting Django project to:
+
+**GitHub repository: `nexora-consulting`**
+
+Use the repository I created.
+
+Do NOT create a second repository.
+
+Do NOT clone another copy over the existing working project.
+
+If Git is not initialized locally, initialize it in the existing project folder.
+
+---
+
+# 3. CREATE / VERIFY `.gitignore`
+
+Before the first push, make sure sensitive and unnecessary files are excluded.
+
+At minimum, verify that `.gitignore` contains appropriate entries for:
+
+```gitignore
+venv/
+__pycache__/
+*.pyc
+.env
+db.sqlite3
+```
+
+Also exclude other local/generated files that should not belong in the repository.
+
+### IMPORTANT
+
+NEVER commit:
+
+- `.env`
+- Passwords
+- API keys
+- Secret keys
+- Database credentials
+- Private credentials
+- Virtual environment files
+- Temporary generated files
+- IDE/system-generated files
+
+If any secret is already staged or tracked, STOP and tell me before pushing.
+
+---
+
+# 4. IMPORTANT — DO NOT DELETE WORKING FILES
+
+The current project is working.
+
+Do NOT clean up, reorganize, rename, or delete project files as part of this Git setup unless I explicitly ask.
+
+In particular, do not modify:
+
+- Home page
+- Assessment Section 1
+- Assessment Section 2
+- Navbar
+- Footer
+- Existing animations
+- Django apps
+- Templates
+- Static assets
+
+This task is only about Git/GitHub setup.
+
+---
+
+# 5. CREATE THE INITIAL COMMIT
+
+Once `.gitignore` has been verified and the project is safe to commit:
+
+Check:
+
+```bash
+git status
+```
+
+Review the files that will be committed.
+
+Then create the initial commit with a clear message such as:
+
+```bash
+git add .
+git commit -m "Initial Nexora Consulting project"
+```
+
+Do not blindly commit files without checking what is being staged.
+
+---
+
+# 6. CONNECT THE GITHUB REMOTE
+
+Connect the local project to my existing:
+
+**`nexora-consulting`**
+
+GitHub repository.
+
+Before pushing, verify:
+
+```bash
+git remote -v
+```
+
+Make sure it points to the correct repository.
+
+Do NOT push to another repository.
+
+---
+
+# 7. PUSH THE INITIAL VERSION
+
+Once everything is verified:
+
+```bash
+git branch -M main
+git push -u origin main
+```
+
+If GitHub rejects the push because the remote already contains files or commits, **STOP and tell me what happened**.
+
+Do not force push.
+
+Do NOT use:
+
+```bash
+git push --force
+```
+
+unless I explicitly instruct you to do so.
+
+---
+
+# 8. FUTURE DEVELOPMENT WORKFLOW
+
+From now on, Git should be part of the development workflow.
+
+Before making a significant change:
+
+```bash
+git status
+```
+
+After completing a meaningful feature/fix:
+
+```bash
+git status
+git add .
+git commit -m "Clear description of change"
+git push
+```
+
+Examples:
+
+```text
+Add Assessment Section 2
+Fix Assessment mobile layout
+Improve Assessment animations
+Fix navbar contrast
+Update hero image
+Add responsive Assessment styles
+Fix Django assessment routing
+```
+
+Use meaningful commit messages.
+
+Do not create meaningless commits just to increase GitHub activity.
+
+---
+
+# 9. PROTECT THE STABLE VERSION
+
+Treat the `main` branch as the **stable working version**.
+
+Before making a large or potentially destructive change, first make sure the current working state is committed.
+
+For example:
+
+```text
+Working version
+      ↓
+Commit
+      ↓
+Make changes
+      ↓
+Test
+      ↓
+Commit working result
+```
+
+This is especially important because we previously had an incident where a homepage edit accidentally deleted several sections.
+
+Git must now give us a reliable recovery point.
+
+---
+
+# 10. BEFORE DESTRUCTIVE CHANGES
+
+If a change involves:
+
+- Rewriting a complete HTML file
+- Replacing a large section
+- Restructuring folders
+- Changing the Django architecture
+- Rewriting major JavaScript
+- Removing files
+- Replacing the Home page
+- Reworking multiple sections
+
+First check:
+
+```bash
+git status
+```
+
+and ensure the current working version is safely committed.
+
+If there are uncommitted changes that could be lost, do NOT overwrite them.
+
+---
+
+# 11. DO NOT COMMIT TEMPORARY FILES
+
+Do not commit things such as:
+
+```text
+scratch/
+temporary/
+debug/
+audit/
+generated audit files
+test exports
+```
+
+unless they are intentionally part of the project.
+
+Keep the GitHub repository clean and professional.
+
+---
+
+# 12. IMPORTANT FOR STITCH SOURCE
+
+The project currently contains:
+
+```text
+stitch_source/
+```
+
+Keep it only if it is useful as the original frontend source.
+
+Do not move it, delete it, or restructure it during this Git setup.
+
+If it is committed to GitHub, make sure it does not contain unnecessary:
+
+- `node_modules/`
+- Build output
+- Temporary files
+- Secrets
+- Local environment files
+
+If a `.gitignore` is needed inside the Stitch source, configure it appropriately.
+
+---
+
+# 13. AFTER PUSHING
+
+Verify the GitHub repository contains the expected Nexora Consulting project.
+
+The repository should contain the actual working Django source, including the appropriate:
+
+```text
+nexora/
+core/
+pages/
+programmes/
+booking/
+assessment/
+templates/
+static/
+manage.py
+requirements.txt
+```
+
+and other legitimate project files.
+
+It should NOT contain:
+
+```text
+venv/
+.env
+db.sqlite3
+node_modules/
+temporary files
+secrets
+```
+
+unless there is a specific reason.
+
+---
+
+# 14. DO NOT DEPLOY YET
+
+GitHub setup and deployment are separate tasks.
+
+For now:
+
+**LOCAL PROJECT → GITHUB**
+
+Do NOT configure the production server.
+
+Do NOT change Nginx.
+
+Do NOT change Gunicorn.
+
+Do NOT change Ubuntu/server configuration.
+
+We will handle deployment separately later.
+
+---
+
+# FINAL REQUIREMENT
+
+After completing the setup, report:
+
+1. Whether Git was already initialized
+2. Current Git branch
+3. GitHub remote configured
+4. `.gitignore` status
+5. Files excluded from Git
+6. Initial commit hash
+7. Whether the push to `nexora-consulting` succeeded
+8. Confirmation that the Django project still runs
+9. Confirmation that no project files were deleted or modified unnecessarily
+
+**Do not make any UI or application changes during this task.**
+
+This task is strictly:
+
+**Connect Nexora Consulting → GitHub → Create safe initial commit → Push → Verify.**

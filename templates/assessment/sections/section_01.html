@@ -1,0 +1,43 @@
+{% load static %}
+
+<section class="w-full pt-[120px] bg-surface">
+  <div class="flex flex-col w-full relative overflow-hidden min-h-[calc(100vh-120px)] justify-center items-center">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+      <span class="font-display-lg text-[20vw] leading-none text-surface-tint opacity-5 font-bold tracking-tighter mix-blend-multiply select-none">
+        REALITY
+      </span>
+    </div>
+    <div class="relative z-10 max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop w-full grid grid-cols-12 gap-gutter items-center">
+      <div class="col-span-12 md:col-span-8 md:col-start-3 lg:col-span-6 lg:col-start-4 text-center flex flex-col items-center gap-12">
+        <div class="flex flex-col items-center gap-4">
+          <span class="font-label-sm text-label-sm text-secondary tracking-[0.2em] uppercase bg-secondary/10 px-4 py-1.5 rounded-full backdrop-blur-sm shadow-sm">
+            Phase 01: Diagnostic
+          </span>
+        </div>
+        <div class="flex flex-col gap-6">
+          <h1 class="font-display-lg text-display-lg text-on-surface leading-[1.1] tracking-tight">
+            Where is your business really today?
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto opacity-80 leading-relaxed">
+            Before we chart the course for transformation, we must establish the baseline. This diagnostic evaluates your current operational reality, identifying what drives value and what introduces friction.
+          </p>
+        </div>
+        <div class="flex flex-col items-center gap-6 mt-8">
+          <a href="{% url 'assessment:assessment_section_02' %}" class="group relative inline-flex items-center justify-center px-10 py-5 bg-secondary text-on-secondary font-label-md text-label-md rounded-full shadow-lg hover:shadow-xl hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300 overflow-hidden">
+            <span class="relative z-10 flex items-center gap-3 tracking-wider">
+              START THE ASSESSMENT
+              <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
+            </span>
+            <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+          </a>
+          <div class="flex items-center gap-2 opacity-50">
+            <span class="material-symbols-outlined text-[16px]">schedule</span>
+            <span class="font-label-sm text-label-sm text-on-surface uppercase tracking-widest">Takes approximately 5 minutes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
+    </div>
+  </div>
+</section>
