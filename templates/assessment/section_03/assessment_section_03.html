@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Assessment | Nexora Consulting{% endblock %}
+{% block extra_css %}
+    <style>
+        @media (min-width: 769px) {
+            body { overscroll-behavior: none; }
+            ::-webkit-scrollbar { display: none; }
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config={theme:{extend:{"colors":{"surface-variant":"#ebe1d3","secondary":"#994629","background":"#fff8f2","primary-fixed":"#e8e1dd","inverse-on-surface":"#faefe1","secondary-container":"#fe9572","on-tertiary-fixed-variant":"#594318","secondary-fixed-dim":"#ffb59d","inverse-surface":"#353026","on-tertiary":"#ffffff","on-primary":"#ffffff","surface-tint":"#615e5b","primary-container":"#1d1b19","on-background":"#1f1b12","surface-container-lowest":"#ffffff","surface-container-low":"#fdf2e4","primary":"#000000","on-error-container":"#93000a","tertiary-container":"#271900","inverse-primary":"#cbc5c2","on-error":"#ffffff","on-primary-fixed-variant":"#494644","surface-dim":"#e3d9cb","on-surface-variant":"#4c4640","on-tertiary-fixed":"#271900","on-secondary-fixed":"#390c00","surface-container":"#f7ecde","secondary-fixed":"#ffdbd0","surface-container-high":"#f1e7d9","outline-variant":"#cec5bd","error-container":"#ffdad6","tertiary-fixed-dim":"#e3c28c","on-tertiary-container":"#9c804f","on-secondary-fixed-variant":"#7a2f14","on-primary-container":"#878380","tertiary-fixed":"#ffdea8","primary-fixed-dim":"#cbc5c2","error":"#ba1a1a","surface-bright":"#fff8f2","tertiary":"#000000","outline":"#7d766f","surface":"#fff8f2","surface-container-highest":"#ebe1d3","on-secondary":"#ffffff","on-surface":"#1f1b12","on-secondary-container":"#762c11","on-primary-fixed":"#1d1b19"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"section-gap":"120px","container-max":"1280px","margin-desktop":"64px","gutter":"32px","margin-mobile":"20px","unit":"8px"},"fontFamily":{"body-lg":["Manrope"],"headline-sm":["DM Serif Display"],"headline-lg-mobile":["DM Serif Display"],"label-md":["Manrope"],"headline-lg":["DM Serif Display"],"label-sm":["Manrope"],"display-md":["DM Serif Display"],"display-lg":["DM Serif Display"],"body-md":["Manrope"]},"fontSize":{"body-lg":["20px",{"lineHeight":"32px","fontWeight":"400"}],"headline-sm":["24px",{"lineHeight":"32px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","fontWeight":"400"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"display-md":["48px",{"lineHeight":"56px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-lg":["72px",{"lineHeight":"80px","letterSpacing":"-0.02em","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assessment/css/assessment.css' %}">
+{% endblock %}
+{% block body_class %}bg-[#0e0e0e] font-body-md text-surface assessment-page-body section-02-dark-nav{% endblock %}
+{% block content %}
+    <main class="w-full relative opacity-0 bg-[#0e0e0e]"
+          id="assessment-container">
+        <section class="relative w-full min-h-[100svh] flex items-center overflow-hidden pt-24 pb-16"
+                 id="section-3-hero">
+            <!-- Cinematic Full-screen Background Image -->
+            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden"
+                 id="s3-image-block">
+                <img class="w-full h-full object-cover object-[65%_center] md:object-[70%_center] transition-transform duration-[1.5s] ease-out scale-[1.03]"
+                     alt="Premium architectural photography"
+                     src="{% static 'assessment/section_03/images/sectionImage.jpg' %}" />
+            </div>
+            <!-- Cinematic Gradient Overlay (Left to Right) -->
+            <div class="absolute inset-0 z-0 bg-gradient-to-r from-[#0a0a0a] from-25% via-[#0a0a0a]/85 via-45% to-transparent to-85% opacity-0"
+                 id="s3-gradient"></div>
+            <!-- Additional dark gradient from bottom for mobile text legibility -->
+            <div class="absolute inset-0 z-0 bg-gradient-to-t from-[#0a0a0a] from-25% via-[#0a0a0a]/75 via-60% to-transparent md:hidden opacity-0"
+                 id="s3-gradient-mobile"></div>
+            <!-- Main Content Container -->
+            <div class="w-full max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop relative z-10 flex flex-col justify-center h-full">
+                <!-- Typographic Content Block (Left-Aligned) -->
+                <div class="md:w-[55%] lg:w-[45%] flex flex-col items-start pr-0 md:pr-8">
+                    <!-- Section Overline (Eyebrow) -->
+                    <div class="flex items-center gap-4 mb-6 s3-text-element opacity-0 translate-y-4">
+                        <div class="w-10 h-[1px] bg-secondary"></div>
+                        <span class="font-label-sm text-secondary uppercase tracking-[0.15em]">A Different Way Forward</span>
+                    </div>
+                    <!-- Headline -->
+                    <h2 class="font-display-lg text-[clamp(1.75rem,3vw,3rem)] text-surface leading-[1.15] mb-8 tracking-tight relative s3-text-element opacity-0 translate-y-4 max-w-xl">
+                        Your business should create freedom, not become another job.
+                    </h2>
+                    <!-- Supporting Text -->
+                    <div class="flex flex-col gap-5 mb-12">
+                        <p class="font-body-lg text-body-lg text-surface-variant/90 max-w-[500px] leading-relaxed s3-text-element opacity-0 translate-y-4">
+                            You've taken a closer look at how your business is operating today. Now let's take that one step further. Imagine a business with clearer systems, more predictable growth, and the space for you to focus on what matters most.
+                        </p>
+                        <p class="font-body-lg text-body-lg text-surface-variant/90 max-w-[500px] leading-relaxed s3-text-element opacity-0 translate-y-4">
+                            The next step is to understand where you are today and where you want to go. We'll use that picture to understand what your business needs next.
+                        </p>
+                    </div>
+                    <!-- Call To Action -->
+                    <button class="group inline-flex items-center justify-center gap-4 px-8 py-4 cursor-pointer focus:outline-none s3-text-element opacity-0 translate-y-4 rounded-sm bg-[#c39b6b] hover:bg-[#d1ad82] border border-[#e3c28c]/40 transition-all duration-400 ease-out shadow-lg shadow-[#c39b6b]/20"
+                            id="s3-continue-btn">
+                        <span class="font-label-md text-[#171513] font-bold uppercase tracking-[0.15em]">Continue</span>
+                        <span class="material-symbols-outlined text-[20px] text-[#171513] group-hover:translate-x-1.5 transition-transform duration-300">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'assessment/section_03/js/section_03.js' %}"></script>
+{% endblock %}

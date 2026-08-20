@@ -1,0 +1,138 @@
+{% load static %}
+<section class="assessment-section-02 w-full relative min-h-[100dvh] flex flex-col justify-center bg-[#11100f] overflow-hidden">
+    <!-- Dark Architectural Background -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&amp;w=1600&amp;auto=format&amp;fit=crop"
+             alt="Architectural Background"
+             class="w-full h-full object-cover object-center filter brightness-[0.35] contrast-[1.15]"
+             loading="lazy"
+             referrerPolicy="no-referrer" />
+        <div class="absolute inset-0 bg-[#11100f]/75 backdrop-blur-[2px]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#11100f]/95 via-[#11100f]/40 to-[#11100f]/95"></div>
+    </div>
+    <div class="w-full max-w-3xl mx-auto px-6 py-20 lg:py-28 relative z-10 flex flex-col gap-10">
+        <!-- Top Zone: Question Context -->
+        <div class="flex flex-col gap-5 relative w-full items-center text-center">
+            <!-- Eyebrow & Number -->
+            <div class="flex flex-col items-center gap-3 mb-2" id="s2-eyebrow">
+                <span class="text-[11px] font-sans font-semibold tracking-[0.24em] text-[#d1ab80] uppercase opacity-90">Business Reality Assessment</span>
+                <div class="flex flex-col items-center gap-2.5">
+                    <span class="font-sans text-[13px] sm:text-[14px] font-medium tracking-[0.15em] text-[#d1ab80]"
+                          id="current-question-number">01 / 06</span>
+                    <div class="flex items-center w-20 sm:w-24 bg-[#d1ab80]/20 h-[2px] rounded-full overflow-hidden">
+                        <div class="h-full bg-[#d1ab80] transition-all duration-500 ease-out"
+                             style="width: 16.66%"
+                             id="progress-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Question -->
+            <h1 class="font-display text-3xl sm:text-4xl md:text-[42px] leading-[1.15] text-[#fcfaf7] max-w-2xl mx-auto font-normal"
+                id="s2-heading">
+                How often does your business require your personal involvement to keep day-to-day operations moving?
+            </h1>
+        </div>
+        <!-- Grid Zone: Answers -->
+        <div class="w-full max-w-2xl mx-auto flex flex-col gap-3"
+             id="assessment-grid">
+            <!-- Option: A -->
+            <button class="assessment-card group flex items-center justify-between px-5 py-4 bg-[#1a1918]/60 backdrop-blur-md border border-[#38332d] rounded-xl hover:border-[#524b42] hover:bg-[#1a1918]/90 transition-all duration-300 text-left w-full"
+                    data-value="1">
+                <span class="card-text font-sans text-[13px] sm:text-[14px] font-medium text-[#e8dfd2] transition-colors leading-relaxed">
+                    <span class="font-bold tracking-wider uppercase mr-2 opacity-80">Never</span>
+                    <span class="font-light opacity-90 description-text">The business operates independently without my involvement.</span>
+                </span>
+                <div class="flex items-center gap-3 shrink-0 ml-4">
+                    <span class="card-label text-xs font-mono transition-colors text-[#787167]">A</span>
+                    <div class="w-5 h-5 rounded-full border border-[#38332d] bg-transparent flex items-center justify-center transition-all duration-300 card-icon-container">
+                        <span class="material-symbols-outlined card-icon text-white opacity-0 transform scale-50 transition-all duration-300 text-[14px]">check</span>
+                    </div>
+                </div>
+            </button>
+            <!-- Option: B -->
+            <button class="assessment-card group flex items-center justify-between px-5 py-4 bg-[#1a1918]/60 backdrop-blur-md border border-[#38332d] rounded-xl hover:border-[#524b42] hover:bg-[#1a1918]/90 transition-all duration-300 text-left w-full"
+                    data-value="2">
+                <span class="card-text font-sans text-[13px] sm:text-[14px] font-medium text-[#e8dfd2] transition-colors leading-relaxed">
+                    <span class="font-bold tracking-wider uppercase mr-2 opacity-80">Sometimes</span>
+                    <span class="font-light opacity-90 description-text">I need to step in for specific situations.</span>
+                </span>
+                <div class="flex items-center gap-3 shrink-0 ml-4">
+                    <span class="card-label text-xs font-mono transition-colors text-[#787167]">B</span>
+                    <div class="w-5 h-5 rounded-full border border-[#38332d] bg-transparent flex items-center justify-center transition-all duration-300 card-icon-container">
+                        <span class="material-symbols-outlined card-icon text-white opacity-0 transform scale-50 transition-all duration-300 text-[14px]">check</span>
+                    </div>
+                </div>
+            </button>
+            <!-- Option: C -->
+            <button class="assessment-card group flex items-center justify-between px-5 py-4 bg-[#1a1918]/60 backdrop-blur-md border border-[#38332d] rounded-xl hover:border-[#524b42] hover:bg-[#1a1918]/90 transition-all duration-300 text-left w-full"
+                    data-value="3">
+                <span class="card-text font-sans text-[13px] sm:text-[14px] font-medium text-[#e8dfd2] transition-colors leading-relaxed">
+                    <span class="font-bold tracking-wider uppercase mr-2 opacity-80">Often</span>
+                    <span class="font-light opacity-90 description-text">My team regularly depends on me.</span>
+                </span>
+                <div class="flex items-center gap-3 shrink-0 ml-4">
+                    <span class="card-label text-xs font-mono transition-colors text-[#787167]">C</span>
+                    <div class="w-5 h-5 rounded-full border border-[#38332d] bg-transparent flex items-center justify-center transition-all duration-300 card-icon-container">
+                        <span class="material-symbols-outlined card-icon text-white opacity-0 transform scale-50 transition-all duration-300 text-[14px]">check</span>
+                    </div>
+                </div>
+            </button>
+            <!-- Option: D -->
+            <button class="assessment-card group flex items-center justify-between px-5 py-4 bg-[#1a1918]/60 backdrop-blur-md border border-[#38332d] rounded-xl hover:border-[#524b42] hover:bg-[#1a1918]/90 transition-all duration-300 text-left w-full"
+                    data-value="4">
+                <span class="card-text font-sans text-[13px] sm:text-[14px] font-medium text-[#e8dfd2] transition-colors leading-relaxed">
+                    <span class="font-bold tracking-wider uppercase mr-2 opacity-80">Always</span>
+                    <span class="font-light opacity-90 description-text">The business relies heavily on me to keep things moving.</span>
+                </span>
+                <div class="flex items-center gap-3 shrink-0 ml-4">
+                    <span class="card-label text-xs font-mono transition-colors text-[#787167]">D</span>
+                    <div class="w-5 h-5 rounded-full border border-[#38332d] bg-transparent flex items-center justify-center transition-all duration-300 card-icon-container">
+                        <span class="material-symbols-outlined card-icon text-white opacity-0 transform scale-50 transition-all duration-300 text-[14px]">check</span>
+                    </div>
+                </div>
+            </button>
+        </div>
+        <!-- Action Area -->
+        <div class="w-full max-w-2xl mx-auto flex items-center justify-between pt-6 mt-4 border-t border-[#38332d]"
+             id="assessment-action-area">
+            <!-- Previous Button (Hidden by default on Q1) -->
+            <button class="text-[#a8a195] hover:text-[#d1ab80] font-sans text-xs sm:text-[13px] font-medium tracking-wider uppercase py-2 px-3 flex items-center gap-2 transition-all duration-300 opacity-0 pointer-events-none"
+                    id="action-previous">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="14"
+                     height="14"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="lucide lucide-arrow-left stroke-[2.5]"
+                     aria-hidden="true">
+                    <path d="m12 19-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
+                </svg>
+                <span>PREVIOUS</span>
+            </button>
+            <!-- Continue Button -->
+            <button class="bg-[#211f1d] text-[#5e584f] font-sans text-xs sm:text-[13px] font-bold tracking-wider uppercase px-6 py-3 rounded-md flex items-center gap-2 transition-all duration-300 pointer-events-none border border-transparent shadow-none ml-auto"
+                    id="action-continue">
+                <span>CONTINUE</span>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="14"
+                     height="14"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     class="lucide lucide-arrow-right stroke-[2.5]"
+                     aria-hidden="true">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>

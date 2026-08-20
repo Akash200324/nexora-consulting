@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@100..900&family=Manrope:wght@100..900&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="{% static 'assessment/section_05/css/section_05.css' %}">
+{% endblock %}
+{% block body_class %}bg-background font-body-md text-on-background{% endblock %}
+{% block content %}
+    <main class="pt-20 opacity-0" id="assessment-container">
+        <div class="flex flex-col w-full">
+            <!-- Hero Section -->
+            <section class="relative w-full h-[600px] flex items-center justify-center bg-primary text-on-primary overflow-hidden pt-20 -mt-20">
+                <div class="absolute inset-0 z-0">
+                    <img class="w-full h-full object-cover opacity-30 mix-blend-luminosity s5-hero-bg"
+                         data-alt="A high-end modern corporate boardroom with panoramic views of a city skyline at sunset, warm amber lighting, luxury business atmosphere."
+                         src="{% static 'assessment/section_05/images/image.png' %}" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent"></div>
+                </div>
+                <div class="relative z-10 w-full max-w-container-max px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+                    <div class="md:col-span-7 flex flex-col items-start space-y-6">
+                        <span class="font-label-sm text-tertiary-fixed tracking-[0.2em] uppercase s5-typo">Diagnostic Complete</span>
+                        <h1 class="font-display-lg text-[64px] leading-[72px] text-on-primary s5-typo">Your Business Reality, Revealed.</h1>
+                        <p class="font-body-lg text-[20px] leading-relaxed text-on-primary-container max-w-xl s5-typo">An unfiltered look at your current operational state, highlighting critical pressure points and unmapped growth opportunities.</p>
+                    </div>
+                    <div class="md:col-span-5 flex justify-center md:justify-end mt-12 md:mt-0 s5-score-area">
+                        <div class="relative flex items-center justify-center group cursor-default">
+                            <svg class="w-64 h-64 transform -rotate-90" viewbox="0 0 100 100">
+                                <circle class="text-on-primary/10 stroke-current" cx="50" cy="50" fill="transparent" r="48" stroke-width="2"></circle>
+                                <circle class="text-secondary stroke-current transition-all duration-1500 ease-out" cx="50" cy="50" fill="transparent" id="score-ring" r="48" stroke-dasharray="301.59" stroke-dashoffset="67.02" stroke-linecap="round" stroke-width="2" style="stroke-dashoffset: 67.02;"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <div class="flex items-baseline space-x-1">
+                                    <span class="font-display-md text-[110px] leading-none text-on-primary"
+                                          id="score-count"
+                                          data-score="{{ assessment_score }}">{{ assessment_score }}</span>
+                                    <span class="font-headline-sm text-on-primary-container">/ 24</span>
+                                </div>
+                                <span class="font-label-md text-secondary mt-2 tracking-widest uppercase">{{ assessment_zone }}</span>
+                                <span class="font-body-md text-on-primary-container text-center max-w-xs mt-2">{{ assessment_zone_message }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Interpretation Section -->
+            <section class="w-full py-section-gap bg-background text-on-background relative s5-anim-element">
+                <div class="max-w-container-max mx-auto px-margin-desktop">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+                        <div class="lg:col-span-5 relative">
+                            <div class="absolute -left-8 top-0 w-1 h-full bg-surface-dim"></div>
+                            <h2 class="font-headline-lg text-[48px] text-primary leading-tight">
+                                "Your revenue is scaling faster than the operational systems required to sustain it."
+                            </h2>
+                        </div>
+                        <div class="lg:col-span-6 lg:col-start-7 space-y-8 mt-12 lg:mt-0">
+                            <p class="font-body-md text-[20px] leading-relaxed text-on-surface-variant">
+                                The assessment indicates a critical divergence between your top-line growth and foundational stability. While market demand is high, the internal mechanisms handling fulfillment, team alignment, and strategic execution are beginning to fracture under pressure.
+                            </p>
+                            <p class="font-body-md text-[20px] leading-relaxed text-on-surface-variant">
+                                This "{{ assessment_zone }}" is common for businesses transitioning from early-stage hustle to mature enterprise. The symptoms—founder burnout, inconsistent service delivery, and team confusion—are indicators that your current operating system has reached its limit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Reality Map Visualization -->
+            <section class="w-full py-16 bg-surface-container-low border-y border-outline/10 s5-anim-element">
+                <div class="max-w-container-max mx-auto px-margin-desktop">
+                    <div class="flex flex-col items-center space-y-12">
+                        <div class="text-center">
+                            <h3 class="font-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Structural Analysis</h3>
+                            <p class="font-headline-sm text-[32px] text-primary">The Business Pressure Matrix</p>
+                        </div>
+                        <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-4 gap-px bg-outline/10">
+                            <!-- Lever 1 -->
+                            <div class="bg-surface-container-lowest p-8 flex flex-col h-full relative group s5-card">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500">
+                                </div>
+                                <span class="font-label-md text-secondary mb-8">01</span>
+                                <h4 class="font-headline-sm mb-4">Revenue</h4>
+                                <div class="mt-auto pt-8">
+                                    <div class="flex justify-between font-label-sm text-on-surface-variant mb-2">
+                                        <span class="">Velocity</span>
+                                        <span class="">High</span>
+                                    </div>
+                                    <div class="w-full h-px bg-outline/20 relative">
+                                        <div class="absolute top-0 left-0 h-full bg-secondary w-[85%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Lever 2 -->
+                            <div class="bg-surface-container-lowest p-8 flex flex-col h-full relative group s5-card">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-error scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500">
+                                </div>
+                                <span class="font-label-md text-error mb-8">02</span>
+                                <h4 class="font-headline-sm mb-4">Systems</h4>
+                                <div class="mt-auto pt-8">
+                                    <div class="flex justify-between font-label-sm text-on-surface-variant mb-2">
+                                        <span class="">Capacity</span>
+                                        <span class="">Critical</span>
+                                    </div>
+                                    <div class="w-full h-px bg-outline/20 relative">
+                                        <div class="absolute top-0 left-0 h-full bg-error w-[30%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Lever 3 -->
+                            <div class="bg-surface-container-lowest p-8 flex flex-col h-full relative group s5-card">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-tertiary-container scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500">
+                                </div>
+                                <span class="font-label-md text-on-surface-variant mb-8">03</span>
+                                <h4 class="font-headline-sm mb-4">Team</h4>
+                                <div class="mt-auto pt-8">
+                                    <div class="flex justify-between font-label-sm text-on-surface-variant mb-2">
+                                        <span class="">Alignment</span>
+                                        <span class="">Moderate</span>
+                                    </div>
+                                    <div class="w-full h-px bg-outline/20 relative">
+                                        <div class="absolute top-0 left-0 h-full bg-tertiary-container w-[55%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Lever 4 -->
+                            <div class="bg-surface-container-lowest p-8 flex flex-col h-full relative group s5-card">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500">
+                                </div>
+                                <span class="font-label-md text-on-surface-variant mb-8">04</span>
+                                <h4 class="font-headline-sm mb-4">Strategy</h4>
+                                <div class="mt-auto pt-8">
+                                    <div class="flex justify-between font-label-sm text-on-surface-variant mb-2">
+                                        <span class="">Clarity</span>
+                                        <span class="">Low</span>
+                                    </div>
+                                    <div class="w-full h-px bg-outline/20 relative">
+                                        <div class="absolute top-0 left-0 h-full bg-primary w-[40%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Key Insights -->
+            <section class="w-full py-section-gap bg-background s5-anim-element">
+                <div class="max-w-container-max mx-auto px-margin-desktop">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                        <!-- Main Card -->
+                        <div class="md:col-span-8 bg-surface-container-high rounded-xl p-12 shadow-sm relative overflow-hidden group hover:shadow-md transition-shadow s5-card">
+                            <div class="absolute -right-20 -bottom-20 text-[200px] font-display-lg text-surface-dim opacity-50 select-none pointer-events-none group-hover:scale-110 transition-transform duration-700">01</div>
+                            <div class="relative z-10">
+                                <span class="inline-block px-3 py-1 bg-error-container text-on-error-container font-label-sm uppercase tracking-widest rounded-full mb-8">Primary Constraint</span>
+                                <h3 class="font-headline-lg text-[48px] leading-tight text-primary mb-6">Operational Bottleneck</h3>
+                                <p class="font-body-md text-[20px] leading-relaxed text-on-surface-variant max-w-xl">
+                                    You remain the primary router for decisions, problem-solving, and quality control. This dependency severely caps your growth potential and directly contributes to leadership fatigue. Moving forward requires decoupling your time from the service delivery mechanism.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Secondary Cards Container -->
+                        <div class="md:col-span-4 flex flex-col gap-gutter">
+                            <div class="bg-surface-container rounded-xl p-8 flex-1 border border-outline/5 hover:-translate-y-1 transition-transform s5-card">
+                                <span class="font-label-sm text-on-surface-variant uppercase tracking-widest block mb-4">02</span>
+                                <h4 class="font-headline-sm text-[32px] leading-tight text-primary mb-3">Team Misalignment</h4>
+                                <p class="font-body-md text-[20px] leading-relaxed text-on-surface-variant">Without clear documented standards, your team operates on assumptions rather than aligned strategy.</p>
+                            </div>
+                            <div class="bg-surface-container rounded-xl p-8 flex-1 border border-outline/5 hover:-translate-y-1 transition-transform s5-card">
+                                <span class="font-label-sm text-on-surface-variant uppercase tracking-widest block mb-4">03</span>
+                                <h4 class="font-headline-sm text-[32px] leading-tight text-primary mb-3">Strategic Fog</h4>
+                                <p class="font-body-md text-[20px] leading-relaxed text-on-surface-variant">Tactical firefighting has replaced long-term planning. The horizon is obscured by daily operational noise.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Recommendation Section -->
+            <section class="w-full py-section-gap bg-primary text-on-primary s5-anim-element">
+                <div class="max-w-container-max mx-auto px-margin-desktop">
+                    <div class="mb-16">
+                        <h2 class="font-headline-lg text-tertiary-fixed tracking-[0.2em] uppercase mb-4">Your Next Step</h2>
+                        <p class="font-display-md text-on-primary-container max-w-2xl">Clarity is useful. Knowing exactly what to do next is better.</p>
+                    </div>
+                    <!-- Split Card -->
+                    <div class="w-full max-w-[90%] mx-auto bg-surface-container-lowest text-on-surface rounded-xl overflow-hidden shadow-2xl flex flex-col md:flex-row s5-card">
+                        <div class="w-full md:w-1/2 p-12 md:p-16 flex flex-col justify-center bg-background">
+                            <span class="font-label-sm text-secondary uppercase tracking-widest mb-6">Recommended Path</span>
+                            <h3 class="font-headline-lg text-[48px] leading-tight text-primary mb-6">Founders Growth Accelerator</h3>
+                            <p class="font-body-md text-[20px] leading-relaxed text-on-surface-variant mb-10">
+                                Based on your score, the most effective intervention is a structured realignment of your operational systems and leadership focus. This program is designed specifically for businesses in the '{{ assessment_zone }}'.
+                            </p>
+                            <a class="inline-flex items-center justify-center px-8 py-4 bg-secondary text-on-secondary font-label-md uppercase tracking-wider rounded transition-colors hover:bg-on-secondary-container self-start"
+                               href="#">Book a 15-Minute Discovery Call</a>
+                        </div>
+                        <div class="w-full md:w-1/2 relative min-h-[400px]">
+                            <img class="absolute inset-0 w-full h-full object-cover"
+                                 data-alt="Three business professionals engaged in a serious, strategic consultation around a rustic wooden table in a classic, wood-paneled room with natural light."
+                                 src="{% static 'assessment/section_05/images/image2.png' %}" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Rationale & Next Steps -->
+            <section class="w-full py-section-gap bg-background border-t border-outline/10 s5-anim-element">
+                <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-24">
+                    <!-- Why This Path -->
+                    <div>
+                        <h3 class="font-headline-sm text-[32px] text-primary mb-12">Why this path?</h3>
+                        <div class="space-y-8 relative">
+                            <div class="absolute left-[11px] top-6 bottom-6 w-px bg-outline/20"></div>
+                            <div class="relative pl-12 s5-card">
+                                <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface border border-outline flex items-center justify-center z-10">
+                                    <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                </div>
+                                <h4 class="text-primary uppercase tracking-wider mb-2 font-headline-sm">Business Stage</h4>
+                                <p class="font-body-lg text-[20px] leading-relaxed text-on-surface-variant">Your revenue confirms market fit; the challenge is structural, not sales-driven.</p>
+                            </div>
+                            <div class="relative pl-12 s5-card">
+                                <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface border border-outline flex items-center justify-center z-10">
+                                    <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                </div>
+                                <h4 class="text-primary uppercase tracking-wider mb-2 font-headline-sm">Priorities</h4>
+                                <p class="font-body-lg text-[20px] leading-relaxed text-on-surface-variant">Your revenue confirms market fit; the challenge is structural, not sales-driven.</p>
+                            </div>
+                            <div class="relative pl-12 s5-card">
+                                <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface border border-outline flex items-center justify-center z-10">
+                                    <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                                </div>
+                                <h4 class="text-primary uppercase tracking-wider mb-2 font-headline-sm">Qualification</h4>
+                                <p class="font-body-lg text-[20px] leading-relaxed text-on-surface-variant">Your revenue confirms market fit; the challenge is structural, not sales-driven.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- What Happens Next -->
+                    <div>
+                        <h3 class="font-headline-sm text-[32px] text-primary mb-12">What happens next</h3>
+                        <div class="space-y-8 relative">
+                            <div class="absolute left-[11px] top-6 bottom-6 w-px bg-outline/20"></div>
+                            <div class="relative pl-12 s5-card">
+                                <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface border border-outline flex items-center justify-center z-10 bg-surface-container-highest">
+                                    <span class="font-label-sm text-on-surface-variant">1</span>
+                                </div>
+                                <h4 class="text-primary uppercase tracking-wider mb-2 font-headline-sm">Discovery</h4>
+                                <p class="font-body-lg text-[20px] leading-relaxed text-on-surface-variant">Your revenue confirms market fit; the challenge is structural, not sales-driven.</p>
+                            </div>
+                            <div class="relative pl-12 s5-card">
+                                <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface border border-outline flex items-center justify-center z-10 bg-surface-container-highest">
+                                    <span class="font-label-sm text-on-surface-variant">2</span>
+                                </div>
+                                <h4 class="text-primary uppercase tracking-wider mb-2 font-headline-sm">Deep-Dive</h4>
+                                <p class="font-body-lg text-[20px] leading-relaxed text-on-surface-variant">Your revenue confirms market fit; the challenge is structural, not sales-driven.</p>
+                            </div>
+                            <div class="relative pl-12 s5-card">
+                                <div class="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-surface border border-outline flex items-center justify-center z-10 bg-surface-container-highest">
+                                    <span class="font-label-sm text-on-surface-variant">3</span>
+                                </div>
+                                <h4 class="text-primary uppercase tracking-wider mb-2 font-headline-sm">Growth Path</h4>
+                                <p class="font-body-lg text-[20px] leading-relaxed text-on-surface-variant">Your revenue confirms market fit; the challenge is structural, not sales-driven.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="max-w-container-max mx-auto px-margin-desktop mt-20 text-center">
+                    <a class="inline-flex items-center space-x-2 text-on-surface-variant hover:text-primary transition-colors border-b border-transparent hover:border-primary pb-1 group"
+                       href="/assessment/section-4/">
+                        <span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        <span class="font-body-lg uppercase tracking-widest">Review your answers</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'assessment/section_05/js/section_05.js' %}"></script>
+{% endblock %}

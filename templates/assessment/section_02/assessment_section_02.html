@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Assessment | Nexora Consulting{% endblock %}
+{% block extra_css %}
+    <style>
+        @media (min-width: 769px) {
+            body { overscroll-behavior: none; }
+            ::-webkit-scrollbar { display: none; }
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config={theme:{extend:{"colors":{"surface-variant":"#ebe1d3","secondary":"#994629","background":"#fff8f2","primary-fixed":"#e8e1dd","inverse-on-surface":"#faefe1","secondary-container":"#fe9572","on-tertiary-fixed-variant":"#594318","secondary-fixed-dim":"#ffb59d","inverse-surface":"#353026","on-tertiary":"#ffffff","on-primary":"#ffffff","surface-tint":"#615e5b","primary-container":"#1d1b19","on-background":"#1f1b12","surface-container-lowest":"#ffffff","surface-container-low":"#fdf2e4","primary":"#000000","on-error-container":"#93000a","tertiary-container":"#271900","inverse-primary":"#cbc5c2","on-error":"#ffffff","on-primary-fixed-variant":"#494644","surface-dim":"#e3d9cb","on-surface-variant":"#4c4640","on-tertiary-fixed":"#271900","on-secondary-fixed":"#390c00","surface-container":"#f7ecde","secondary-fixed":"#ffdbd0","surface-container-high":"#f1e7d9","outline-variant":"#cec5bd","error-container":"#ffdad6","tertiary-fixed-dim":"#e3c28c","on-tertiary-container":"#9c804f","on-secondary-fixed-variant":"#7a2f14","on-primary-container":"#878380","tertiary-fixed":"#ffdea8","primary-fixed-dim":"#cbc5c2","error":"#ba1a1a","surface-bright":"#fff8f2","tertiary":"#000000","outline":"#7d766f","surface":"#fff8f2","surface-container-highest":"#ebe1d3","on-secondary":"#ffffff","on-surface":"#1f1b12","on-secondary-container":"#762c11","on-primary-fixed":"#1d1b19"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"section-gap":"120px","container-max":"1280px","margin-desktop":"64px","gutter":"32px","margin-mobile":"20px","unit":"8px"},"fontFamily":{"body-lg":["Manrope"],"headline-sm":["DM Serif Display"],"headline-lg-mobile":["DM Serif Display"],"label-md":["Manrope"],"headline-lg":["DM Serif Display"],"label-sm":["Manrope"],"display-md":["DM Serif Display"],"display-lg":["DM Serif Display"],"body-md":["Manrope"]},"fontSize":{"body-lg":["20px",{"lineHeight":"32px","fontWeight":"400"}],"headline-sm":["24px",{"lineHeight":"32px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","fontWeight":"400"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"400"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"display-md":["48px",{"lineHeight":"56px","letterSpacing":"-0.01em","fontWeight":"400"}],"display-lg":["72px",{"lineHeight":"80px","letterSpacing":"-0.02em","fontWeight":"400"}],"body-md":["16px",{"lineHeight":"26px","fontWeight":"400"}]}}}}
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assessment/css/assessment.css' %}">
+{% endblock %}
+{% block body_class %}bg-[#11100f] font-body-md text-white assessment-page-body section-02-dark-nav{% endblock %}
+{% block content %}
+    <div id="assessment-container" class="opacity-0 translate-y-8">
+        {% include 'assessment/section_02/section_02.html' %}
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'assessment/js/assessment.js' %}"></script>
+{% endblock %}

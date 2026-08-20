@@ -8,21 +8,21 @@
 }
 
 /* Assessment Navbar text overrides when NOT scrolled (transparent bg) */
-.assessment-page-body #main-navbar:not(.is-scrolled) .nav-brand-title,
-.assessment-page-body #main-navbar:not(.is-scrolled) .nav-desktop-link {
+.assessment-page-body:not(.section-02-dark-nav) #main-navbar:not(.is-scrolled) .nav-brand-title,
+.assessment-page-body:not(.section-02-dark-nav) #main-navbar:not(.is-scrolled) .nav-desktop-link {
     color: #11100f !important;
 }
 
-.assessment-page-body #main-navbar:not(.is-scrolled) .nav-brand-subtitle,
-.assessment-page-body #main-navbar:not(.is-scrolled) .nav-desktop-chevron {
+.assessment-page-body:not(.section-02-dark-nav) #main-navbar:not(.is-scrolled) .nav-brand-subtitle,
+.assessment-page-body:not(.section-02-dark-nav) #main-navbar:not(.is-scrolled) .nav-desktop-chevron {
     color: #4c4640 !important;
 }
 
-.assessment-page-body #main-navbar:not(.is-scrolled) .nav-mobile-hamburger {
+.assessment-page-body:not(.section-02-dark-nav) #main-navbar:not(.is-scrolled) .nav-mobile-hamburger {
     color: #11100f !important;
 }
 
-.assessment-page-body #main-navbar:not(.is-scrolled) .nav-desktop-link:hover {
+.assessment-page-body:not(.section-02-dark-nav) #main-navbar:not(.is-scrolled) .nav-desktop-link:hover {
     color: #994629 !important; /* secondary color for hover state */
 }
 
