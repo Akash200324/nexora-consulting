@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.next_fga_cohort',
             ],
         },
     },
@@ -122,9 +123,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Calendly Configuration
+CALENDLY_ACCESS_TOKEN = env('CALENDLY_ACCESS_TOKEN', default='')
+CALENDLY_FGA_EVENT_URL = env('CALENDLY_FGA_EVENT_URL', default='')
+CALENDLY_WEBHOOK_SIGNING_KEY = env('CALENDLY_WEBHOOK_SIGNING_KEY', default='')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# BPA Strategy Call Config
+WHATSAPP_BUSINESS_NUMBER = "918590031893"

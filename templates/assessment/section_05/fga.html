@@ -1,0 +1,379 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Founders Growth Accelerator | Nexora Consulting{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'assessment/js/fga-animations.js' %}"></script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assessment/css/fga.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="fga-wrapper opacity-0">
+<main class="w-full pt-20"><div class="flex flex-col w-full bg-[#171513]">
+<!-- 1. Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col justify-center px-5 md:px-margin-edge py-16 md:py-section-gap -mt-20 pt-[100px] md:pt-[120px] overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center fga-anim-hero-img" style="background-image: url('{% static 'assessment/section_05/images/fga_building.png' %}');"></div>
+
+<div class="absolute inset-0 bg-gradient-to-r from-[#171513] via-[#171513]/70 to-[#171513]/10"></div><div class="absolute inset-0 bg-gradient-to-t from-[#171513] via-[#171513]/50 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-gutter">
+<div class="lg:col-span-8 flex flex-col justify-center">
+<div class="flex items-center gap-4 mb-8 fga-anim-text">
+<span class="w-12 h-px bg-[#C96B4B]/50"></span>
+<span class="font-eyebrow text-eyebrow text-[#F7F3EC] uppercase tracking-widest">Founders Growth Accelerator</span>
+</div>
+<h1 class="font-display-lg fga-anim-text text-5xl md:text-display-lg text-[#F7F3EC] mb-8 max-w-[90%] md:max-w-4xl text-left">Build a Business That<br/>Doesn’t Depend on You for<br/>Everything.</h1>
+<p class="font-body-lg text-body-lg text-[#F7F3EC]/80 max-w-2xl mb-10 fga-anim-text text-left">
+                    Transition from the center of operations to the architect of scalable growth. 
+                    The inner circle for elite leadership and strategic mastery.
+                </p>
+
+                <div class="fga-anim-text mb-12 border border-[#B89A67]/30 bg-[#171513]/50 backdrop-blur rounded-lg p-6 max-w-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <div class="text-[#C96B4B] font-label-md text-xs uppercase tracking-widest mb-2">Next Cohort</div>
+                            <div class="text-[#F7F3EC] font-body-md text-sm leading-relaxed">
+                                {% if next_fga_cohort %}
+                                    <span class="font-medium text-white block mb-0.5">{{ next_fga_cohort.start_date|date:"l, j F Y" }}</span>
+                                    {{ next_fga_cohort.start_time|time:"H:i" }} – {{ next_fga_cohort.end_time|time:"H:i" }} GST
+                                {% else %}
+                                    <span class="font-medium text-white block mb-0.5">Dates to be announced</span>
+                                    Join the waitlist for updates
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-[#C96B4B] font-label-md text-xs uppercase tracking-widest mb-2">Investment</div>
+                            <div class="text-[#F7F3EC] font-body-md text-sm leading-relaxed">
+                                <span class="font-medium text-white block mb-0.5">AED 1,500 <span class="text-xs font-normal opacity-80">(Paid in full)</span></span>
+                                Or AED 650 × 3 months
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-5 border-t border-[#B89A67]/20">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-[#C96B4B] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <div class="text-[#F7F3EC] font-body-md text-sm">
+                                <strong class="text-white font-medium">Fast-Action Bonus:</strong> Enrol within 24 hours of your strategy call to receive three private 1:1 sessions.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+<a href="#fga-booking" class="px-8 py-4 bg-[#C96B4B] text-[#171513] font-label-md text-label-md uppercase tracking-widest hover:bg-[#B89A67] hover:text-[#171513] transition-all duration-300 inline-block text-center">
+                        Book Your Strategy Call
+                    </a>
+</div>
+</div>
+<div class="hidden lg:flex lg:col-span-4 items-end justify-end pb-8">
+</div>
+</div>
+</section>
+
+<!-- 3. Problem Section -->
+<section class="py-16 md:py-section-gap px-5 md:px-margin-edge bg-[#171513]">
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-gutter items-center">
+<div class="lg:col-span-5">
+<h2 class="font-headline-lg fga-anim-text text-3xl md:text-headline-lg text-[#F7F3EC] leading-tight mb-8">
+                    The Problem Isn’t How Hard You Work.
+                </h2>
+<p class="font-body-lg text-body-lg text-[#F7F3EC]/80 fga-anim-text">
+                    You've built something substantial, but the foundation relies entirely on your constant involvement. Scaling further with the current operational model is unsustainable.
+                </p>
+</div>
+<div class="lg:col-span-6 lg:col-start-7 space-y-12 fga-anim-card-container">
+<div class="flex gap-6 items-start fga-anim-card">
+<div class="text-[#F7F3EC] font-headline-md text-headline-md">01</div>
+<div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-2">Operational Dependency</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Every major decision, and most minor ones, still require your input or approval.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start fga-anim-card">
+<div class="text-[#F7F3EC] font-headline-md text-headline-md">02</div>
+<div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-2">Growth Complexity</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Adding more revenue currently means adding proportionally more stress and hours to your week.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start fga-anim-card">
+<div class="text-[#F7F3EC] font-headline-md text-headline-md">03</div>
+<div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-2">Strategic Stagnation</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">You're too busy managing the present to architect the future of the business.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Transformation Section -->
+<section class="py-16 md:py-section-gap px-5 md:px-margin-edge bg-[#F7F3EC]">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-24">
+<h2 class="font-eyebrow text-eyebrow text-[#C96B4B] uppercase tracking-widest mb-4 fga-anim-text">The Shift</h2>
+<div class="font-headline-lg text-3xl md:text-headline-lg text-[#171513] fga-anim-text">From Founder-Dependent to Business-Led.</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#B89A67]/50">
+<div class="bg-[#E8DED0] p-6 md:p-12 lg:p-16 border border-[#B89A67]/30 fga-anim-card-single">
+<div class="font-eyebrow text-eyebrow text-[#171513]/80 mb-12 uppercase tracking-widest">Before FGA</div>
+<ul class="space-y-8">
+<li class="flex items-start gap-4">
+<span class="mt-1">❌</span>
+<span class="font-body-lg text-body-lg text-[#171513]/80">Trapped in daily operational minutiae.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="mt-1">❌</span>
+<span class="font-body-lg text-body-lg text-[#171513]/80">Unclear priorities leading to reactive management.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="mt-1">❌</span>
+<span class="font-body-lg text-body-lg text-[#171513]/80">Every major decision still requires your involvement.</span>
+</li>
+</ul>
+</div>
+<div class="bg-[#E8DED0] p-6 md:p-12 lg:p-16 relative overflow-hidden border border-[#B89A67]/30 fga-anim-card-single">
+<div class="font-eyebrow text-eyebrow text-[#171513] mb-12 uppercase tracking-widest">After FGA</div>
+<ul class="space-y-8 relative z-10">
+<li class="flex items-start gap-4">
+<span class="mt-1">✅</span>
+<span class="font-body-lg text-body-lg text-[#171513]">Clear structural autonomy and reporting lines.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="mt-1">✅</span>
+<span class="font-body-lg text-body-lg text-[#171513]">Defined strategic priorities driving proactive growth.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="mt-1">✅</span>
+<span class="font-body-lg text-body-lg text-[#171513]">Leadership team operating with greater independence.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Value Section -->
+<section class="py-16 px-5 md:px-margin-edge bg-[#171513] border-t border-[#B89A67]/30">
+<div class="max-w-container-max mx-auto">
+<div class="mb-12">
+<h2 class="font-headline-lg fga-anim-text text-3xl md:text-headline-lg text-[#F7F3EC] max-w-2xl">
+                    What Changes Inside the Business
+                </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-gutter gap-y-10 fga-anim-card-container">
+<!-- Pillar 1 -->
+<div class="flex flex-col fga-anim-card">
+<div class="flex justify-between items-end mb-4 pb-4 border-b border-[#B89A67]/30">
+<span class="font-headline-md text-headline-md text-[#F7F3EC]">01</span>
+</div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-4">Business Structure</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Architecting a business operating system that functions reliably without requiring your constant presence.</p>
+</div>
+<!-- Pillar 2 -->
+<div class="flex flex-col fga-anim-card">
+<div class="flex justify-between items-end mb-4 pb-4 border-b border-[#B89A67]/30">
+<span class="font-headline-md text-headline-md text-[#F7F3EC]">02</span>
+</div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-4">Delegation</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Transitioning from doing and managing to directing and coaching an empowered leadership team.</p>
+</div>
+<!-- Pillar 3 -->
+<div class="flex flex-col fga-anim-card">
+<div class="flex justify-between items-end mb-4 pb-4 border-b border-[#B89A67]/30">
+<span class="font-headline-md text-headline-md text-[#F7F3EC]">03</span>
+</div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-4">Systems</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Implementing robust operational systems that automate and streamline day-to-day activities.</p>
+</div>
+<!-- Pillar 4 -->
+<div class="flex flex-col fga-anim-card">
+<div class="flex justify-between items-end mb-4 pb-4 border-b border-[#B89A67]/30">
+<span class="font-headline-md text-headline-md text-[#F7F3EC]">04</span>
+</div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-4">Revenue Predictability</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Establishing rhythms, metrics, and cadences that ensure consistent execution and reliable growth forecasts.</p>
+</div>
+<!-- Pillar 5 -->
+<div class="flex flex-col fga-anim-card">
+<div class="flex justify-between items-end mb-4 pb-4 border-b border-[#B89A67]/30">
+<span class="font-headline-md text-headline-md text-[#F7F3EC]">05</span>
+</div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-4">Strategic Focus</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Absolute alignment on strategic direction, target metrics, and the critical few priorities that drive outsized results.</p>
+</div>
+<!-- Pillar 6 -->
+<div class="flex flex-col fga-anim-card">
+<div class="flex justify-between items-end mb-4 pb-4 border-b border-[#B89A67]/30">
+<span class="font-headline-md text-headline-md text-[#F7F3EC]">06</span>
+</div>
+<h3 class="font-label-md text-label-md text-[#F7F3EC] uppercase tracking-widest mb-4">Scalable Growth</h3>
+<p class="font-body-md text-body-md text-[#F7F3EC]/80">Building the capacity to absorb new business without proportionally increasing operational strain.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. FGA Journey -->
+<section class="py-16 px-5 md:px-margin-edge bg-[#F7F3EC] border-t border-[#B89A67]/30">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-4">
+<div class="sticky top-32">
+<h2 class="font-eyebrow text-sm text-[#C96B4B] uppercase tracking-widest mb-2">The Methodology</h2>
+<div class="font-headline-lg text-3xl md:text-4xl text-[#171513] mb-4">The FGA Journey.</div>
+<p class="font-body-md text-base text-[#171513]/80">A systematic five-phase approach to unwinding operational dependency and installing scalable business infrastructure.</p>
+</div>
+</div>
+<div class="lg:col-span-7 lg:col-start-6 mt-12 lg:mt-0">
+<div class="relative border-l border-[#B89A67]/30 pl-8 space-y-12">
+<div class="relative">
+<div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-[#C96B4B]"></div>
+<h3 class="font-headline-md text-xl text-[#171513] mb-2">Diagnose</h3>
+<p class="font-body-md text-sm text-[#171513]/80 max-w-lg">Deep structural audit to identify the specific bottlenecks and dependencies holding the business back from its next stage of growth.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-[#C96B4B]"></div>
+<h3 class="font-headline-md text-xl text-[#171513] mb-2">Structure</h3>
+<p class="font-body-md text-sm text-[#171513]/80 max-w-lg">Designing the organizational chart of the future and the reporting frameworks required to support it.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-[#C96B4B]"></div>
+<h3 class="font-headline-md text-xl text-[#171513] mb-2">Delegate</h3>
+<p class="font-body-md text-sm text-[#171513]/80 max-w-lg">Executing the transition of operational duties to capable leaders with clear accountability and performance metrics.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-[#C96B4B]"></div>
+<h3 class="font-headline-md text-xl text-[#171513] mb-2">Systemise</h3>
+<p class="font-body-md text-sm text-[#171513]/80 max-w-lg">Embedding robust processes and operational rhythms to ensure consistency and predictability.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[38px] top-1.5 w-3 h-3 bg-[#C96B4B]"></div>
+<h3 class="font-headline-md text-xl text-[#171513] mb-2">Grow</h3>
+<p class="font-body-md text-sm text-[#171513]/80 max-w-lg">Scaling the business through the newly established structure, focusing on strategic expansion and market capture.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Outcomes -->
+<section class="py-16 px-5 md:px-margin-edge bg-[#171513] relative overflow-hidden border-t border-[#B89A67]/30">
+<div class="absolute inset-0 z-0 opacity-40">
+<div class="w-full h-full bg-cover bg-center fga-anim-hero-img" style="background-image: url('{% static 'assessment/section_05/images/fga_building.png' %}');"></div>
+<div class="absolute inset-0 bg-[#171513]/90"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto">
+<h2 class="font-eyebrow text-sm text-[#F7F3EC] uppercase tracking-widest mb-8 text-center">What You Can Expect</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 fga-anim-card-container">
+<div class="bg-[#171513]/80 backdrop-blur-sm p-6 md:p-8 border border-[#B89A67]/30">
+<div class="font-display-lg text-5xl text-[#F7F3EC] mb-3">40%</div>
+<div class="font-label-md text-sm text-[#F7F3EC] uppercase tracking-widest mb-2">Time Reclaimed</div>
+<p class="font-body-md text-sm text-[#F7F3EC]/80">Average reduction in founder involvement in day-to-day operational tasks within 6 months.</p>
+</div>
+<div class="bg-[#171513]/80 backdrop-blur-sm p-6 md:p-8 border border-[#B89A67]/30">
+<div class="font-display-lg text-5xl text-[#F7F3EC] mb-3">2x</div>
+<div class="font-label-md text-sm text-[#F7F3EC] uppercase tracking-widest mb-2">Leadership Capacity</div>
+<p class="font-body-md text-sm text-[#F7F3EC]/80">Doubling the effectiveness and autonomy of your senior leadership team.</p>
+</div>
+<div class="bg-[#171513]/80 backdrop-blur-sm p-6 md:p-8 border border-[#B89A67]/30">
+<div class="font-display-lg text-5xl text-[#F7F3EC] mb-3">100%</div>
+<div class="font-label-md text-sm text-[#F7F3EC] uppercase tracking-widest mb-2">Strategic Clarity</div>
+<p class="font-body-md text-sm text-[#F7F3EC]/80">Complete alignment on long-term vision and the structural requirements to achieve it.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. FAQ -->
+<section class="py-16 md:py-section-gap px-5 md:px-margin-edge bg-[#F7F3EC] border-t border-[#B89A67]/30">
+<div class="max-w-3xl mx-auto w-full">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg fga-anim-text text-3xl md:text-headline-lg text-[#171513] mb-6">Common Inquiries</h2>
+</div>
+<div class="space-y-4 fga-anim-card-container">
+<details class="group bg-[#E8DED0] fga-anim-card border border-[#B89A67]/50 cursor-pointer">
+<summary class="flex justify-between items-center p-6 font-label-md text-label-md text-[#171513] uppercase tracking-widest list-none">
+                        How is FGA different from standard coaching?
+                        <span class="text-[#C96B4B] group-open:rotate-180 transition-transform text-xl">↓</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-body-md text-[#171513]/80">
+                        FGA is not theoretical coaching. It is an implementation-focused accelerator that provides the exact frameworks, structures, and systems needed to decouple you from daily operations.
+                    </div>
+</details>
+<details class="group bg-[#E8DED0] fga-anim-card border border-[#B89A67]/50 cursor-pointer">
+<summary class="flex justify-between items-center p-6 font-label-md text-label-md text-[#171513] uppercase tracking-widest list-none">
+                        What is the expected time commitment?
+                        <span class="text-[#C96B4B] group-open:rotate-180 transition-transform text-xl">↓</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-body-md text-[#171513]/80">
+                        We require 3-5 hours per week of dedicated strategic time. The paradox is that you must invest time upfront to build the systems that will buy your time back permanently.
+                    </div>
+</details>
+<details class="group bg-[#E8DED0] fga-anim-card border border-[#B89A67]/50 cursor-pointer">
+<summary class="flex justify-between items-center p-6 font-label-md text-label-md text-[#171513] uppercase tracking-widest list-none">
+                        Who is the ideal participant?
+                        <span class="text-[#C96B4B] group-open:rotate-180 transition-transform text-xl">↓</span>
+</summary>
+<div class="p-6 pt-0 font-body-md text-body-md text-[#171513]/80">
+                        Founders of established businesses (typically £1M-£10M revenue) who have hit a growth ceiling caused by their own operational involvement and are ready to restructure for scale.
+                    </div>
+</details>
+</div>
+</div>
+</section>
+<!-- 11. Final CTA -->
+<section class="py-16 md:py-section-gap px-5 md:px-margin-edge bg-[#171513] relative overflow-hidden border-t border-[#B89A67]/30">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center fga-anim-hero-img" style="background-image: url('{% static 'assessment/section_05/images/fga_hands.png' %}');"></div>
+<div class="absolute inset-0 bg-[#171513]/90 backdrop-blur-sm"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#171513] via-[#171513]/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-gutter items-center">
+<div class="lg:col-span-8">
+<h2 class="font-display-lg text-4xl md:text-display-lg text-[#F7F3EC] mb-8 max-w-3xl">
+                    Your Next Stage Starts With Clarity.
+                </h2>
+<p class="font-body-lg text-body-lg text-[#F7F3EC]/80 mb-12 max-w-xl">
+                    Schedule a diagnostic call to map your current operational dependencies and outline the architectural changes required for your next phase of growth.
+                </p>
+<a href="#fga-booking" class="px-10 py-5 bg-[#C96B4B] text-[#171513] font-label-md text-label-md uppercase tracking-widest hover:bg-[#B89A67] hover:text-[#171513] transition-all duration-300 inline-block text-center">
+                    Book Your Strategy Call
+                </a>
+</div>
+</div>
+</section>
+
+<!-- 12. Calendly Booking Section -->
+<section id="fga-booking" class="py-16 md:py-section-gap px-5 md:px-margin-edge bg-[#F7F3EC] border-t border-[#B89A67]/30 scroll-mt-20">
+    <div class="max-w-[1200px] mx-auto w-full">
+        <div class="text-center mb-16">
+            <h2 class="font-headline-lg fga-anim-text text-3xl md:text-headline-lg text-[#171513] mb-4">Secure Your Diagnostic Call</h2>
+            <p class="font-body-md text-body-md text-[#171513]/80">Select a time below to begin architecting your operational transition.</p>
+        </div>
+        
+        <div class="w-full bg-[#E8DED0] border border-[#B89A67]/30 rounded-xl p-2 md:p-8 lg:p-12 fga-anim-card-container">
+            <!-- Calendly inline widget begin -->
+            <div id="calendly-embed" class="calendly-inline-widget w-full" data-url="{{ calendly_event_url }}?utm_source={{ submission_id }}" style="height: 700px; transition: height 0.3s ease;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <script>
+                window.addEventListener('message', function(e) {
+                    if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.page_height') {
+                        const widget = document.getElementById('calendly-embed');
+                        if (widget && e.data.payload && e.data.payload.height) {
+                            // Automatically adjust height to perfectly fit the Calendly content (no min-height restrictions)
+                            // This eliminates both the internal scrollbar AND any empty space at the bottom
+                            widget.style.height = e.data.payload.height + 'px';
+                        }
+                    }
+                });
+            </script>
+            <!-- Calendly inline widget end -->
+        </div>
+    </div>
+</section>
+
+</div></main>
+</div>
+{% endblock %}

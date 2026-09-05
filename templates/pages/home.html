@@ -234,26 +234,7 @@
                         <div class="text-[11px] sm:text-[12px] font-sans tracking-[0.18em] text-[#8a8277] uppercase font-medium pt-1">
                             <span>02 MINUTES</span><span class="mx-2 text-[#c86d51]">|</span><span>FREE</span><span class="mx-2 text-[#c86d51]">|</span><span>PERSONALISED RESULT</span>
                         </div>
-                        <div class="pt-3">
-                            <button id="start-assessment-btn"
-                                    class="inline-flex items-center justify-center gap-2.5 bg-[#c86d51] hover:bg-[#b85d43] text-white text-xs sm:text-sm font-semibold tracking-wider uppercase px-6 sm:px-8 py-3.5 sm:py-4 rounded-sm transition-all duration-300 shadow-xl hover:shadow-[0_8px_25px_rgba(200,109,81,0.3)] hover:-translate-y-0.5">
-                                <span>START
-                                    THE FREE ASSESSMENT</span><svg xmlns="http://www.w3.org/2000/svg"
-     width="15"
-     height="15"
-     viewBox="0 0 24 24"
-     fill="none"
-     stroke="currentColor"
-     stroke-width="2"
-     stroke-linecap="round"
-     stroke-linejoin="round"
-     class="lucide lucide-arrow-right stroke-[2.5]"
-     aria-hidden="true">
-                                    <path d="M5 12h14"></path>
-                                    <path d="m12 5 7 7-7 7"></path>
-                                    </svg>
-                                </button>
-                            </div>
+<!-- Assessment CTA Removed -->
                         </div>
                         <div class="lg:col-span-7 flex justify-center lg:justify-end">
                             <div id="assessment-widget-card"
@@ -554,15 +535,24 @@
                                                             your consultancy with precision.
                                                         </h3>
                                                         <ul class="space-y-3 pt-2 text-xs sm:text-[13px] text-[#544e45] font-light">
-                                                            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#c86d51] shrink-0"></span><span>13-week cohort</span></li>
+                                                            <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#c86d51] shrink-0"></span><span>{% if next_fga_cohort %}{{ next_fga_cohort.duration_weeks }}{% else %}13{% endif %}-week cohort</span></li>
                                                             <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-[#c86d51] shrink-0"></span><span class="font-medium text-[#1e1c1a]">USD 199</span></li>
-                                                            <li class="flex items-center gap-2.5">
-                                                                <span class="w-1.5 h-1.5 rounded-full bg-[#c86d51] shrink-0"></span><span>Next cohort starting soon</span>
+                                                            <li class="flex items-start gap-2.5">
+                                                                <span class="w-1.5 h-1.5 rounded-full bg-[#c86d51] shrink-0 mt-1.5"></span>
+                                                                <span class="flex flex-col">
+                                                                    {% if next_fga_cohort %}
+                                                                        <span class="font-medium">Next cohort: {{ next_fga_cohort.start_date|date:"l, j F Y" }}</span>
+                                                                        <span class="text-[11px] opacity-80">{{ next_fga_cohort.start_time|time:"H:i" }} – {{ next_fga_cohort.end_time|time:"H:i" }} GST</span>
+                                                                    {% else %}
+                                                                        <span>Next cohort starting soon</span>
+                                                                    {% endif %}
+                                                                </span>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <div class="pt-10 relative z-10">
-                                                        <button id="explore-fga-btn"
+                                                        <a href="{% url 'assessment:assessment_fga' %}" id="explore-fga-btn"
+                                                                onclick="event.preventDefault(); document.body.style.transition='opacity 0.4s ease'; document.body.style.opacity='0'; setTimeout(()=>window.location=this.href, 400);"
                                                                 class="inline-flex items-center justify-center gap-2 bg-[#c86d51] hover:bg-[#b85d43] text-white text-xs font-sans font-semibold tracking-widest uppercase px-7 py-3.5 rounded-sm transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-[#c86d51]/20 active:scale-[0.98]">
                                                             <span>EXPLORE
                                                                 FGA</span><svg xmlns="http://www.w3.org/2000/svg"
@@ -579,7 +569,7 @@
                                                                 <path d="M5 12h14"></path>
                                                                 <path d="m12 5 7 7-7 7"></path>
                                                                 </svg>
-                                                            </button>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div id="program-card-bpa"
@@ -604,7 +594,8 @@
                                                             </ul>
                                                         </div>
                                                         <div class="pt-10 relative z-10">
-                                                            <button id="explore-bpa-btn"
+                                                            <a href="{% url 'assessment:assessment_bpa' %}" id="explore-bpa-btn"
+                                                                    onclick="event.preventDefault(); document.body.style.transition='opacity 0.4s ease'; document.body.style.opacity='0'; setTimeout(()=>window.location=this.href, 400);"
                                                                     class="inline-flex items-center justify-center gap-2 bg-[#1b1918] hover:bg-[#262321] border border-[#3d3731] hover:border-[#d1ab80] text-[#e8e2d8] hover:text-white text-xs font-sans font-semibold tracking-widest uppercase px-7 py-3.5 rounded-sm transition-all duration-200 shadow-md active:scale-[0.98]">
                                                                 <span>EXPLORE
                                                                     BPA</span><svg xmlns="http://www.w3.org/2000/svg"
@@ -621,7 +612,7 @@
                                                                     <path d="M5 12h14"></path>
                                                                     <path d="m12 5 7 7-7 7"></path>
                                                                     </svg>
-                                                                </button>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>

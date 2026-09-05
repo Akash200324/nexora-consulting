@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 1. Background image slow reveal
         if (heroBg) {
-            tl.to(heroBg, { opacity: 0.3, duration: 1.0 }, 0);
+            tl.to(heroBg, { opacity: 1, duration: 1.0 }, 0);
         }
         
         // 1.5 Navbar reveal

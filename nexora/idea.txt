@@ -2740,3 +2740,3538 @@ After completing the setup, report:
 This task is strictly:
 
 **Connect Nexora Consulting → GitHub → Create safe initial commit → Push → Verify.**
+
+
+------------------------------------------------------------------------------------------------
+
+# Assessment Section 2 — 6-Question Diagnostic Flow
+
+Update **ONLY Assessment Section 2**.
+
+Do not modify:
+
+- Home page
+- Assessment Section 1
+- Navbar
+- Footer
+- Existing Section 2 visual design
+- Existing background
+- Existing animations outside the question flow
+- FGA/BPA qualification rules unless they already exist
+
+The goal is to turn Section 2 into a proper **6-question business diagnostic assessment**.
+
+---
+
+## 1. EXACTLY 6 QUESTIONS
+
+Section 2 must contain exactly **6 questions**.
+
+Only **ONE question should be visible at a time**.
+
+The flow should be:
+
+```text
+01 / 06
+Question 1
+Answer
+Continue
+   ↓
+02 / 06
+Question 2
+Answer
+Continue
+   ↓
+03 / 06
+...
+   ↓
+06 / 06
+Question 6
+```
+
+Do NOT display all six questions on the page simultaneously.
+
+---
+
+# 2. IMPORTANT — EXACTLY 4 ANSWER OPTIONS
+
+Every question must have exactly **4 answer options**.
+
+Use the same answer structure for EVERY question:
+
+```text
+Never
+Sometimes
+Often
+Always
+```
+
+Do NOT use:
+
+- 5 options
+- 1–5 scoring
+- Yes/No
+- Very confident / somewhat confident etc.
+- Different numbers of answers between questions
+
+The answer order must always remain:
+
+```text
+1. Never
+2. Sometimes
+3. Often
+4. Always
+```
+
+---
+
+# 3. QUESTION 01 — FOUNDER DEPENDENCY
+
+### Question
+
+**How often does your business require your personal involvement to keep day-to-day operations moving?**
+
+### Answers
+
+**Never**  
+The business operates independently without my involvement.
+
+**Sometimes**  
+I need to step in for specific situations.
+
+**Often**  
+My team regularly depends on me.
+
+**Always**  
+The business relies heavily on me to keep things moving.
+
+### Diagnostic purpose
+
+Measures founder dependency and operational independence.
+
+---
+
+# 4. QUESTION 02 — OPERATIONAL WORKLOAD
+
+### Question
+
+**How often do operational tasks take you away from working on the strategic growth of your business?**
+
+### Answers
+
+**Never**  
+I am able to focus primarily on strategy and growth.
+
+**Sometimes**  
+Operational work occasionally takes my attention away.
+
+**Often**  
+Operations regularly take up significant strategic time.
+
+**Always**  
+Operational tasks consume most of my working time.
+
+### Diagnostic purpose
+
+Measures how much the founder is trapped in operational work instead of strategic leadership.
+
+---
+
+# 5. QUESTION 03 — REVENUE PREDICTABILITY
+
+### Question
+
+**How often do you experience uncertainty about where your next month's revenue will come from?**
+
+### Answers
+
+**Never**  
+Our revenue is highly predictable.
+
+**Sometimes**  
+We experience occasional uncertainty.
+
+**Often**  
+Revenue uncertainty affects our planning.
+
+**Always**  
+We regularly struggle to predict where revenue will come from.
+
+### Diagnostic purpose
+
+Measures revenue predictability and stability.
+
+---
+
+# 6. QUESTION 04 — SYSTEMS & PROCESSES
+
+### Question
+
+**How often do your current systems or processes struggle to keep up with the growth of your business?**
+
+### Answers
+
+**Never**  
+Our systems consistently support our growth.
+
+**Sometimes**  
+Minor system issues appear as we grow.
+
+**Often**  
+Our systems create noticeable operational pressure.
+
+**Always**  
+Our systems struggle significantly when the business grows.
+
+### Diagnostic purpose
+
+Measures operational infrastructure and scalability.
+
+---
+
+# 7. QUESTION 05 — LEADERSHIP CAPACITY
+
+### Question
+
+**How often do you find yourself working IN the business instead of working ON the business?**
+
+### Answers
+
+**Never**  
+I have enough time to focus on leadership and strategy.
+
+**Sometimes**  
+I occasionally get pulled into operational work.
+
+**Often**  
+I regularly spend more time operating than leading.
+
+**Always**  
+I am almost entirely focused on running the business.
+
+### Diagnostic purpose
+
+Measures the founder's ability to operate as a strategic leader/CEO.
+
+---
+
+# 8. QUESTION 06 — GROWTH READINESS
+
+### Question
+
+**How often do you feel that significant business growth would create additional pressure on you or your team?**
+
+### Answers
+
+**Never**  
+We are well prepared to handle significant growth.
+
+**Sometimes**  
+Growth would create a few manageable challenges.
+
+**Often**  
+Growth would create considerable operational pressure.
+
+**Always**  
+Significant growth would seriously strain the business.
+
+### Diagnostic purpose
+
+Measures overall growth readiness and operational pressure.
+
+---
+
+# 9. SCORING
+
+Use exactly this scoring model:
+
+```text
+Never     = 1 point
+Sometimes = 2 points
+Often     = 3 points
+Always    = 4 points
+```
+
+With 6 questions:
+
+```text
+Minimum score = 6
+Maximum score = 24
+```
+
+Higher score means:
+
+```text
+Greater founder dependency
++
+Greater operational pressure
++
+Lower revenue predictability
++
+Weaker scalability
++
+Lower strategic capacity
++
+Lower growth readiness
+```
+
+Therefore:
+
+```text
+LOWER SCORE
+=
+Healthier operating position
+
+HIGHER SCORE
+=
+Greater business/operational pressure
+```
+
+Do NOT invent FGA/BPA qualification thresholds.
+
+If existing qualification/routing rules are already implemented, preserve them.
+
+If thresholds are not yet implemented, simply make the final score available to the existing routing system.
+
+---
+
+# 10. CONTINUE BUTTON
+
+The existing **Continue** button should move the user to the next question.
+
+The button must remain disabled until an answer is selected.
+
+Example:
+
+```text
+No answer selected
+      ↓
+CONTINUE disabled
+
+Answer selected
+      ↓
+CONTINUE enabled
+```
+
+After clicking Continue:
+
+```text
+Question 01
+     ↓
+smooth animation
+     ↓
+Question 02
+```
+
+---
+
+# 11. PREVIOUS BUTTON
+
+Add a **Previous** button.
+
+Button layout:
+
+```text
+[ ← PREVIOUS ]                         [ CONTINUE → ]
+```
+
+Previous should be visually secondary.
+
+Continue should remain the primary action.
+
+For Question 01:
+
+```text
+Previous = hidden or disabled
+```
+
+For Questions 02–06:
+
+```text
+Previous = available
+```
+
+When going backward, the previously selected answer must remain selected.
+
+Example:
+
+```text
+Question 02
+answer selected
+     ↓
+Question 03
+     ↓
+Previous
+     ↓
+Question 02
+     ↓
+previous answer is still selected
+```
+
+Do NOT reset answers.
+
+---
+
+# 12. QUESTION NUMBER
+
+Place the question number **directly underneath**:
+
+**BUSINESS REALITY ASSESSMENT**
+
+The hierarchy must be:
+
+```text
+BUSINESS REALITY ASSESSMENT
+
+01 / 06
+
+Question text
+
+Answer options
+```
+
+Then dynamically update:
+
+```text
+01 / 06
+02 / 06
+03 / 06
+04 / 06
+05 / 06
+06 / 06
+```
+
+Do not place the number above the assessment heading.
+
+---
+
+# 13. PROGRESS INDICATOR
+
+Keep the small progress indicator requested previously.
+
+It should update with the question:
+
+```text
+01 / 06  ━━━░░░
+02 / 06  ━━━━━░░
+03 / 06  ━━━━━━━░
+04 / 06  ━━━━━━━━━
+05 / 06  ━━━━━━━━━━
+06 / 06  ━━━━━━━━━━━
+```
+
+Keep it elegant and compact.
+
+Do not create a large progress bar.
+
+---
+
+# 14. QUESTION TRANSITION
+
+When Continue is clicked, do not instantly replace the question.
+
+Use a smooth horizontal transition.
+
+Forward:
+
+```text
+Current question
+translateX(0)
+      ↓
+translateX(-30px)
+opacity → 0
+
+Next question
+translateX(30px)
+opacity → 0
+      ↓
+translateX(0)
+opacity → 1
+```
+
+Duration approximately:
+
+```text
+0.35s – 0.55s
+```
+
+Use a premium/refined easing curve.
+
+Do not use:
+
+- Spinners
+- Blank loading screens
+- Full-page reloads
+- Excessive bounce
+- Slow transitions
+
+---
+
+# 15. PREVIOUS TRANSITION
+
+When Previous is clicked, reverse the direction.
+
+```text
+Question 03
+     ↓
+Previous
+     ↓
+Question exits toward RIGHT
+     ↓
+Question 02 enters from LEFT
+```
+
+This should clearly communicate backward navigation.
+
+---
+
+# 16. TYPOGRAPHY ANIMATION
+
+When a new question enters, animate the content subtly:
+
+```text
+Question number
+      ↓
+Question typography
+      ↓
+Supporting text
+      ↓
+Answer cards
+```
+
+Keep it consistent with the existing premium Section 2 animation style.
+
+Do not over-animate.
+
+---
+
+# 17. ANSWER CARD ANIMATION
+
+The four answer cards should enter with a very subtle stagger:
+
+```text
+Option 1
+   ↓
+Option 2
+   ↓
+Option 3
+   ↓
+Option 4
+```
+
+Keep the stagger short so the user can interact immediately.
+
+---
+
+# 18. ANSWER SELECTION
+
+When the user selects an answer:
+
+- Keep the existing dark premium card appearance.
+- Do NOT turn the selected card white.
+- Use the existing gold/brand accent.
+- Add a subtle selected border/accent.
+- Optionally add a small check indicator.
+- Only the selected answer should show the selected state.
+
+The other three cards must remain in their normal state.
+
+---
+
+# 19. DATA STORAGE
+
+Maintain all six answers in one assessment state.
+
+Example:
+
+```text
+answers = {
+    question_1: selected_option,
+    question_2: selected_option,
+    question_3: selected_option,
+    question_4: selected_option,
+    question_5: selected_option,
+    question_6: selected_option
+}
+```
+
+When navigating backward, retrieve the stored answer and visually restore the selected card.
+
+Do not lose any answer.
+
+---
+
+# 20. FINAL SCORE
+
+After Question 06 is answered, the six selected values should be available together:
+
+```text
+Q1
+Q2
+Q3
+Q4
+Q5
+Q6
+```
+
+Calculate:
+
+```text
+total_score = Q1 + Q2 + Q3 + Q4 + Q5 + Q6
+```
+
+Range:
+
+```text
+6–24
+```
+
+The final score should eventually be submitted to Django/server-side logic.
+
+Do not rely exclusively on JavaScript for the final qualification score.
+
+Do not create new FGA/BPA thresholds.
+
+---
+
+# 21. MOBILE
+
+The complete six-question flow must work correctly on:
+
+```text
+375px
+390px
+414px
+768px
+```
+
+Mobile must continue using native touch scrolling.
+
+Do NOT introduce:
+
+- Scroll hijacking
+- Page pinning
+- Fixed-height containers that prevent scrolling
+- Overflow locks
+
+The footer must remain reachable.
+
+The question transition should happen inside the question area without breaking page scrolling.
+
+---
+
+# 22. DESKTOP
+
+Preserve the existing premium dark architectural visual design.
+
+The six-question interaction should feel like a:
+
+**Premium executive business diagnostic**
+
+not a basic online survey.
+
+Do not redesign the entire Section 2 page.
+
+Only improve the question-flow functionality and the necessary question UI.
+
+---
+
+# 23. IMPORTANT — EXISTING ARCHITECTURE
+
+Before changing anything:
+
+1. Inspect the current Section 2 HTML.
+2. Inspect `assessment.js`.
+3. Inspect the existing assessment views/URLs.
+4. Check whether any scoring/routing logic already exists.
+5. Reuse the existing assessment architecture wherever possible.
+6. Do not create a second competing assessment system.
+
+Keep the code clean and maintainable.
+
+---
+
+# 24. FINAL VERIFICATION
+
+After implementation, verify all of the following:
+
+- Exactly 6 questions exist.
+- Every question has exactly 4 answers.
+- Answer order is always Never → Sometimes → Often → Always.
+- Only one question is visible at a time.
+- Continue is disabled until an answer is selected.
+- Continue advances correctly.
+- Previous works correctly.
+- Previous preserves previously selected answers.
+- Question number updates from 01 / 06 through 06 / 06.
+- Progress indicator updates correctly.
+- Score accumulates correctly.
+- Minimum score is 6.
+- Maximum score is 24.
+- Question transitions are smooth.
+- Previous transitions in the opposite direction.
+- Typography animations work.
+- Answer-card stagger works.
+- Selected card does not turn white.
+- Mobile scrolling still works.
+- Footer remains reachable.
+- No console errors.
+- Section 1 remains unchanged.
+- Home page remains unchanged.
+- Existing FGA/BPA routing rules remain unchanged.
+
+### FINAL FLOW
+
+The finished Section 2 must behave like:
+
+```text
+BUSINESS REALITY ASSESSMENT
+
+01 / 06
+━━━━━━━━░░░
+
+Question 1
+
+[ Never ]
+[ Sometimes ]
+[ Often ]
+[ Always ]
+
+[ PREVIOUS ]              [ CONTINUE → ]
+
+        ↓
+
+02 / 06
+━━━━━━━━━━░
+
+Question 2
+
+[ Never ]
+[ Sometimes ]
+[ Often ]
+[ Always ]
+
+[ ← PREVIOUS ]            [ CONTINUE → ]
+
+        ↓
+
+03 / 06
+
+        ↓
+
+04 / 06
+
+        ↓
+
+05 / 06
+
+        ↓
+
+06 / 06
+
+        ↓
+
+FINAL SCORE
+```
+
+Keep the experience **premium, thoughtful, smooth and professional** while keeping the existing Section 2 visual identity intact.
+
+-----------------------------------------------------------------------------------------------------
+
+## ASSESSMENT SECTION 3 — SEPARATE PAGE + SECTION 2 FINAL FLOW
+
+Section 2 is already working correctly and is approved.
+
+Now we are moving to **Assessment Section 3**.
+
+I will provide the **Stitch/HTML code, reference/design, and required assets for Section 3**.
+
+Build Section 3 as a **completely separate Django page**, not as another section appended underneath Section 2.
+
+---
+
+## 1. IMPORTANT — SECTION 2 FINAL BEHAVIOR
+
+There is one change required to the existing Section 2.
+
+Currently, after the user answers Question 6, the score is displayed on the Section 2 page.
+
+### REMOVE THAT BEHAVIOR.
+
+The score must **NOT be shown to the user after Question 6**.
+
+The final flow should be:
+
+```text
+Question 06
+     ↓
+Select answer
+     ↓
+CONTINUE
+     ↓
+Calculate/store the assessment answers/score
+     ↓
+Navigate directly to Section 3
+```
+
+The user should never see:
+
+```text
+Your Score: 17
+```
+
+or any other score/result at this stage.
+
+The score should remain available internally for the eventual assessment routing system.
+
+---
+
+# 2. SECTION 3 MUST BE A DIFFERENT PAGE
+
+Do NOT add Section 3 underneath Section 2 inside:
+
+```text
+assessment.html
+```
+
+Instead create a separate Django template/page for Section 3.
+
+Use the existing clean architecture.
+
+For example:
+
+```text
+templates/
+└── assessment/
+    ├── assessment.html
+    ├── assessment_section_02.html
+    ├── assessment_section_03.html
+    └── sections/
+        ├── section_01.html
+        └── section_02.html
+```
+
+If the existing project architecture has a better established naming convention, follow that convention consistently.
+
+The important requirement is:
+
+**Section 3 must have its own HTML template and its own URL/view.**
+
+---
+
+# 3. SECTION 2 → SECTION 3 NAVIGATION
+
+After the user answers Question 6 and clicks:
+
+```text
+CONTINUE →
+```
+
+the final Continue action must navigate to the Section 3 URL.
+
+Example:
+
+```text
+/assessment/
+     ↓
+Section 1
+
+/assessment/section-2/
+     ↓
+Section 2
+     ↓
+Question 01
+Question 02
+Question 03
+Question 04
+Question 05
+Question 06
+     ↓
+Question 06 → CONTINUE
+     ↓
+/assessment/section-3/
+     ↓
+Section 3
+```
+
+Use proper Django URL routing.
+
+Do NOT hardcode the URL in JavaScript if Django's `{% url %}` system can be used cleanly.
+
+---
+
+# 4. PRESERVE THE SIX ANSWERS
+
+Even though the user is moving to Section 3, the six answers must NOT be lost.
+
+The existing Section 2 state currently contains:
+
+```text
+Question 1 answer
+Question 2 answer
+Question 3 answer
+Question 4 answer
+Question 5 answer
+Question 6 answer
+```
+
+Preserve this data so that it can eventually be submitted to the Django backend and used for the final assessment score/routing.
+
+Do NOT display the score yet.
+
+If the current implementation only stores the answers in JavaScript memory, inspect the existing architecture and determine the cleanest way to preserve them across the Section 2 → Section 3 page transition.
+
+Do not create a duplicate assessment system.
+
+---
+
+# 5. SCORE CALCULATION
+
+The scoring system remains:
+
+```text
+Never = 1
+Sometimes = 2
+Often = 3
+Always = 4
+```
+
+Six questions:
+
+```text
+Minimum score = 6
+Maximum score = 24
+```
+
+The score may be calculated internally, but:
+
+### DO NOT DISPLAY IT IN SECTION 2.
+
+Do not create:
+
+- Score screen
+- Result screen
+- Score popup
+- "Your score is..."
+- FGA/BPA result
+- Qualification message
+
+Those belong to the later assessment/routing stage.
+
+---
+
+# 6. SECTION 3 CODE
+
+I will now provide the Stitch/HTML source and reference for Section 3.
+
+Before implementing it:
+
+1. Inspect the provided Stitch code.
+2. Inspect the existing Section 2 architecture.
+3. Identify the required images/assets.
+4. Convert the Stitch HTML/React output into **native Django HTML**, exactly as we did for the previous sections.
+5. Do NOT leave the Section 3 page dependent on React/Vite at runtime.
+
+The production website should continue using:
+
+```text
+Django
++
+Django Templates
++
+Static CSS
++
+Static JavaScript
+```
+
+not the Stitch React application.
+
+---
+
+# 7. CLEAN FOLDER STRUCTURE
+
+Keep Section 3 organized.
+
+Do NOT dump all Section 3 files into random existing folders.
+
+Follow the existing assessment structure.
+
+For example:
+
+```text
+templates/
+└── assessment/
+    ├── assessment.html
+    ├── assessment_section_02.html
+    ├── assessment_section_03.html
+    └── sections/
+        ├── section_01.html
+        └── section_02.html
+
+static/
+└── assessment/
+    ├── css/
+    │   └── assessment.css
+    ├── js/
+    │   └── assessment.js
+    └── images/
+        └── [Section 3 assets]
+```
+
+If Section 3 needs separate CSS/JS, keep it properly scoped to Section 3 rather than modifying global Home styles.
+
+---
+
+# 8. NAVBAR
+
+Use the **same finalized Assessment navbar** already used by Sections 1 and 2.
+
+Do NOT create a new navbar design.
+
+Keep:
+
+- Same logo
+- Same typography
+- Same spacing
+- Same Home link
+- Same mobile menu
+- Same scroll behavior
+- Same responsive behavior
+- Same animation
+
+Section 3 should visually feel like part of the same assessment experience.
+
+---
+
+# 9. FOOTER
+
+Use the same finalized Assessment footer used by the previous sections.
+
+Do NOT create another footer.
+
+Do NOT add the previously removed:
+
+```text
+READY TO SCALE PREDICTABLY
+TAKE THE ASSESSMENT
+```
+
+content.
+
+That content has already been removed and should remain removed.
+
+---
+
+# 10. PAGE TRANSITION
+
+When moving:
+
+```text
+Section 2
+      ↓
+Question 06 → Continue
+      ↓
+Section 3
+```
+
+add a smooth page-transition animation.
+
+It should feel like a continuation of the premium assessment experience.
+
+Keep it:
+
+- Fast
+- Smooth
+- Premium
+- Minimal
+
+Approximately:
+
+```text
+0.4s – 0.7s
+```
+
+Do not introduce a long loading screen or spinner.
+
+---
+
+# 11. SECTION 3 ANIMATIONS
+
+Use the same animation language established in Sections 1 and 2.
+
+Add appropriate:
+
+- Page entrance animation
+- Typography reveal
+- Image entrance animation if applicable
+- Button/card animation if applicable
+- Subtle floating/micro-motion where appropriate
+
+Do NOT over-animate the page.
+
+The animation should feel like a premium executive assessment rather than a normal form.
+
+---
+
+# 12. RESPONSIVE DESIGN
+
+Section 3 must be responsive from the beginning.
+
+Desktop:
+
+```text
+Premium desktop composition
+```
+
+Mobile:
+
+```text
+Clean mobile composition
+Native scrolling
+Readable typography
+Proper spacing
+Touch-friendly buttons
+```
+
+Do NOT use desktop dimensions and simply shrink everything.
+
+Use proper responsive behavior.
+
+Test:
+
+```text
+375px
+390px
+414px
+768px
+Desktop
+```
+
+Mobile must remain naturally scrollable and the footer must remain reachable.
+
+---
+
+# 13. DO NOT MODIFY APPROVED PAGES
+
+This is extremely important.
+
+Do NOT redesign or modify:
+
+### Home page
+Do not touch:
+
+```text
+templates/pages/home.html
+Home CSS
+Home JS
+Home animations
+Home navbar
+Home footer
+```
+
+### Section 1
+Do not change its:
+
+- Layout
+- Content
+- Animation
+- Styling
+- Navbar
+- Footer
+
+### Section 2
+Do not redesign Section 2.
+
+Only make this specific change:
+
+```text
+Question 06
+     ↓
+Continue
+     ↓
+NO SCORE DISPLAY
+     ↓
+GO DIRECTLY TO SECTION 3
+```
+
+Everything else in Section 2 should remain exactly as it currently works.
+
+---
+
+# 14. DJANGO ROUTING
+
+Create a proper Django route for Section 3.
+
+For example:
+
+```text
+/assessment/section-3/
+```
+
+Add the corresponding view and URL using the existing Assessment app architecture.
+
+Do not create a new Django app just for Section 3.
+
+Use the existing:
+
+```text
+assessment/
+```
+
+Django app.
+
+---
+
+# 15. IMPORTANT — INSPECT BEFORE MODIFYING
+
+Before making changes:
+
+1. Inspect the current Section 2 implementation.
+2. Identify where the score is currently calculated/displayed.
+3. Remove only the user-facing score/result display.
+4. Preserve the underlying answer/score data.
+5. Inspect the existing URL/view architecture.
+6. Add Section 3 using that same architecture.
+7. Convert the provided Stitch code into Django templates.
+8. Verify Section 2 → Section 3 navigation.
+
+Do not rewrite working Section 2 code unnecessarily.
+
+---
+
+# 16. FINAL EXPECTED FLOW
+
+The assessment should now behave like:
+
+```text
+HOME
+  ↓
+TAKE ASSESSMENT
+  ↓
+ASSESSMENT SECTION 1
+  ↓
+START ASSESSMENT
+  ↓
+ASSESSMENT SECTION 2
+  ↓
+01 / 06
+  ↓
+02 / 06
+  ↓
+03 / 06
+  ↓
+04 / 06
+  ↓
+05 / 06
+  ↓
+06 / 06
+  ↓
+SELECT ANSWER
+  ↓
+CONTINUE
+  ↓
+CALCULATE/STORE SCORE INTERNALLY
+  ↓
+NO SCORE DISPLAY
+  ↓
+SMOOTH PAGE TRANSITION
+  ↓
+ASSESSMENT SECTION 3
+```
+
+Section 3 should then load as its own independent Django page.
+
+---
+
+# 17. VERIFICATION
+
+After implementation, verify:
+
+### Section 2
+
+- All 6 questions still work.
+- Never/Sometimes/Often/Always scoring still works.
+- Previous still works.
+- Previous still restores answers.
+- Question 6 Continue works.
+- Score is NOT displayed.
+- No result screen appears.
+- Section 2 immediately navigates to Section 3.
+
+### Section 3
+
+- Correct URL works.
+- Correct template loads.
+- Stitch design is converted to Django HTML.
+- Assets load correctly.
+- Assessment navbar matches Sections 1 and 2.
+- Assessment footer matches Sections 1 and 2.
+- Animations work.
+- Mobile scrolling works.
+- Footer is reachable.
+- No console errors.
+
+### Regression
+
+Verify:
+
+```text
+Home → unchanged
+Section 1 → unchanged
+Section 2 → unchanged except final navigation
+Section 3 → new page
+```
+
+Do not make any unrelated changes.
+
+## MOST IMPORTANT
+
+**Do not show the assessment score after Question 6.**
+
+The user should experience Question 6 → Continue → **directly into Section 3**.
+
+The score is an internal assessment value that will be used later for the final routing/qualification system.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+# ASSESSMENT SECTION 4 — STITCH → DJANGO IMPLEMENTATION
+
+We are now starting **Assessment Section 4**.
+
+I will provide the Section 4 Stitch source/code inside the existing:
+
+```text
+stitch_source/
+```
+
+folder.
+
+## IMPORTANT — DO NOT START DATABASE WORK YET
+
+Do **NOT** create or modify:
+
+- PostgreSQL tables
+- Django models
+- migrations
+- database schema
+- database submission logic
+- authentication
+- final scoring/routing logic
+
+We will handle the database in a separate step **after Section 4's UI and frontend behavior are confirmed working**.
+
+For now, the task is ONLY:
+
+```text
+Stitch source
+      ↓
+Convert to Django
+      ↓
+Create Section 4 page
+      ↓
+Connect Section 3 → Section 4
+      ↓
+Test UI + responsiveness + interactions
+```
+
+---
+
+# 1. INSPECT THE STITCH SOURCE FIRST
+
+Before implementing anything:
+
+1. Locate the Section 4 source inside `stitch_source/`.
+2. Inspect the HTML/React structure.
+3. Identify:
+   - All fields
+   - Labels
+   - Inputs
+   - Dropdowns/selects
+   - Buttons
+   - Images
+   - Icons
+   - Typography
+   - Responsive behavior
+   - Animations
+4. Understand the complete intended UI before modifying it.
+
+Do not redesign the Stitch layout at this stage.
+
+The Stitch design is the visual reference.
+
+---
+
+# 2. CREATE A SEPARATE SECTION 4 PAGE
+
+Section 4 must be a **separate Django page**, exactly like Section 3.
+
+Do NOT append Section 4 underneath Section 3.
+
+Expected flow:
+
+```text
+Section 2
+   ↓
+Section 3
+   ↓
+CONTINUE
+   ↓
+Section 4
+```
+
+Create a dedicated template, for example:
+
+```text
+templates/
+└── assessment/
+    └── assessment_section_04.html
+```
+
+Use the existing Assessment architecture rather than creating a completely separate system.
+
+---
+
+# 3. DJANGO ROUTING
+
+Create a dedicated URL for Section 4.
+
+For example:
+
+```text
+/assessment/section-4/
+```
+
+Add the appropriate Django URL/view using the existing Assessment app architecture.
+
+The Section 4 page should be independently accessible through its URL during development.
+
+Do not modify the existing Section 1 or Section 2 routes.
+
+---
+
+# 4. CONVERT STITCH CODE TO NATIVE DJANGO HTML
+
+Do NOT leave the Section 4 page as React/TSX.
+
+Convert the Stitch structure into **native Django HTML templates**, just as we did for the Home page and previous Assessment sections.
+
+Use:
+
+```text
+templates/assessment/assessment_section_04.html
+```
+
+and Django template syntax where required.
+
+Do not introduce a second React/Vite runtime for Section 4.
+
+---
+
+# 5. KEEP ASSESSMENT ASSET ORGANIZATION CLEAN
+
+Any Section 4-specific assets should be organized cleanly.
+
+Use something like:
+
+```text
+static/
+└── assessment/
+    ├── css/
+    ├── js/
+    └── images/
+```
+
+If Section 4 requires its own CSS/JS, keep it clearly scoped.
+
+For example:
+
+```text
+static/assessment/css/section_04.css
+static/assessment/js/section_04.js
+```
+
+Do not dump Section 4 code into unrelated Home page files.
+
+---
+
+# 6. DO NOT MODIFY SECTION 1 OR SECTION 2
+
+Section 1 and Section 2 are already approved.
+
+Do NOT change:
+
+- Section 1 design
+- Section 1 animations
+- Section 1 navbar
+- Section 2 six-question system
+- Section 2 scoring
+- Section 2 animations
+- Section 2 mobile scrolling
+- Section 2 answer logic
+
+Only make the minimum routing change required to continue from Section 3 into Section 4.
+
+---
+
+# 7. SECTION 3 → SECTION 4
+
+The existing Section 3:
+
+```text
+CONTINUE →
+```
+
+should navigate to:
+
+```text
+/assessment/section-4/
+```
+
+Do not introduce database submission yet.
+
+Do not submit the form to PostgreSQL yet.
+
+At this stage we only need to confirm that:
+
+```text
+Section 3
+   ↓
+CONTINUE
+   ↓
+Section 4 loads correctly
+```
+
+Use the existing transition style where appropriate.
+
+---
+
+# 8. FORM FIELDS — FRONTEND ONLY FOR NOW
+
+If the Stitch Section 4 design contains company/business information fields, implement them visually and functionally on the page.
+
+For example, if the Stitch design contains:
+
+```text
+Company Name
+Name
+Email
+Phone
+Revenue
+Team Size
+Business Type
+etc.
+```
+
+implement the corresponding UI exactly according to the Stitch source.
+
+The inputs should:
+
+- Accept user input
+- Have proper labels
+- Have correct input types
+- Have appropriate validation attributes where obvious
+- Work correctly on mobile
+- Preserve the Stitch visual design
+
+BUT:
+
+**Do not save these values to PostgreSQL yet.**
+
+---
+
+# 9. FORM VALIDATION
+
+For this stage, only implement basic **frontend/browser-level validation** if required by the Stitch design.
+
+For example:
+
+```text
+Required field
+Valid email format
+Valid numeric input
+```
+
+Do not build the final Django server-side submission system yet.
+
+We will implement secure server-side validation when we connect the database.
+
+---
+
+# 10. BUTTON
+
+Implement the Section 4 CTA/button according to the Stitch design.
+
+At this stage, it should perform the intended frontend interaction, but do not connect it to PostgreSQL.
+
+If the next section is not implemented yet, do not invent a new destination.
+
+Use a temporary controlled state if necessary so we can test the UI without breaking the assessment flow.
+
+---
+
+# 11. ANIMATIONS
+
+If the Stitch source contains animations, convert them appropriately into the existing Django/GSAP architecture.
+
+Keep the same premium animation language used throughout the Assessment:
+
+```text
+Page entrance
+↓
+Typography reveal
+↓
+Form elements reveal
+↓
+CTA reveal
+```
+
+Animations should be subtle and professional.
+
+Do not introduce excessive animation.
+
+---
+
+# 12. MOBILE RESPONSIVENESS
+
+Section 4 must be responsive from the beginning.
+
+Test at least:
+
+```text
+375px
+390px
+414px
+768px
+Desktop
+```
+
+Mobile must use:
+
+**native scrolling.**
+
+Do NOT use:
+
+- Scroll hijacking
+- Fixed-height containers that prevent scrolling
+- Desktop pinning on mobile
+- Overflow rules that lock the page
+
+The user must be able to scroll all the way to the bottom of Section 4.
+
+---
+
+# 13. NAVBAR + FOOTER
+
+Use the same finalized Assessment navbar and footer that are already used by Sections 1–3.
+
+Do not create another navbar.
+
+Do not create another footer.
+
+Do not redesign them.
+
+Section 4 should inherit the established Assessment navigation system.
+
+---
+
+# 14. DESIGN ISOLATION
+
+Keep Section 4 isolated.
+
+Do not modify global Home styles just to make Section 4 work.
+
+If Section 4 requires special CSS, scope it to Section 4.
+
+For example:
+
+```text
+.assessment-section-04
+```
+
+or use a dedicated Section 4 stylesheet.
+
+The Home page must remain completely unchanged.
+
+---
+
+# 15. IMPORTANT — DO NOT CONNECT POSTGRESQL YET
+
+This is the most important part.
+
+For this implementation stage:
+
+```text
+User enters company information
+        ↓
+Frontend receives the values
+        ↓
+UI works
+        ↓
+NO DATABASE SAVE
+```
+
+Do NOT create:
+
+```text
+models.py changes
+makemigrations
+migrate
+PostgreSQL tables
+database INSERT
+database UPDATE
+```
+
+We will do that separately after I review and approve the Section 4 frontend.
+
+---
+
+# 16. DO NOT INVENT FIELDS
+
+Use the fields provided by the **Section 4 Stitch source**.
+
+Do not add random company fields just because they might be useful.
+
+First reproduce the provided design accurately.
+
+If something in the Stitch source is unclear, preserve the existing design rather than inventing a new business requirement.
+
+---
+
+# 17. FINAL TEST
+
+Before saying the work is complete, verify:
+
+### Navigation
+
+```text
+Section 3
+   ↓
+Continue
+   ↓
+Section 4
+```
+
+### Section 4
+
+- Page loads correctly
+- Stitch design is reproduced
+- All fields work
+- Inputs accept data
+- Button works
+- Animations work
+- Navbar works
+- Footer works
+- Mobile scrolling works
+- Desktop layout works
+- No console errors
+
+### Regression
+
+Verify that:
+
+```text
+Home
+Section 1
+Section 2
+Section 3
+```
+
+remain unchanged and functional.
+
+---
+
+# FINAL ARCHITECTURE FOR THIS STAGE
+
+Keep it clean:
+
+```text
+templates/
+└── assessment/
+    ├── assessment.html
+    ├── assessment_section_02.html
+    ├── assessment_section_03.html
+    └── assessment_section_04.html
+
+static/
+└── assessment/
+    ├── css/
+    │   ├── assessment.css
+    │   └── section_04.css
+    ├── js/
+    │   ├── assessment.js
+    │   └── section_04.js
+    └── images/
+        └── Section 4 assets
+```
+
+Do not create unnecessary duplicate folders or files.
+
+---
+
+# THE WORKFLOW
+
+We are intentionally doing this in stages:
+
+### STEP 1 — NOW
+
+```text
+Stitch Section 4
+        ↓
+Django HTML
+        ↓
+Frontend functionality
+        ↓
+Responsive design
+        ↓
+Testing
+```
+
+### STEP 2 — AFTER I APPROVE
+
+```text
+Design approved
+        ↓
+Django Form
+        ↓
+Server-side validation
+        ↓
+PostgreSQL Model
+        ↓
+Migration
+        ↓
+Save company information
+```
+
+### STEP 3 — LATER
+
+```text
+Section 2 answers
++
+Section 4 company information
+        ↓
+Assessment record
+        ↓
+Score
+        ↓
+Existing routing logic
+```
+
+**Do NOT jump ahead to Steps 2 or 3.**
+
+For now, I only want **Section 4 Stitch → Django implementation and working frontend**.
+
+-----------------------------------------------------------------------------------------
+
+# ASSESSMENT SECTION 5 — FINAL SECTION IMPLEMENTATION
+
+We are now moving to **Assessment Section 5**, which is the final section of the Assessment flow.
+
+The PostgreSQL backend is already working successfully for Sections 2–4.
+
+I will provide the Stitch source code/design for Section 5 inside:
+
+```text
+stitch_source/section_5/
+```
+
+The folder will contain the Stitch source files, such as:
+
+```text
+code.html
+DESIGN.md
+screen.png
+assets/
+```
+
+Use those files as the **source of truth for the Section 5 design**.
+
+---
+
+# 1. FIRST — INSPECT THE STITCH SOURCE
+
+Before coding anything, inspect everything inside:
+
+```text
+stitch_source/section_5/
+```
+
+Read:
+
+```text
+code.html
+DESIGN.md
+```
+
+and inspect:
+
+```text
+screen.png
+```
+
+If there are assets, identify which ones are actually required.
+
+Do not guess the design from the description alone.
+
+The Stitch design should be reproduced as accurately as possible.
+
+---
+
+# 2. KEEP SECTION 5 COMPLETELY SEPARATE
+
+Follow the same clean architecture we established for the previous Assessment sections.
+
+Create:
+
+```text
+templates/
+└── assessment/
+    └── assessment_section_05.html
+```
+
+If Section 5 requires its own JavaScript:
+
+```text
+static/
+└── assessment/
+    └── js/
+        └── section_05.js
+```
+
+If it requires Section 5-specific CSS:
+
+```text
+static/
+└── assessment/
+    └── css/
+        └── section_05.css
+```
+
+Do not dump Section 5 code into unrelated files.
+
+Keep it easy to maintain.
+
+---
+
+# 3. STITCH → DJANGO
+
+Convert the Stitch HTML into **native Django HTML**, exactly as we did for the previous sections.
+
+Do NOT leave the Section 5 page dependent on React/TSX at runtime.
+
+The production website is Django.
+
+Therefore:
+
+```text
+Stitch React/HTML
+       ↓
+Convert
+       ↓
+Django HTML template
+       ↓
+Django renders Section 5
+```
+
+Use Django template syntax where appropriate:
+
+```django
+{% load static %}
+{% url '...' %}
+```
+
+Do not introduce a new React/Vite runtime for Section 5.
+
+---
+
+# 4. CREATE A DEDICATED DJANGO VIEW
+
+Add a dedicated Section 5 view following the existing Assessment architecture.
+
+For example:
+
+```text
+assessment_section_05
+```
+
+Add the corresponding URL:
+
+```text
+/assessment/section-5/
+```
+
+Use a named URL rather than hard-coding URLs throughout JavaScript.
+
+Follow the same URL/view naming convention already used for Sections 3 and 4.
+
+---
+
+# 5. SECTION 4 → SECTION 5
+
+Connect the existing Section 4 submission flow to Section 5.
+
+The intended flow is:
+
+```text
+Section 2
+   ↓
+6 Questions
+   ↓
+Section 3
+   ↓
+Section 4
+   ↓
+Submit company details
+   ↓
+PostgreSQL record created
+   ↓
+Section 5
+```
+
+Section 4's existing database submission must continue working.
+
+Do NOT break or redesign the existing Section 4 form.
+
+Only change the successful submission destination so the user proceeds to Section 5 if that is what the Stitch/design flow requires.
+
+---
+
+# 6. IMPORTANT — DATABASE DATA ALREADY EXISTS
+
+The database implementation from the previous stage is already working.
+
+Do NOT create a second assessment model.
+
+Do NOT create a duplicate database record for Section 5.
+
+Do NOT create another scoring system.
+
+The existing:
+
+```text
+AssessmentSubmission
+```
+
+record should remain the single assessment record.
+
+Section 5 should retrieve/use the existing assessment information when necessary.
+
+---
+
+# 7. SCORE / RESULT DATA
+
+The assessment score is already calculated securely on the server.
+
+Do NOT recalculate the score independently in JavaScript.
+
+Do NOT create new FGA/BPA thresholds.
+
+Do NOT invent qualification rules.
+
+If Section 5 needs the assessment score, retrieve it from the existing server-side assessment/session/database architecture.
+
+The authoritative score remains:
+
+```text
+Django server-side score
+```
+
+not:
+
+```text
+JavaScript score
+```
+
+---
+
+# 8. DO NOT MODIFY FGA/BPA LOGIC
+
+Even though Section 5 is the final Assessment section, do NOT invent or modify qualification rules.
+
+Do not create:
+
+```text
+Score 6–10 → FGA
+Score 11–15 → BPA
+```
+
+or any other arbitrary rules.
+
+If the existing project already contains agreed routing rules, inspect and reuse them.
+
+If they have not yet been implemented, leave that logic untouched.
+
+---
+
+# 9. DESIGN FIDELITY
+
+The Section 5 page must actually look like the provided Stitch design.
+
+Do NOT create a simplified version containing only the text.
+
+Implement:
+
+- Layout
+- Typography
+- Images
+- Background
+- Cards
+- Buttons
+- Spacing
+- Borders
+- Icons
+- Decorative elements
+- Responsive behavior
+- Animations
+
+according to the Stitch source.
+
+The previous Section 4 issue where only the text was implemented must NOT happen here.
+
+The Stitch design is the visual reference.
+
+---
+
+# 10. NAVBAR
+
+Use the finalized Assessment navbar that has already been approved.
+
+Do NOT create a completely new navbar.
+
+Maintain:
+
+- Same typography
+- Same logo
+- Same navigation structure
+- Same Home button behavior
+- Same responsive mobile navbar
+- Same scroll behavior
+
+Only make Section 5-specific navbar changes if the Stitch design genuinely requires them.
+
+Do not modify the Home navbar.
+
+---
+
+# 11. FOOTER
+
+Use the finalized Assessment footer.
+
+Do not create a duplicate footer component.
+
+Do not modify the approved footer globally.
+
+---
+
+# 12. ANIMATIONS
+
+If the Stitch design contains animations, reproduce them using the existing animation architecture.
+
+Use GSAP where appropriate.
+
+Keep animations:
+
+- Smooth
+- Premium
+- Fast enough to feel responsive
+- Consistent with Sections 1–4
+
+Avoid:
+
+- Long loading screens
+- Spinners unless explicitly shown in Stitch
+- Excessive bouncing
+- Scroll hijacking
+- Full-page animation that blocks interaction
+
+---
+
+# 13. MOBILE RESPONSIVENESS
+
+Section 5 must work properly on:
+
+```text
+375px
+390px
+414px
+768px
+desktop
+```
+
+Mobile must use **native scrolling**.
+
+Do NOT introduce:
+
+```text
+position: fixed
+```
+
+or page pinning in a way that prevents the user from reaching the footer.
+
+The user must be able to naturally scroll through the entire Section 5 page.
+
+---
+
+# 14. SECTION 5 JAVASCRIPT
+
+If Section 5 requires interaction, keep the JavaScript isolated:
+
+```text
+static/assessment/js/section_05.js
+```
+
+Do not put Section 5-specific logic into:
+
+```text
+home.js
+```
+
+or unrelated global scripts.
+
+If existing `assessment.js` contains shared assessment functionality, reuse it where appropriate instead of duplicating logic.
+
+---
+
+# 15. IMPORTANT — DO NOT BREAK PREVIOUS SECTIONS
+
+Section 5 implementation must NOT modify the approved:
+
+```text
+Home
+Section 1
+Section 2
+Section 3
+Section 4
+```
+
+unless a change is absolutely required to connect the flow.
+
+Especially do NOT change:
+
+- Section 2 question logic
+- Section 2 scoring
+- Section 2 animations
+- Section 3 design
+- Section 4 form validation
+- PostgreSQL model
+- Existing database submission logic
+
+---
+
+# 16. SECTION 4 DATABASE FLOW MUST REMAIN INTACT
+
+The existing flow is:
+
+```text
+Section 4 form
+      ↓
+Django validation
+      ↓
+Six answers retrieved
+      ↓
+Server-side score calculated
+      ↓
+AssessmentSubmission saved
+      ↓
+Section 5
+```
+
+Preserve this architecture.
+
+Do not create another database submission when entering Section 5.
+
+---
+
+# 17. IF SECTION 5 DISPLAYS RESULTS
+
+If the Stitch design shows assessment information, use the existing server-side data.
+
+For example, if it displays:
+
+```text
+Assessment Score
+```
+
+retrieve the stored score from the existing assessment record/session.
+
+Do not trust a value sent from the browser.
+
+If it displays a qualification/result, only show it if the qualification rules already exist in the project.
+
+Otherwise do not invent the result.
+
+---
+
+# 18. ASSETS
+
+If the Stitch source contains images or other assets:
+
+Do not hotlink unnecessary external assets.
+
+Where practical, copy the required assets into the appropriate Django static directory:
+
+```text
+static/assessment/images/
+```
+
+Use:
+
+```django
+{% static 'assessment/images/filename.ext' %}
+```
+
+Do not duplicate assets that already exist in the project.
+
+---
+
+# 19. TESTING
+
+After implementation, verify the complete flow:
+
+```text
+Section 1
+   ↓
+Section 2
+   ↓
+Q1
+   ↓
+Q2
+   ↓
+Q3
+   ↓
+Q4
+   ↓
+Q5
+   ↓
+Q6
+   ↓
+Section 3
+   ↓
+Section 4
+   ↓
+Submit
+   ↓
+PostgreSQL
+   ↓
+Section 5
+```
+
+Verify:
+
+1. Section 5 loads correctly.
+2. Section 4 still saves to PostgreSQL.
+3. Section 5 does not create a duplicate assessment record.
+4. Existing score remains available.
+5. No console errors.
+6. No missing assets.
+7. No broken Django URLs.
+8. Desktop layout matches Stitch.
+9. Mobile layout matches Stitch.
+10. Native mobile scrolling works.
+11. Footer is reachable.
+12. Animations work smoothly.
+13. Navbar matches the approved Assessment navbar.
+14. Home page remains completely unchanged.
+15. Sections 1–4 remain unchanged.
+
+---
+
+# 20. GIT SAFETY
+
+Before making changes:
+
+Check the current Git status.
+
+Do not overwrite unrelated work.
+
+After completing Section 5:
+
+Run:
+
+```bash
+python manage.py check
+```
+
+Then inspect:
+
+```bash
+git status
+git diff
+```
+
+Make sure only the intended Section 5 changes and required routing changes are present.
+
+Do not commit unrelated files such as:
+
+```text
+node_modules/
+.env
+build/
+dist/
+```
+
+---
+
+# FINAL OBJECTIVE
+
+For this stage, the objective is simply:
+
+**Build Section 5 from the provided Stitch source and connect it cleanly to the existing Section 4 flow.**
+
+Do not expand the scope.
+
+Do not redesign previous sections.
+
+Do not create new qualification rules.
+
+Do not create a new database architecture.
+
+Use the existing architecture and make Section 5 feel like the natural final part of the premium Assessment experience.
+
+After implementation, provide a concise report containing:
+
+- Files created
+- Files modified
+- Route created
+- Stitch assets used
+- Section 4 → Section 5 connection
+- Database impact
+- Responsive testing
+- Animation testing
+- `python manage.py check` result
+- Any issues found
+
+---------------------------------------------------------------------------------------------------------------
+
+
+# Assessment Scoring + Zone Evaluation + FGA/BPA Routing
+
+We need to correct the current assessment architecture to follow the **client’s actual scoring requirement and correct zone logic alignment**.
+
+The client requires a total assessment score of:
+
+**0–24**
+
+with exactly **3 diagnostic zones**.
+
+We are NOT changing the scoring system to 18.\&#xA;We are keeping the original **/24 scoring model**, because the question structure already maps correctly to it.
+
+---
+
+# 1. FINAL SCORING MODEL
+
+There are 6 questions.
+
+Each question contributes to the final score.
+
+The final score must be calculated on the **server side**, not trusted from frontend JavaScript.
+
+The final result must be:
+
+```text
+Total Score = sum of the six question scores
+Maximum Score = 24
+```
+
+The database should store the final score.
+
+---
+
+# 2. THREE DIAGNOSTIC ZONES (UPDATED)
+
+We are updating the zone thresholds to match the correct /24 scale.
+
+Use these exact updated ranges:
+
+| Score | Zone                    | Message                                                               |
+| ----- | ----------------------- | --------------------------------------------------------------------- |
+| 0–8   | The Builder Zone        | Catching warning signs early; structural gaps quietly capping income  |
+| 9–16  | The Survival Zone       | Working hard without predictable income; most common and most fixable |
+| 17–24 | The Breaking Point Zone | Costing more than money — health, sleep, relationships                |
+
+These are the corrected client-aligned diagnostic zones.
+
+Do NOT change zone names.
+
+Do NOT add additional zones.
+
+Do NOT modify these ranges.
+
+---
+
+# 3. IMPORTANT — SCORE DIRECTION
+
+Keep the current assessment logic consistent:
+
+Lower score:
+
+```text
+healthier operational position
+```
+
+Higher score:
+
+```text
+greater operational pressure
+```
+
+Therefore:
+
+```text
+0–8
+→ Builder Zone
+→ lower operational pressure
+
+9–16
+→ Survival Zone
+→ moderate operational pressure
+
+17–24
+→ Breaking Point Zone
+→ high operational pressure
+```
+
+---
+
+# 4. BACKEND MUST DETERMINE THE ZONE
+
+The frontend must NOT independently decide:
+
+```javascript
+if score <= 8 ...
+if score <= 16 ...
+```
+
+The authoritative evaluation must happen in Django.
+
+The backend should calculate:
+
+```text
+six answers
+      ↓
+calculate total score
+      ↓
+determine zone
+      ↓
+determine zone message
+      ↓
+store result
+      ↓
+return result to frontend
+```
+
+Example backend logic:
+
+```python
+if score <= 8:
+    zone = "The Builder Zone"
+    zone_message = "Catching warning signs early; structural gaps quietly capping income"
+
+elif score <= 16:
+    zone = "The Survival Zone"
+    zone_message = "Working hard without predictable income; most common and most fixable"
+
+else:
+    zone = "The Breaking Point Zone"
+    zone_message = "Costing more than money — health, sleep, relationships"
+```
+
+---
+
+# 5. DATABASE
+
+The existing `AssessmentSubmission` record should contain the final assessment result.
+
+At minimum:
+
+```text
+question_1_answer
+question_2_answer
+question_3_answer
+question_4_answer
+question_5_answer
+question_6_answer
+
+assessment_score
+
+assessment_zone
+
+assessment_zone_message
+```
+
+Important:
+
+**Score + zone + zone message must always be stored together.**
+
+Do not create a second assessment system.
+
+Reuse the existing PostgreSQL model.
+
+---
+
+# 6. SECTION 2
+
+Section 2 continues collecting six answers.
+
+User flow:
+
+```text
+Q1
+ ↓
+Q2
+ ↓
+Q3
+ ↓
+Q4
+ ↓
+Q5
+ ↓
+Q6
+ ↓
+Continue
+```
+
+Do NOT show score in Section 2.
+
+After Question 6:
+
+```text
+answers submitted
+      ↓
+Django receives answers
+      ↓
+Django validates answers
+      ↓
+Django calculates score (0–24)
+      ↓
+Django determines zone
+      ↓
+store result
+      ↓
+Section 3
+```
+
+---
+
+# 7. SECTION 3
+
+Section 3 remains unchanged (vision transition).
+
+Do NOT show score.
+
+Do NOT show zone unless already required by design.
+
+Flow:
+
+```text
+Section 3
+   ↓
+Define Vision
+   ↓
+Section 4
+```
+
+---
+
+# 8. SECTION 4
+
+Section 4 collects company/contact details.
+
+Flow:
+
+```text
+Section 4 form
+      ↓
+Django validates form
+      ↓
+retrieve existing assessment result
+      ↓
+attach Section 4 details
+      ↓
+save/update AssessmentSubmission
+      ↓
+Section 5
+```
+
+Do NOT recalculate score in frontend.
+
+Backend remains authoritative.
+
+---
+
+# 9. SECTION 5 — FINAL RESULT
+
+Section 5 retrieves result from PostgreSQL.
+
+Flow:
+
+```text
+PostgreSQL
+      ↓
+assessment_score
+assessment_zone
+assessment_zone_message
+      ↓
+Django Section 5 view
+      ↓
+Frontend renders result
+```
+
+Example outputs:
+
+### Builder Zone
+
+```text
+5 / 24
+
+THE BUILDER ZONE
+
+Catching warning signs early;
+structural gaps quietly capping income
+```
+
+### Survival Zone
+
+```text
+12 / 24
+
+THE SURVIVAL ZONE
+
+Working hard without predictable income;
+most common and most fixable
+```
+
+### Breaking Point Zone
+
+```text
+20 / 24
+
+THE BREAKING POINT ZONE
+
+Costing more than money —
+health, sleep, relationships
+```
+
+Frontend only renders backend data.
+
+---
+
+# 10. THREE ZONE SYSTEM (CENTRALIZED)
+
+Backend must define zones centrally:
+
+```text
+Builder Zone
+    score: 0–8
+    message: Catching warning signs early; structural gaps quietly capping income
+
+Survival Zone
+    score: 9–16
+    message: Working hard without predictable income; most common and most fixable
+
+Breaking Point Zone
+    score: 17–24
+    message: Costing more than money — health, sleep, relationships
+```
+
+No duplication in frontend logic.
+
+---
+
+# 11. FGA / BPA ROUTING
+
+After zone calculation:
+
+```text
+Assessment
+   ↓
+Score
+   ↓
+Zone
+   ↓
+Existing qualification rules
+   ↓
+FGA OR BPA
+```
+
+IMPORTANT:
+
+Do NOT invent thresholds.
+
+FGA/BPA logic must use existing project rules.
+
+If not implemented yet, create backend structure only (not business logic assumptions).
+
+---
+
+# 12. ROUTING MUST COME FROM BACKEND
+
+Backend returns:
+
+```text
+assessment_score
+assessment_zone
+qualification_route
+```
+
+Example:
+
+```text
+qualification_route = "FGA"
+```
+
+or
+
+```text
+qualification_route = "BPA"
+```
+
+Frontend must NOT calculate this.
+
+---
+
+# 13. FULL USER FLOW
+
+```text
+SECTION 2
+6 questions
+   ↓
+Submit
+   ↓
+Django calculates score (0–24)
+   ↓
+Zone evaluation (0–8 / 9–16 / 17–24)
+   ↓
+Store result
+   ↓
+SECTION 3 (vision)
+   ↓
+SECTION 4 (details)
+   ↓
+Django finalizes submission
+   ↓
+FGA/BPA routing decision
+   ↓
+SECTION 5 result display
+   ↓
+CTA → route user
+```
+
+---
+
+# 14. DO NOT MOVE LOGIC TO FRONTEND
+
+Do NOT do:
+
+```text
+JS calculates score
+JS decides zone
+JS decides routing
+```
+
+Correct approach:
+
+```text
+Frontend collects answers
+   ↓
+Backend calculates everything
+   ↓
+Frontend only displays result
+```
+
+---
+
+# 15. IMPORTANT FIX — /24 MUST BE USED
+
+All UI components must reflect:
+
+```text
+score / 24
+```
+
+NOT /18.
+
+Progress ring, percentage, and display logic must all use /24.
+
+---
+
+# 16. PRESERVE UI
+
+Do NOT change:
+
+- Section 2 UI
+- Section 3 UI
+- Section 4 UI
+- Section 5 UI design
+
+Only change backend logic + data flow.
+
+---
+
+# 17. TEST CASES
+
+### Test 1
+
+```text
+Score = 8
+→ Builder Zone
+```
+
+### Test 2
+
+```text
+Score = 9
+→ Survival Zone
+```
+
+### Test 3
+
+```text
+Score = 16
+→ Survival Zone
+```
+
+### Test 4
+
+```text
+Score = 17
+→ Breaking Point Zone
+```
+
+### Test 5
+
+```text
+Score = 24
+→ Breaking Point Zone
+```
+
+Verify PostgreSQL stored values match Section 5 output.
+
+---
+
+# FINAL REQUIREMENT
+
+Before implementation, inspect:
+
+1. Current scoring logic (6 questions → /24 mapping)
+2. `AssessmentSubmission` model
+3. Section 4 submission flow
+4. Section 5 rendering logic
+5. Existing FGA/BPA rules
+
+Then implement using existing architecture.
+
+Do NOT create a new system.
+
+Do NOT change UI.
+
+Do NOT move logic to frontend.
+
+Final flow must be:
+
+**6 answers → Django → 0–24 score → 3-zone evaluation → PostgreSQL → Section 5 → backend-driven FGA/BPA routing**
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+# FGA PAGE — STITCH SOURCE → DJANGO PRODUCTION CONVERSION
+
+I have provided the **FGA page generated in Stitch** as the source file.
+
+Your task is to convert this Stitch page into a production-ready **Django HTML/CSS/JavaScript page**.
+
+Do NOT redesign it.
+
+Do NOT simplify it.
+
+Do NOT create a new design.
+
+The Stitch source is the **visual source of truth**.
+
+---
+
+# 1. FIRST — INSPECT THE STITCH SOURCE
+
+Before writing any production code:
+
+1. Open and inspect the complete FGA Stitch source.
+2. Understand the complete page structure.
+3. Identify:
+   - All sections
+   - All text
+   - Images
+   - Icons
+   - Buttons
+   - Typography
+   - Colors
+   - Spacing
+   - Responsive layouts
+   - Animations
+   - Navigation
+   - Footer
+4. Understand any React/TypeScript-specific code used by Stitch.
+
+Do NOT immediately copy the React code into Django.
+
+First understand the structure, then convert it.
+
+---
+
+# 2. IMPORTANT — CONVERT, DON'T COPY REACT
+
+The Stitch source may contain:
+
+- React
+- TypeScript/TSX
+- Vite-specific code
+- React components
+- JSX
+- Tailwind classes
+- JavaScript modules
+
+The production project is **Django**, not React.
+
+Therefore:
+
+```text
+Stitch React/TSX
+        ↓
+Understand structure
+        ↓
+Convert
+        ↓
+Django HTML template
+        +
+CSS
+        +
+Vanilla JavaScript where required
+        ↓
+Production Django page
+```
+
+Do NOT introduce:
+
+- React
+- TypeScript
+- Vite
+- JSX
+- TSX
+- React components
+- npm runtime dependencies
+
+into the production Django application.
+
+---
+
+# 3. PRODUCTION LOCATION — VERY IMPORTANT
+
+The FGA page belongs to the **Assessment Section 5 area**.
+
+It MUST be created inside:
+
+```text
+templates/assessment/section_05/
+```
+
+The main FGA template must be:
+
+```text
+templates/assessment/section_05/fga.html
+```
+
+Do NOT create:
+
+```text
+templates/fga/
+templates/pages/fga/
+templates/FGA/
+templates/assessment/fga/
+templates/fga_page/
+```
+
+or any other new location.
+
+The production FGA page belongs specifically inside:
+
+```text
+templates/
+└── assessment/
+    └── section_05/
+        ├── assessment_section_05.html
+        └── fga.html
+```
+
+---
+
+# 4. FGA STATIC FILES
+
+Any FGA-specific production assets must also stay within the existing Assessment structure.
+
+Use:
+
+```text
+static/assessment/section_05/
+```
+
+Organize them as:
+
+```text
+static/
+└── assessment/
+    └── section_05/
+        ├── css/
+        │   └── fga.css
+        ├── js/
+        │   └── fga.js
+        └── images/
+            └── ...
+```
+
+If the Stitch FGA page requires images, copy/use the required production assets in:
+
+```text
+static/assessment/section_05/images/
+```
+
+Do NOT create a separate top-level FGA static folder.
+
+For example, do NOT create:
+
+```text
+static/fga/
+static/css/fga/
+static/js/fga/
+```
+
+---
+
+# 5. DJANGO TEMPLATE STRUCTURE
+
+The production page should use the existing Django architecture.
+
+Use:
+
+```django
+{% extends 'base.html' %}
+```
+
+and the appropriate:
+
+```django
+{% block content %}
+```
+
+and CSS/JS blocks already used by the project.
+
+Follow the existing conventions in:
+
+```text
+templates/assessment/section_05/
+```
+
+Do NOT invent a completely different template architecture.
+
+---
+
+# 6. STATIC FILE REFERENCES
+
+Use Django static references.
+
+Example:
+
+```django
+{% load static %}
+```
+
+Then:
+
+```django
+{% static 'assessment/section_05/images/example.png' %}
+```
+
+Do NOT leave production references such as:
+
+```text
+/src/
+/assets/
+/public/
+/vite/
+/node_modules/
+```
+
+Do NOT use Stitch/Vite asset paths in the final Django page.
+
+---
+
+# 7. PRESERVE THE STITCH DESIGN
+
+The final Django page should visually match the Stitch FGA design as closely as possible.
+
+Preserve:
+
+- Overall layout
+- Section order
+- Hero composition
+- Typography
+- Font sizes
+- Font weights
+- Colors
+- Backgrounds
+- Images
+- Card designs
+- Borders
+- Border radius
+- Buttons
+- Spacing
+- Alignment
+- Icons
+- Decorative elements
+- Responsive behavior
+- Animations
+
+Do NOT redesign anything while converting.
+
+If something cannot be directly transferred from React to Django, reproduce the same visual result using HTML/CSS/vanilla JS.
+
+---
+
+# 8. EXISTING WEBSITE NAVBAR
+
+The FGA page must use the **same global navbar already used by the existing website**.
+
+Do NOT create a new navbar based on the Stitch navbar if it differs from the production website.
+
+Use the existing shared navbar component:
+
+```text
+templates/components/navbar.html
+```
+
+The FGA page should visually connect with:
+
+```text
+Assessment Section 1
+Assessment Section 2
+Assessment Section 3
+Assessment Section 4
+Assessment Section 5
+```
+
+Do not modify the global navbar just for FGA.
+
+If FGA requires a small page-specific adjustment, scope it only to FGA.
+
+---
+
+# 9. EXISTING WEBSITE FOOTER
+
+Use the existing global footer if the current website architecture provides one.
+
+Do NOT create a completely separate footer system.
+
+The FGA page must feel like part of the existing website.
+
+---
+
+# 10. TAILWIND / CSS
+
+First inspect how the existing production Django project currently handles CSS.
+
+Do NOT introduce a new CSS architecture.
+
+If the project uses compiled Tailwind CSS, follow the existing build pipeline.
+
+If FGA-specific CSS is required, create:
+
+```text
+static/assessment/section_05/css/fga.css
+```
+
+Keep the CSS scoped so it does not accidentally change:
+
+- Section 1
+- Section 2
+- Section 3
+- Section 4
+- Section 5 result page
+
+Do NOT modify global CSS unless absolutely required.
+
+---
+
+# 11. JAVASCRIPT / ANIMATIONS
+
+If the Stitch FGA design contains animations:
+
+Convert them to **vanilla JavaScript / GSAP**, following the existing production architecture.
+
+Do NOT bring React animation code into Django.
+
+If FGA needs page-specific JS:
+
+```text
+static/assessment/section_05/js/fga.js
+```
+
+Keep it isolated to FGA.
+
+Do not introduce:
+
+```text
+React
+TypeScript
+Vite
+npm packages
+```
+
+---
+
+# 12. DJANGO DYNAMIC DATA
+
+For the first conversion, preserve the Stitch content and design exactly.
+
+However, structure the page so that future Django backend data can be inserted cleanly.
+
+For example, if appropriate:
+
+```django
+{{ assessment_score }}
+{{ assessment_zone }}
+{{ assessment_zone_message }}
+{{ primary_constraint }}
+{{ qualification_route }}
+```
+
+Do NOT invent additional backend variables that don't currently exist.
+
+Do NOT modify the assessment scoring system.
+
+Do NOT create a new database model.
+
+Do NOT create a second assessment system.
+
+---
+
+# 13. FGA ROUTING
+
+The existing backend already determines:
+
+```text
+qualification_route = "FGA"
+```
+
+The FGA page should eventually be accessible from the Section 5 recommendation CTA.
+
+For this task:
+
+- Do not change existing scoring logic.
+- Do not change zone logic.
+- Do not change BPA logic.
+- Do not change Business Pressure Matrix logic.
+- Do not change PostgreSQL assessment logic.
+
+Only prepare the FGA page and its integration point.
+
+---
+
+# 14. DO NOT MODIFY OTHER ASSESSMENT SECTIONS
+
+Strictly avoid modifying:
+
+```text
+Section 1
+Section 2
+Section 3
+Section 4
+Section 5 result page
+```
+
+Do NOT change:
+
+- Existing question logic
+- Scoring
+- Zone evaluation
+- PostgreSQL models
+- Section 4 routing
+- Business Pressure Matrix
+- Operational Bottleneck logic
+- Existing Section 5 design
+
+unless a minimal URL/template integration is absolutely required for FGA.
+
+---
+
+# 15. URL
+
+Create an appropriate Django route for the FGA page using the existing assessment URL architecture.
+
+Keep it logically under the Assessment flow.
+
+For example:
+
+```text
+/assessment/fga/
+```
+
+Use the project's existing URL naming conventions.
+
+Do not create unnecessary URL structures.
+
+---
+
+# 16. IMPORTANT — NO DUPLICATE FILES
+
+Before creating anything:
+
+Search the project for existing FGA files.
+
+If an FGA page already exists:
+
+- Inspect it.
+- Determine whether it is production code or Stitch/reference code.
+- Do not blindly create duplicates.
+
+The final production FGA page should have one clear source:
+
+```text
+templates/assessment/section_05/fga.html
+```
+
+---
+
+# 17. STITCH SOURCE MUST REMAIN UNTOUCHED
+
+The original Stitch source is a reference/design source.
+
+Do NOT modify, delete, or overwrite the Stitch source.
+
+We need to preserve it for future reference.
+
+Only create the converted production Django implementation.
+
+---
+
+# 18. VERIFICATION
+
+After conversion:
+
+### Check 1 — Django
+
+Run:
+
+```text
+python manage.py check
+```
+
+It must pass.
+
+### Check 2 — FGA URL
+
+Open the FGA page directly and verify it loads.
+
+### Check 3 — Visual
+
+Compare the Django FGA page against the Stitch source.
+
+Check:
+
+- Hero
+- Typography
+- Colors
+- Images
+- Buttons
+- Cards
+- Spacing
+- Sections
+- Footer
+- Responsive behavior
+
+### Check 4 — Existing assessment
+
+Verify:
+
+```text
+Section 2 → Section 3 → Section 4 → Section 5
+```
+
+still works.
+
+### Check 5 — Routing
+
+Verify that an FGA-qualified user can reach:
+
+```text
+Section 5
+   ↓
+FGA CTA
+   ↓
+FGA page
+```
+
+Do not break BPA routing.
+
+---
+
+# 19. FINAL FILE STRUCTURE
+
+The intended production structure is:
+
+```text
+templates/
+└── assessment/
+    ├── section_01/
+    ├── section_02/
+    ├── section_03/
+    ├── section_04/
+    └── section_05/
+        ├── assessment_section_05.html
+        └── fga.html
+
+
+static/
+└── assessment/
+    └── section_05/
+        ├── css/
+        │   ├── section_05.css
+        │   └── fga.css
+        ├── js/
+        │   ├── section_05.js
+        │   └── fga.js
+        └── images/
+            └── FGA assets
+```
+
+---
+
+# 20. FINAL RULE
+
+The priority is:
+
+```text
+STITCH FGA DESIGN
+       ↓
+Inspect completely
+       ↓
+Convert React/TSX
+       ↓
+Django HTML
+       +
+Existing project CSS system
+       +
+Vanilla JS / GSAP if required
+       ↓
+templates/assessment/section_05/fga.html
+       ↓
+static/assessment/section_05/
+```
+
+**Do not simply copy the Stitch React code.**
+
+**Convert and rewrite it properly for the existing Django architecture.**
+
+**Do not create the FGA page anywhere outside `templates/assessment/section_05/`.**
+
+**Do not modify unrelated parts of the project.**
+
+After conversion, report exactly which files were created/modified and confirm that no React, TypeScript, Vite, or new npm runtime dependency was introduced into production.
