@@ -6275,3 +6275,2983 @@ static/assessment/section_05/
 **Do not modify unrelated parts of the project.**
 
 After conversion, report exactly which files were created/modified and confirm that no React, TypeScript, Vite, or new npm runtime dependency was introduced into production.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Implement Calendly for FGA Page
+
+I have created the Calendly API & Webhooks setup for the project.
+
+I want the **FGA page only** to use Calendly for the 15-minute discovery/strategy call.
+
+### 1. Required user flow
+
+The final flow must be:
+
+```text
+Section 5
+    ↓
+Book a 15-Minute Discovery Call
+    ↓
+FGA Page
+    ↓
+Book Your Strategy Call
+    ↓
+Calendly embedded inside FGA page
+    ↓
+User selects date/time
+    ↓
+User enters booking details
+    ↓
+Booking confirmed
+```
+
+Do NOT redirect the user to a separate external Calendly page.
+
+The Calendly scheduler must be embedded directly into:
+
+```text
+templates/assessment/section_05/fga.html
+```
+
+### 2. Calendly Embed
+
+Use Calendly's official embed mechanism for the FGA event.
+
+Do NOT build a custom calendar/availability system.
+
+Calendly should handle:
+
+- Available dates
+- Available times
+- Timezone
+- Booking
+- Confirmation
+- Calendar event creation
+- Meeting location
+
+The FGA page should simply provide the branded container around the Calendly scheduler.
+
+### 3. Existing FGA CTA
+
+The existing:
+
+**"Book Your Strategy Call"**
+
+button should scroll smoothly to the Calendly booking section on the same FGA page.
+
+It should NOT:
+
+- reload Section 5
+- go to `#`
+- open another page
+- redirect to an external Calendly page
+
+Use an anchor/section ID or smooth-scroll implementation.
+
+Example structure:
+
+```html
+<section id="fga-booking">
+    <!-- FGA booking heading/content -->
+
+    <!-- Calendly embed -->
+</section>
+```
+
+Then the CTA should point to:
+
+```text
+#fga-booking
+```
+
+### 4. API credentials
+
+I have the Calendly API credentials/token.
+
+DO NOT put the token inside:
+
+- `fga.html`
+- JavaScript
+- CSS
+- frontend source
+- GitHub
+- any publicly accessible static file
+
+Store the secret server-side using Django environment variables, for example:
+
+```text
+CALENDLY_ACCESS_TOKEN=...
+```
+
+Use the actual environment variable name according to the project's existing environment configuration.
+
+Calendly personal access tokens are intended for private/internal applications and should not be publicly exposed. 
+
+### 5. Django integration
+
+Inspect the existing Django architecture first.
+
+Do NOT create a separate booking system.
+
+If API communication is required, create a clean Calendly integration inside the existing Django architecture.
+
+The backend should be responsible for API communication.
+
+The frontend should only handle the Calendly embed/display.
+
+### 6. Webhook preparation
+
+Prepare the Django backend to receive Calendly webhook events.
+
+At minimum, the architecture should support:
+
+```text
+invitee.created
+invitee.canceled
+```
+
+Calendly sends webhook notifications to the configured server endpoint when invitees schedule or cancel meetings. 
+
+Create an appropriate Django endpoint, for example:
+
+```text
+/assessment/calendly/webhook/
+```
+
+Use the project's existing URL conventions rather than blindly creating this exact path if another suitable structure already exists.
+
+### 7. Booking data
+
+When a booking is received, capture the relevant Calendly information.
+
+At minimum, inspect and prepare for:
+
+```text
+Calendly event
+Invitee
+Name
+Email
+Event time
+Event URI
+Invitee URI
+Booking status
+```
+
+Do not invent database fields unnecessarily.
+
+First inspect the existing `AssessmentSubmission` model and determine how the booking should be associated with the existing assessment/lead.
+
+### 8. Preserve assessment information
+
+The existing assessment already has:
+
+```text
+assessment_score
+assessment_zone
+qualification_route
+```
+
+Do NOT change the existing scoring or FGA/BPA routing.
+
+The intended relationship is:
+
+```text
+AssessmentSubmission
+        ↓
+FGA qualification
+        ↓
+FGA page
+        ↓
+Calendly booking
+        ↓
+Associate booking with the existing lead/submission
+```
+
+If additional tracking is needed, implement it using the existing architecture rather than creating a duplicate assessment system.
+
+Calendly also supports UTM/custom query parameters on scheduling links, which can be used for tracking information through the booking flow if appropriate. 
+
+### 9. Important — FGA only
+
+Implement this integration for **FGA only** right now.
+
+Do NOT implement BPA Calendly yet.
+
+Keep the architecture reusable so BPA can later have its own Calendly event.
+
+### 10. Responsive design
+
+The Calendly section must work properly on:
+
+```text
+320px
+375px
+390px
+414px
+768px
+Desktop
+```
+
+There must be:
+
+- No horizontal scrolling
+- No iframe overflow
+- No broken spacing
+- No clipped booking content
+- No layout breakage
+
+The existing FGA typography, colors and premium design must remain unchanged.
+
+### 11. Do not modify existing functionality
+
+Do NOT modify:
+
+- Assessment scoring
+- Assessment zones
+- Business Pressure Matrix
+- FGA/BPA routing
+- Section 5 backend logic
+- FGA page design
+- Existing GSAP animations
+- Mobile responsiveness
+- Existing navigation
+
+Only add the Calendly integration.
+
+### 12. Before coding
+
+First inspect:
+
+1. `fga.html`
+2. FGA URL/view
+3. Section 5 CTA
+4. Existing `AssessmentSubmission` model
+5. Existing environment configuration
+6. Existing Django URL structure
+7. Existing JavaScript architecture
+
+Then implement Calendly using the existing architecture.
+
+### 13. Verification
+
+After implementation:
+
+```text
+python manage.py check
+```
+
+Then test:
+
+```text
+Section 5
+ ↓
+Book 15-Minute Discovery Call
+ ↓
+FGA
+ ↓
+Book Your Strategy Call
+ ↓
+Calendly opens inside FGA
+ ↓
+Select date
+ ↓
+Select time
+ ↓
+Submit booking
+ ↓
+Calendly confirmation
+```
+
+Also verify that the Django webhook endpoint receives the booking event correctly.
+
+Do not consider the implementation complete until an actual test booking has been successfully received by Django.
+
+### Critical rule
+
+Use **Calendly for scheduling**.
+
+Do NOT create a custom calendar system.
+
+Use:
+
+**Calendly Embed → booking UI**
+
+and:
+
+**Calendly API/Webhooks → Django backend integration**
+
+Keep the two responsibilities separate.  
+token = eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNzg3MzE5NDUyLCJqdGkiOiI0NjMyMDM2Yi05Zjk4LTQ2YTItYTZhMS0zM2Y4MDUxMTEzNzIiLCJ1c2VyX3V1aWQiOiJjNGZjOTE2Yy05Y2MwLTRiMjUtYTI4ZC1kMTU4YTgxNDJhMjciLCJzY29wZSI6ImF2YWlsYWJpbGl0eTpyZWFkIGF2YWlsYWJpbGl0eTp3cml0ZSBldmVudF90eXBlczpyZWFkIGV2ZW50X3R5cGVzOndyaXRlIGxvY2F0aW9uczpyZWFkIHJvdXRpbmdfZm9ybXM6cmVhZCBzaGFyZXM6d3JpdGUgc2NoZWR1bGVkX2V2ZW50czpyZWFkIHNjaGVkdWxlZF9ldmVudHM6d3JpdGUgc2NoZWR1bGluZ19saW5rczp3cml0ZSBncm91cHM6cmVhZCBvcmdhbml6YXRpb25zOnJlYWQgb3JnYW5pemF0aW9uczp3cml0ZSB1c2VyczpyZWFkIGNvbnRhY3RzOnJlYWQgY29udGFjdHM6d3JpdGUgbWVldGluZ19yZWNhcHM6cmVhZCBtZWV0aW5nX3JlY2Fwczp3cml0ZSBhY3Rpdml0eV9sb2c6cmVhZCBkYXRhX2NvbXBsaWFuY2U6d3JpdGUgb3V0Z29pbmdfY29tbXVuaWNhdGlvbnM6cmVhZCB3ZWJob29rczpyZWFkIHdlYmhvb2tzOndyaXRlIn0.y9Yc7azeJummFaIkxZdfjk9hjp5gdM4HO7wTvMiBMzbai6Gjco1eo8BkTViGUEICm4Ipk_D21E_66hBtqVkg2Q
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+# BPA WhatsApp Strategy Call Integration
+
+## 1. Objective
+
+Modify the existing **BPA (Business Performance Accelerator)** page so that the primary strategy-call button opens WhatsApp with a predefined message.
+
+The implementation must also record the interaction in the Django/PostgreSQL database so that the company can track how many BPA strategy-call enquiries/clicks are being generated.
+
+Do **not** implement this as a simple static `wa.me` link only.
+
+The required flow is:
+
+**BPA Page → User clicks Strategy Call button → Django records the interaction → WhatsApp opens with a pre-filled message**
+
+---
+
+# 2. First Inspect the Existing Project
+
+Before making any changes:
+
+1. Inspect the existing Django project structure.
+2. Find the BPA page/template.
+3. Find the existing BPA CTA/button.
+4. Find the Django app responsible for leads/forms/business logic.
+5. Inspect existing models.
+6. Inspect existing URLs.
+7. Inspect existing views.
+8. Inspect existing JavaScript for the BPA page.
+9. Inspect the existing Django Admin configuration.
+10. Check whether a lead/assessment/contact model already exists.
+
+### Important
+
+Do NOT create duplicate models or duplicate functionality if an existing lead/contact/assessment model can be extended cleanly.
+
+Reuse the existing architecture wherever possible.
+
+---
+
+# 3. Required User Experience
+
+The existing BPA CTA should remain visually unchanged unless a code change is necessary.
+
+For example:
+
+**Book Your Strategy Call**
+
+When the user clicks it:
+
+### Step 1
+
+The browser sends a request to Django.
+
+Example conceptual endpoint:
+
+`/bpa/strategy-call/`
+
+### Step 2
+
+Django records the interaction.
+
+### Step 3
+
+Django redirects the user to WhatsApp.
+
+WhatsApp should open with a pre-filled message.
+
+The user should not see an unnecessary intermediate page.
+
+The expected experience should feel like:
+
+**Click button → WhatsApp opens**
+
+---
+
+# 4. WhatsApp Integration
+
+Use WhatsApp's click-to-chat URL format.
+
+Conceptually:
+
+`https://wa.me/<WHATSAPP_NUMBER>?text=<ENCODED_MESSAGE>`
+
+Do NOT hard-code the WhatsApp number directly into multiple templates or JavaScript files.
+
+Create one configurable setting for the business WhatsApp number.
+
+For example:
+
+```python
+WHATSAPP_BUSINESS_NUMBER = "XXXXXXXXXXXX"
+```
+
+Use the appropriate international format.
+
+Do not include:
+
+- `+`
+- spaces
+- brackets
+- hyphens
+
+Example format:
+
+```text
+919876543210
+```
+
+The actual business number should be obtained from the existing project configuration/client information rather than inventing a number.
+
+If the number is not currently available in the project, create a clearly documented configuration placeholder and do not invent a real number.
+
+---
+
+# 5. Pre-filled WhatsApp Message
+
+Use a professional predefined message.
+
+Suggested default:
+
+```text
+Hi George Martin, I’m interested in the BPA Strategy Call. I’d like to discuss my business and explore how the Business Performance Accelerator can help me.
+```
+
+The message must be URL encoded correctly.
+
+Do not manually concatenate unsafe URL strings.
+
+Use proper URL encoding.
+
+For Python/Django, `urllib.parse.urlencode` or `quote` can be used where appropriate.
+
+---
+
+# 6. Database Tracking
+
+The company needs to know how many BPA strategy-call enquiries/interactions are coming through the website.
+
+Create or extend a Django model for this.
+
+Prefer reusing an existing lead model if one already exists.
+
+If there is no suitable existing model, create something similar to:
+
+```python
+class BPAStrategyCallLead(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    source = models.CharField(
+        max_length=50,
+        default="BPA"
+    )
+
+    action = models.CharField(
+        max_length=50,
+        default="whatsapp_strategy_call"
+    )
+
+    status = models.CharField(
+        max_length=30,
+        default="new"
+    )
+
+    user_agent = models.TextField(
+        blank=True,
+        null=True
+    )
+
+    ip_address = models.GenericIPAddressField(
+        blank=True,
+        null=True
+    )
+
+    class Meta:
+        ordering = ["-created_at"]
+```
+
+However, first check the existing database architecture before creating this exact model.
+
+---
+
+# 7. Important: Distinguish Clicks From Leads
+
+Do NOT incorrectly claim that a WhatsApp click means a completed lead.
+
+There are two different things:
+
+### WhatsApp CTA click
+
+The user clicked:
+
+**Book Your Strategy Call**
+
+This can be tracked automatically.
+
+### Actual lead
+
+The user provided information such as:
+
+- Name
+- Email
+- Phone
+- Business information
+
+A WhatsApp click alone does NOT give Django the person's name/email/phone.
+
+Therefore, unless an existing BPA form already captures these details, database records should be considered:
+
+**BPA Strategy CTA Click / WhatsApp Enquiry**
+
+not a confirmed lead.
+
+Use appropriate naming in the database/admin.
+
+---
+
+# 8. Recommended Database Fields
+
+If there is no existing tracking model, implement enough information to measure the funnel.
+
+Recommended fields:
+
+```text
+id
+source
+action
+status
+created_at
+user_agent
+ip_address
+referrer
+utm_source
+utm_medium
+utm_campaign
+utm_term
+utm_content
+```
+
+Do not collect unnecessary personal information.
+
+If the BPA assessment already collects the visitor's:
+
+- name
+- email
+- phone
+- assessment result
+
+then connect the WhatsApp action to that existing record instead of creating an unrelated duplicate person.
+
+---
+
+# 9. If BPA Assessment Already Exists
+
+This is especially important.
+
+Inspect whether the BPA page already has an assessment/lead-capture flow.
+
+If a visitor has already completed the BPA assessment and there is an existing lead record, the WhatsApp click should preferably be associated with that record.
+
+For example:
+
+```text
+BPA Assessment
+       ↓
+Lead created
+       ↓
+User clicks Strategy Call
+       ↓
+Existing lead updated
+       ↓
+strategy_call_clicked = True
+       ↓
+WhatsApp opens
+```
+
+Do NOT create multiple duplicate lead records every time the same user clicks the button if there is already a corresponding lead.
+
+If there is no identifiable existing lead, create a CTA interaction record.
+
+---
+
+# 10. Django URL
+
+Create a dedicated backend endpoint.
+
+Example:
+
+```python
+path(
+    "bpa/strategy-call/",
+    views.bpa_strategy_call,
+    name="bpa_strategy_call"
+)
+```
+
+The endpoint should:
+
+1. Receive the request.
+2. Record the BPA strategy-call interaction.
+3. Preserve relevant attribution data where available.
+4. Generate the WhatsApp URL.
+5. Redirect to WhatsApp.
+
+---
+
+# 11. Django View
+
+Implement the logic server-side.
+
+Conceptually:
+
+```python
+def bpa_strategy_call(request):
+    # 1. Record interaction
+
+    # 2. Capture useful attribution information
+
+    # 3. Build predefined WhatsApp message
+
+    # 4. Build WhatsApp URL
+
+    # 5. Redirect user to WhatsApp
+```
+
+Use Django's redirect functionality.
+
+Do not render an unnecessary intermediate HTML page.
+
+---
+
+# 12. Tracking Information
+
+Where technically appropriate, record:
+
+### Timestamp
+
+Use Django's timezone-aware datetime.
+
+Do not manually calculate Indian/UAE time.
+
+Store timestamps consistently in the database.
+
+### Referrer
+
+Record:
+
+```python
+request.META.get("HTTP_REFERER")
+```
+
+when available.
+
+### User Agent
+
+Record:
+
+```python
+request.META.get("HTTP_USER_AGENT")
+```
+
+when appropriate.
+
+### IP Address
+
+If IP tracking is implemented, use a safe helper that handles reverse proxies correctly.
+
+Because the website may eventually run behind Nginx, do not blindly trust arbitrary forwarded headers.
+
+Only implement proxy-aware IP handling if the deployment configuration supports it.
+
+---
+
+# 13. UTM Tracking
+
+The project already has marketing/tracking requirements, so preserve campaign attribution.
+
+If the visitor arrives with:
+
+```text
+?utm_source=facebook
+&utm_medium=paid
+&utm_campaign=bpa_campaign
+```
+
+the BPA strategy-call interaction should preserve these values.
+
+Capture:
+
+```text
+utm_source
+utm_medium
+utm_campaign
+utm_term
+utm_content
+```
+
+Prefer using existing UTM persistence logic if it already exists.
+
+Do NOT create a second competing UTM system.
+
+---
+
+# 14. Frontend Button
+
+The BPA CTA should point to the Django endpoint rather than directly to WhatsApp.
+
+Instead of:
+
+```html
+<a href="https://wa.me/...">
+    Book Your Strategy Call
+</a>
+```
+
+use something conceptually like:
+
+```html
+<a href="{% url 'bpa_strategy_call' %}">
+    Book Your Strategy Call
+</a>
+```
+
+If the existing button is generated through JavaScript, adapt the existing implementation accordingly.
+
+Do not break existing animations, hover effects, styling, responsive behavior, or accessibility.
+
+---
+
+# 15. Do Not Use a JavaScript-Only Database Tracking System
+
+Do NOT do this:
+
+```javascript
+button.addEventListener("click", () => {
+    window.location.href = "https://wa.me/...";
+});
+```
+
+without a backend request.
+
+That would open WhatsApp but would not reliably create a Django database record.
+
+The database tracking must happen through Django.
+
+---
+
+# 16. Prevent Accidental Duplicate Records
+
+Think carefully about repeated clicks.
+
+If the user double-clicks the button, the system should avoid creating unnecessary duplicate records where practical.
+
+Possible approaches:
+
+- Disable the button briefly after click.
+- Use a unique interaction/session identifier.
+- Use an existing lead ID where available.
+- Implement reasonable duplicate detection.
+
+Do not over-engineer this.
+
+The goal is accurate reporting, not perfect fraud prevention.
+
+---
+
+# 17. Django Admin
+
+Make the tracking data visible through Django Admin.
+
+The admin should allow the company/developer to see BPA strategy-call interactions.
+
+Display useful fields such as:
+
+```text
+ID
+Source
+Action
+Status
+Created At
+UTM Source
+UTM Medium
+UTM Campaign
+```
+
+Add:
+
+- search
+- filters
+- ordering
+
+where appropriate.
+
+Example filters:
+
+```text
+Status
+Source
+Date
+UTM Source
+UTM Campaign
+```
+
+---
+
+# 18. Admin Reporting
+
+If practical within the existing admin architecture, provide a simple summary such as:
+
+```text
+BPA Strategy Call Clicks
+------------------------
+
+Today:       5
+This Week:   27
+This Month:  94
+Total:       318
+```
+
+Only implement this if it fits naturally into the existing admin.
+
+Do not redesign the entire Django Admin.
+
+The database itself must remain the source of truth.
+
+---
+
+# 19. WhatsApp Redirect Behavior
+
+The backend should redirect to the WhatsApp URL.
+
+For desktop users, WhatsApp Web may open.
+
+For mobile users, the WhatsApp app may open depending on the device/browser.
+
+Do not attempt to force the WhatsApp mobile app through unsupported methods.
+
+Use the standard WhatsApp click-to-chat URL.
+
+---
+
+# 20. Security
+
+Follow Django security practices.
+
+Important:
+
+- Do not expose database credentials.
+- Do not expose secret keys.
+- Do not put sensitive configuration in frontend JavaScript.
+- Do not trust arbitrary user-provided redirect URLs.
+- Do not allow an open redirect.
+- Do not store unnecessary sensitive information.
+- Use Django's normal CSRF/security approach for any POST-based implementation.
+
+If a GET endpoint is used purely as a tracking-and-redirect endpoint, make sure the implementation is appropriate and does not introduce unwanted side effects beyond the intended CTA tracking.
+
+---
+
+# 21. Analytics Compatibility
+
+Do not remove or break the existing:
+
+- Google Analytics
+- Meta Pixel
+- LinkedIn Insight Tag
+- UTM tracking
+- other existing tracking
+
+If the project already tracks CTA clicks through analytics, keep that functionality.
+
+Ideally the event should identify:
+
+```text
+event: bpa_strategy_call_click
+source: BPA
+destination: WhatsApp
+```
+
+Do not create duplicate analytics events if an existing tracking system already handles this.
+
+---
+
+# 22. Recommended Event Name
+
+Use a consistent event name:
+
+```text
+bpa_strategy_call_click
+```
+
+Optional metadata:
+
+```text
+page: BPA
+cta: strategy_call
+destination: whatsapp
+```
+
+If GA4 is already implemented, send the event through the existing analytics architecture.
+
+---
+
+# 23. Testing Requirements
+
+After implementation, test the complete flow.
+
+### Test 1 — Desktop
+
+Open BPA page.
+
+Click:
+
+**Book Your Strategy Call**
+
+Expected:
+
+1. Django receives request.
+2. Database record is created.
+3. WhatsApp/WhatsApp Web opens.
+4. Correct message is pre-filled.
+
+---
+
+### Test 2 — Mobile
+
+Open BPA page on mobile.
+
+Click the CTA.
+
+Expected:
+
+1. Database record created.
+2. WhatsApp app opens where supported.
+3. Correct message is pre-filled.
+
+---
+
+### Test 3 — Database
+
+After clicking once, verify a new record exists.
+
+Verify:
+
+```text
+source = BPA
+action = whatsapp_strategy_call
+status = new
+created_at = correct
+```
+
+---
+
+### Test 4 — Multiple Clicks
+
+Click the CTA multiple times.
+
+Verify that the implementation does not create an unreasonable number of duplicate records.
+
+---
+
+### Test 5 — UTM
+
+Open a URL such as:
+
+```text
+/bpa/?utm_source=test&utm_medium=test&utm_campaign=bpa_test
+```
+
+Click the CTA.
+
+Verify that the database interaction retains:
+
+```text
+utm_source = test
+utm_medium = test
+utm_campaign = bpa_test
+```
+
+---
+
+### Test 6 — Existing BPA Lead
+
+If the BPA assessment already creates a lead:
+
+1. Complete the assessment.
+2. Submit it.
+3. Click the strategy-call CTA.
+4. Verify the strategy-call action is associated with the existing lead.
+5. Confirm that a duplicate person/lead was not unnecessarily created.
+
+---
+
+### Test 7 — Message
+
+Verify that WhatsApp contains exactly the approved predefined message.
+
+---
+
+### Test 8 — Responsive UI
+
+Verify that the implementation does not change:
+
+- button appearance
+- spacing
+- animation
+- hover effect
+- mobile layout
+- tablet layout
+- desktop layout
+
+unless required.
+
+---
+
+# 24. Database Migration
+
+If a new model/fields are required:
+
+1. Create/update the model.
+2. Run:
+
+```bash
+python manage.py makemigrations
+```
+
+3. Review the migration.
+4. Run:
+
+```bash
+python manage.py migrate
+```
+
+5. Verify the database schema.
+
+Do not modify existing production data destructively.
+
+---
+
+# 25. Files to Check
+
+Before finishing, identify and document which existing files were modified.
+
+Likely areas:
+
+```text
+models.py
+views.py
+urls.py
+admin.py
+BPA template
+BPA JavaScript
+settings.py
+existing tracking utilities
+```
+
+Only modify files that are actually necessary.
+
+---
+
+# 26. Important Architecture Rule
+
+Do not build a separate mini-system if the project already has:
+
+- Lead model
+- Assessment model
+- Analytics/event model
+- UTM tracking
+- Contact/enquiry model
+
+Reuse and extend existing architecture.
+
+The final implementation should feel like a natural part of the existing Django project.
+
+---
+
+# 27. Final Expected Architecture
+
+The final system should behave approximately like this:
+
+```text
+                    BPA PAGE
+                       │
+                       │
+                       ▼
+            "Book Your Strategy Call"
+                       │
+                       ▼
+             Django CTA Endpoint
+                       │
+             ┌─────────┴─────────┐
+             │                   │
+             ▼                   ▼
+       Save/Update DB       Preserve UTM
+             │
+             │
+             ▼
+      Track CTA Interaction
+             │
+             ▼
+      Generate WhatsApp URL
+             │
+             ▼
+        Redirect to WhatsApp
+             │
+             ▼
+       Pre-filled Message
+             │
+             ▼
+       User sends message
+```
+
+---
+
+# 28. What NOT to Do
+
+Do NOT:
+
+- replace the button with only a static WhatsApp link
+- hard-code the phone number in multiple places
+- create duplicate lead models without checking existing models
+- assume a WhatsApp click means the person became a customer
+- remove existing analytics
+- remove existing UTM tracking
+- break the existing BPA design
+- change the button styling unnecessarily
+- expose secrets in frontend code
+- invent the client's WhatsApp number
+- create unnecessary pages
+- create a custom CRM unless explicitly required
+
+---
+
+# 29. Deliverable
+
+After implementation, report back with:
+
+### A. Files changed
+
+List every file modified.
+
+### B. Database changes
+
+Explain:
+
+- model created/updated
+- fields added
+- migrations created
+
+### C. URL
+
+Show the Django endpoint name/path.
+
+### D. WhatsApp
+
+Explain how the predefined message is generated and encoded.
+
+### E. Tracking
+
+Explain exactly what is recorded when the BPA CTA is clicked.
+
+### F. Admin
+
+Explain how the company can view BPA strategy-call interactions.
+
+### G. Testing
+
+Report the tests performed and their results.
+
+### H. Any assumptions
+
+Clearly state anything that could not be implemented because existing project information was missing.
+
+---
+
+## Success Criteria
+
+The implementation is complete only when all of the following are true:
+
+- [ ] BPA strategy-call button opens WhatsApp.
+- [ ] WhatsApp contains the predefined message.
+- [ ] Django records the CTA interaction.
+- [ ] Existing BPA leads are reused where appropriate.
+- [ ] UTM attribution is preserved.
+- [ ] Existing analytics are not broken.
+- [ ] Admin can view BPA strategy-call interactions.
+- [ ] Duplicate records are reasonably controlled.
+- [ ] Mobile works.
+- [ ] Desktop works.
+- [ ] Existing BPA design/animations remain intact.
+- [ ] Database migrations work correctly.
+- [ ] No secrets or client credentials are exposed.
+- [ ] No fake/invented WhatsApp number is added.
+
+
+my whatsapp number: 8590031893
+
+--------------------------------------------------------------------------------------------------------------
+
+
+# FGA COHORT MANAGEMENT SYSTEM — FULL IMPLEMENTATION INSTRUCTION
+
+## 1. Objective
+
+Implement a proper **FGA (Founders Growth Accelerator) Cohort Management System** in the existing Django project.
+
+The client specifically requires:
+
+> Cohort dates must be managed from a single editable source. The next cohort date must automatically appear on:
+> 1. Homepage
+> 2. Assessment Result Page
+> 3. FGA Program Page
+>
+> When a cohort start date passes, the system must automatically roll over and display the next upcoming cohort.
+
+The dates must NOT be hardcoded separately in templates.
+
+The system must be manageable by the client through **Django Admin**, without requiring code changes whenever a new cohort is added or an existing cohort is changed.
+
+---
+
+# 2. FIRST — INSPECT THE EXISTING PROJECT
+
+Before making changes:
+
+1. Inspect the existing Django project structure.
+2. Identify the existing:
+   - FGA page/template
+   - Homepage template
+   - Assessment result page/template
+   - Assessment app/models/views
+   - Django settings
+   - URL configuration
+   - Existing admin configuration
+3. Search the entire project for the existing FGA cohort dates:
+   - `8 August 2026`
+   - `12 September 2026`
+   - `10 October 2026`
+   - `August 8`
+   - `September 12`
+   - `October 10`
+   - `13 weeks`
+   - `10 participants`
+4. Identify every location where these dates are currently hardcoded.
+5. Reuse the existing project architecture where possible.
+
+Do NOT create duplicate models, duplicate systems, or unnecessary new apps.
+
+Before implementing, understand how the existing FGA page, homepage, and assessment result page currently receive their content.
+
+---
+
+# 3. CREATE A SINGLE SOURCE OF TRUTH
+
+Create a Django model for FGA cohorts.
+
+Use an appropriate model name such as:
+
+`FGACohort`
+
+or another clean name if the existing project already has a relevant model.
+
+The important requirement is:
+
+**There must be one database source containing all FGA cohort information.**
+
+Recommended fields:
+
+### Required fields
+
+- `name` or `cohort_number`
+- `start_date`
+- `start_time`
+- `end_time`
+- `timezone`
+- `duration_weeks`
+- `capacity`
+- `is_active`
+- `created_at`
+- `updated_at`
+
+Recommended additional field:
+
+- `notes` — optional internal/admin notes
+
+Use proper Django field types.
+
+Do NOT store the date/time as one plain text string.
+
+---
+
+# 4. INITIAL COHORT DATA
+
+Create the following initial records exactly as provided by the client.
+
+### Cohort 1
+
+- Cohort: 1
+- Start date: Saturday, 8 August 2026
+- Start time: 10:00
+- End time: 12:00
+- Timezone: Gulf Standard Time (GST)
+- Duration: 13 weeks
+- Capacity: 10 participants
+
+### Cohort 2
+
+- Cohort: 2
+- Start date: Saturday, 12 September 2026
+- Start time: 13:00
+- End time: 15:00
+- Timezone: Gulf Standard Time (GST)
+- Duration: 13 weeks
+- Capacity: 10 participants
+
+### Cohort 3
+
+- Cohort: 3
+- Start date: Saturday, 10 October 2026
+- Start time: 16:00
+- End time: 18:00
+- Timezone: Gulf Standard Time (GST)
+- Duration: 13 weeks
+- Capacity: 10 participants
+
+Do not change the client-provided dates or times.
+
+---
+
+# 5. IMPORTANT — NEXT COHORT LOGIC
+
+Implement a reusable helper/service/function such as:
+
+`get_next_fga_cohort()`
+
+The function must return the next upcoming FGA cohort automatically.
+
+The logic should:
+
+1. Get the current date/time.
+2. Consider only active cohorts.
+3. Find cohorts whose start datetime has not passed.
+4. Sort them chronologically.
+5. Return the earliest upcoming cohort.
+
+Conceptually:
+
+`active + future → sort by start datetime → first result`
+
+Do NOT use:
+
+- manually selected cohort IDs
+- hardcoded date comparisons
+- hardcoded "current cohort" logic
+- separate logic for homepage/result/program pages
+
+All three pages must use the SAME helper/service.
+
+---
+
+# 6. TIMEZONE REQUIREMENT
+
+The client operates using Gulf Standard Time.
+
+The cohort times are:
+
+**GST (UTC+4).**
+
+Make the implementation timezone-aware.
+
+Do NOT rely on the server's local timezone.
+
+Use Django's timezone utilities properly.
+
+The rollover calculation must remain correct regardless of where the website server is hosted.
+
+If the project already has `USE_TZ = True`, follow the existing configuration.
+
+Do not introduce a second timezone system unnecessarily.
+
+---
+
+# 7. CURRENT EXPECTED BEHAVIOUR
+
+The current date is September 5, 2026.
+
+Therefore:
+
+- Cohort 1 — 8 August 2026 → PASSED
+- Cohort 2 — 12 September 2026 → NEXT
+- Cohort 3 — 10 October 2026 → FUTURE
+
+Therefore the website should currently display:
+
+**Next FGA Cohort: Saturday, 12 September 2026**
+
+with:
+
+**13:00 – 15:00 GST**
+
+Do not display Cohort 1 as the next cohort.
+
+After September 12 passes, the system should automatically display:
+
+**Saturday, 10 October 2026**
+
+without anyone changing the website code.
+
+---
+
+# 8. DJANGO ADMIN
+
+Register the FGA cohort model in Django Admin.
+
+The client must be able to manage cohorts from the admin panel.
+
+Admin should allow the client to:
+
+- Add a new cohort
+- Edit an existing cohort
+- Change date
+- Change start time
+- Change end time
+- Change timezone if required
+- Change duration
+- Change capacity
+- Activate/deactivate a cohort
+- View all cohorts
+- Sort cohorts chronologically
+
+Make the Admin interface clean and practical.
+
+Recommended:
+
+- `list_display`
+- `list_filter`
+- `search_fields`
+- `ordering`
+- appropriate date/time fields
+
+Make the next upcoming cohort easy to identify.
+
+---
+
+# 9. DO NOT HARDcode COHORT DATES IN TEMPLATES
+
+This is one of the most important requirements.
+
+After implementation, search the entire project again.
+
+There must NOT be separate hardcoded cohort dates inside:
+
+- Homepage
+- Assessment result page
+- FGA program page
+- JavaScript
+- HTML
+- CSS
+- React/TSX content
+- JSON configuration
+- other frontend data files
+
+The database must be the source of truth.
+
+Templates should receive the next cohort dynamically.
+
+For example, conceptually:
+
+`next_fga_cohort`
+
+Then templates can display:
+
+- date
+- time
+- timezone
+- duration
+- capacity
+
+Do not duplicate the dates manually in multiple templates.
+
+---
+
+# 10. HOMEPAGE INTEGRATION
+
+Update the homepage so that the FGA section uses the next cohort returned by the centralized cohort logic.
+
+The homepage must automatically display the current next cohort.
+
+Example:
+
+**Next Cohort**
+
+**Saturday, 12 September 2026**
+
+**13:00 – 15:00 GST**
+
+Do not hardcode this text.
+
+If the next cohort changes in Django Admin, the homepage must automatically update.
+
+If Cohort 2 passes, the homepage must automatically show Cohort 3.
+
+---
+
+# 11. ASSESSMENT RESULT PAGE INTEGRATION
+
+Update the assessment result page.
+
+Wherever the FGA next-cohort information is displayed, replace hardcoded information with the same centralized `get_next_fga_cohort()` result.
+
+It must use the exact same cohort record as the homepage.
+
+There must be no separate assessment-page cohort configuration.
+
+If Admin changes the date, the assessment result page automatically reflects it.
+
+---
+
+# 12. FGA PROGRAM PAGE INTEGRATION
+
+Update the FGA program page.
+
+The next upcoming cohort shown on the FGA page must come from the same centralized source.
+
+It must display the appropriate:
+
+- next cohort date
+- start time
+- end time
+- timezone
+
+Do not hardcode the current cohort.
+
+The FGA page, homepage, and assessment result page must all show the same next cohort.
+
+---
+
+# 13. FGA PROGRAM PRICING
+
+The client also specified the following FGA pricing:
+
+**AED 1,500 paid in full**
+
+OR
+
+**AED 650 × 3 months**
+
+Display this on the FGA program page.
+
+Important:
+
+If the existing pricing content is already correctly implemented, do not unnecessarily rebuild it.
+
+Do not move pricing into the cohort model unless there is a strong existing architecture reason.
+
+The cohort system's main responsibility is cohort scheduling.
+
+---
+
+# 14. FAST-ACTION BONUS
+
+The client specified:
+
+**Fast-action bonus for enrolment within 24 hours: three 1:1 sessions.**
+
+Ensure the existing FGA program page continues to display this requirement correctly.
+
+Do not alter the wording unless necessary.
+
+This is content related to the program, not the cohort scheduling logic.
+
+---
+
+# 15. CAPACITY
+
+Each FGA cohort is:
+
+**Capped at 10 participants.**
+
+Store this as a database field rather than hardcoding `10` throughout the website.
+
+For the initial records:
+
+`capacity = 10`
+
+Do NOT build complicated seat-booking logic unless the existing requirements already include it.
+
+At this stage, the requirement is primarily to store and display/manage the cohort capacity correctly.
+
+Do not invent a registration/seat-count system.
+
+---
+
+# 16. DISPLAY FORMATTING
+
+The database should store structured values.
+
+The frontend should format them into a user-friendly display.
+
+For example:
+
+Database:
+
+- date = `2026-09-12`
+- start_time = `13:00`
+- end_time = `15:00`
+- timezone = `GST`
+
+Frontend:
+
+**Saturday, 12 September 2026**  
+**13:00 – 15:00 GST**
+
+Use the project's existing typography and visual design.
+
+Do NOT redesign the website.
+
+Do NOT change animations.
+
+Do NOT change colors.
+
+Do NOT change existing layout unless necessary for the dynamic cohort information.
+
+---
+
+# 17. FUTURE COHORT ADDITION
+
+The client specifically wants this system so future cohorts can be added without developer involvement.
+
+Test this.
+
+For example, create a temporary future cohort in Django Admin:
+
+**Cohort 4**
+- Start date: a future date after Cohort 3
+- Time: any test value
+
+Verify that the system can identify it as the next cohort after earlier cohorts pass.
+
+Then remove the test data if appropriate.
+
+The important point is:
+
+**Adding Cohort 4 through Django Admin must NOT require editing Python, HTML, JavaScript, React, or CSS.**
+
+---
+
+# 18. PASSED COHORT HANDLING
+
+Do NOT delete old cohorts when their dates pass.
+
+Old cohorts should remain in the database for historical/admin purposes.
+
+The system should simply stop considering them as the next upcoming cohort.
+
+Example:
+
+Before 12 September:
+
+Cohort 1 = passed  
+Cohort 2 = next  
+Cohort 3 = future
+
+After 12 September:
+
+Cohort 1 = passed  
+Cohort 2 = passed  
+Cohort 3 = next
+
+This should happen automatically.
+
+---
+
+# 19. NO UPCOMING COHORT STATE
+
+Handle the situation where there are no future active cohorts.
+
+For example:
+
+All cohorts have passed and no new cohort has been added.
+
+Do NOT throw a template error.
+
+Instead, gracefully handle:
+
+`next_fga_cohort = None`
+
+The frontend should display an appropriate fallback based on the existing design/content strategy.
+
+Do not invent an enrollment date.
+
+Do not display an old/passed cohort as the next cohort.
+
+---
+
+# 20. TEMPLATE CONTEXT ARCHITECTURE
+
+Use a clean reusable architecture.
+
+Prefer one centralized function/service/helper for determining the next cohort.
+
+Possible architecture:
+
+`FGACohort model`
+
+↓
+
+`get_next_fga_cohort()`
+
+↓
+
+Views/context processor/service
+
+↓
+
+Homepage  
+Assessment Result  
+FGA Program Page
+
+Do NOT duplicate the query in three separate views if a cleaner existing architecture can be reused.
+
+However, avoid creating a global context processor unless it is actually appropriate for this project.
+
+Choose the cleanest architecture consistent with the existing Django codebase.
+
+---
+
+# 21. QUERY EFFICIENCY
+
+The next-cohort query should be simple and efficient.
+
+Do not retrieve every cohort into Python and manually loop through them if the database can perform the filtering and ordering.
+
+Conceptually:
+
+- active cohorts
+- start datetime >= now
+- order ascending
+- first record
+
+Use Django ORM appropriately.
+
+Do not add unnecessary complexity.
+
+---
+
+# 22. VALIDATION
+
+Add sensible model validation.
+
+Examples:
+
+- End time should be later than start time.
+- Start date must be valid.
+- Capacity should not be negative.
+- Duration should be positive.
+- Cohort number/name should be sensible.
+
+Do not over-engineer validation.
+
+If the project has existing validation conventions, follow them.
+
+---
+
+# 23. MIGRATIONS
+
+After creating/modifying the model:
+
+1. Create Django migrations.
+2. Run migrations.
+3. Verify migration succeeds.
+4. Verify the database contains the three initial cohort records.
+
+Do not modify existing production data unnecessarily.
+
+---
+
+# 24. TESTING REQUIREMENTS
+
+Create proper tests for the cohort logic.
+
+At minimum test:
+
+### Test 1 — Future cohort
+
+Given:
+
+- Cohort 1 = past
+- Cohort 2 = future
+- Cohort 3 = future
+
+Expected:
+
+`get_next_fga_cohort()` returns Cohort 2.
+
+### Test 2 — Cohort rollover
+
+Given:
+
+- Cohort 1 = past
+- Cohort 2 = past
+- Cohort 3 = future
+
+Expected:
+
+`get_next_fga_cohort()` returns Cohort 3.
+
+### Test 3 — No future cohort
+
+Given all cohorts are past.
+
+Expected:
+
+`get_next_fga_cohort()` returns `None`.
+
+### Test 4 — Inactive future cohort
+
+Given:
+
+- Cohort 2 = future but inactive
+- Cohort 3 = future and active
+
+Expected:
+
+Cohort 3 is returned.
+
+### Test 5 — Multiple future cohorts
+
+Given several active future cohorts.
+
+Expected:
+
+The earliest future cohort is returned.
+
+### Test 6 — Homepage
+
+Verify homepage receives/displays the next cohort dynamically.
+
+### Test 7 — Assessment result page
+
+Verify assessment result page receives/displays the same next cohort.
+
+### Test 8 — FGA page
+
+Verify FGA page receives/displays the same next cohort.
+
+---
+
+# 25. IMPORTANT — TEST THE ACTUAL ROLLOVER
+
+Do not only test that the page currently displays Cohort 2.
+
+Test the rollover logic using controlled test dates/time or mocked timezone-aware datetimes.
+
+For example:
+
+Before Cohort 2 start:
+
+Expected:
+
+**12 September 2026**
+
+After Cohort 2 start:
+
+Expected:
+
+**10 October 2026**
+
+This proves the system is actually dynamic.
+
+---
+
+# 26. SEARCH FOR AND REMOVE EXISTING HARDCODED DATES
+
+After implementation, perform a project-wide search for the old cohort dates.
+
+Search for:
+
+`8 August 2026`
+
+`12 September 2026`
+
+`10 October 2026`
+
+`08/08/2026`
+
+`12/09/2026`
+
+`10/10/2026`
+
+and other representations.
+
+The only legitimate location for these initial dates should be:
+
+- database seed/data migration/fixture, if used
+- Django Admin/database
+
+They should not remain as duplicated frontend hardcoded values.
+
+---
+
+# 27. IMPORTANT — DO NOT BREAK EXISTING FEATURES
+
+While implementing this system:
+
+DO NOT change or break:
+
+- Existing assessment functionality
+- Assessment scoring
+- Assessment result calculation
+- BPA functionality
+- BPA WhatsApp strategy call integration
+- CTA tracking
+- UTM capture
+- Existing Django Admin functionality
+- Existing navigation
+- Existing responsive behavior
+- Existing animations
+- GSAP
+- Lenis/native scrolling setup
+- Existing styling
+- Existing pricing
+- Existing page structure
+
+Only make the changes required for the FGA cohort system.
+
+---
+
+# 28. DO NOT BUILD UNREQUESTED FEATURES
+
+Do NOT add:
+
+- Payment processing
+- Automatic enrollment
+- Seat reservation
+- Email automation
+- WhatsApp automation
+- Calendar automation
+- CRM integration
+- Cohort attendance tracking
+- Student management
+- Complex booking logic
+- Countdown timers
+
+unless those systems already exist and only require the cohort date to be connected.
+
+The client requirement here is specifically **centralized FGA cohort scheduling and automatic rollover**.
+
+---
+
+# 29. ADMIN USER EXPERIENCE
+
+Make the Admin useful for a non-developer client.
+
+When the client opens FGA Cohorts, they should immediately understand:
+
+- Cohort number
+- Start date
+- Time
+- Timezone
+- Capacity
+- Active/inactive status
+
+Order cohorts by start date ascending.
+
+Use readable date/time formatting.
+
+If practical, add a clear admin indication for the next upcoming cohort, but do not create unnecessary complexity.
+
+---
+
+# 30. FINAL END-TO-END VERIFICATION
+
+Before declaring the task complete, verify the following:
+
+### Database
+
+- [ ] FGA cohort model exists.
+- [ ] Three client-provided cohorts exist.
+- [ ] Fields are structured correctly.
+- [ ] GST is handled correctly.
+- [ ] Capacity = 10.
+- [ ] Duration = 13 weeks.
+- [ ] Admin can manage cohorts.
+
+### Dynamic logic
+
+- [ ] One centralized next-cohort function exists.
+- [ ] Only active future cohorts are considered.
+- [ ] Earliest future cohort is selected.
+- [ ] Passed cohorts are ignored.
+- [ ] No future cohort is handled safely.
+- [ ] Timezone-aware comparison is used.
+
+### Frontend
+
+- [ ] Homepage uses dynamic next cohort.
+- [ ] Assessment result page uses dynamic next cohort.
+- [ ] FGA page uses dynamic next cohort.
+- [ ] All three pages show the same cohort.
+- [ ] No hardcoded cohort dates remain in frontend code.
+
+### Admin
+
+- [ ] Client can add a new cohort.
+- [ ] Client can edit a cohort.
+- [ ] Client can deactivate a cohort.
+- [ ] Client does not need developer/code changes.
+
+### Testing
+
+- [ ] Future cohort selection tested.
+- [ ] Rollover tested.
+- [ ] No-future-cohort case tested.
+- [ ] Inactive cohort case tested.
+- [ ] Homepage tested.
+- [ ] Assessment result page tested.
+- [ ] FGA page tested.
+- [ ] Existing website functionality still works.
+
+---
+
+# 31. FINAL REPORT
+
+After completing the implementation, report back with:
+
+1. Files created.
+2. Files modified.
+3. Model name and fields.
+4. Migration name.
+5. Admin changes.
+6. Where `get_next_fga_cohort()` or equivalent logic lives.
+7. How homepage receives the cohort.
+8. How assessment result page receives the cohort.
+9. How FGA page receives the cohort.
+10. Confirmation that the three dates are no longer hardcoded in those pages.
+11. Tests executed and their results.
+12. Current expected next cohort based on today's date.
+13. Any assumptions made.
+14. Any issues that still need attention.
+
+Do not make unrelated changes.
+
+The implementation is complete only when the FGA cohort dates are controlled from one Django-managed source and automatically roll over across the homepage, assessment result page, and FGA program page.
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Now implement the **complete UTM tracking and attribution system** for the website.
+
+The required attribution flow is:
+
+**Facebook Ad**
+↓
+**Website**
+↓
+**Capture UTM parameters**
+↓
+**Persist UTM across the visitor journey**
+↓
+**Assessment Submission**
+↓
+**Assessment Result**
+↓
+**Booking / WhatsApp**
+
+Do not implement this as a one-page URL parameter capture. It must persist throughout the user's journey.
+
+---
+
+# 1. UTM PARAMETERS TO CAPTURE
+
+Capture these standard parameters whenever they are present in the URL:
+
+- `utm_source`
+- `utm_medium`
+- `utm_campaign`
+- `utm_content`
+- `utm_term`
+
+Also capture:
+
+- `landing_page`
+- `referrer`
+- `captured_at`
+
+Do not invent values when a parameter is missing. Store NULL/blank where appropriate.
+
+Example Facebook URL:
+
+`/?utm_source=facebook&utm_medium=paid_social&utm_campaign=fga_august&utm_content=video_01&utm_term=founders`
+
+The system should capture all of these values.
+
+---
+
+# 2. PERSIST UTM ACROSS THE ENTIRE USER JOURNEY
+
+This is very important.
+
+A user may enter through:
+
+Facebook Ad
+→ Homepage
+→ Explore
+→ FGA/BPA
+→ Assessment
+→ Result
+→ Booking/WhatsApp
+
+The UTM parameters may disappear from the URL after the first page.
+
+Therefore, when a visitor first arrives with UTM parameters:
+
+1. Read the parameters from the request.
+2. Store them in the visitor's session and/or a first-party cookie.
+3. Make them available throughout the assessment funnel.
+4. Do NOT require the UTM parameters to still exist in the URL on later pages.
+
+Do not depend on JavaScript alone for persistence.
+
+The server-side session should be the authoritative mechanism wherever possible.
+
+---
+
+# 3. FIRST-TOUCH AND LAST-TOUCH ATTRIBUTION
+
+Implement both concepts cleanly.
+
+### First-touch attribution
+
+The first UTM source/campaign that brought the visitor to the website should be preserved.
+
+Example:
+
+First visit:
+
+`facebook / paid_social / fga_campaign_1`
+
+Later the visitor comes through:
+
+`google / cpc / brand_campaign`
+
+Do NOT overwrite the original first-touch attribution.
+
+### Last-touch attribution
+
+Also keep the latest valid UTM values if the visitor later arrives through another tagged campaign.
+
+Therefore the system should be capable of recording:
+
+**First touch**
+- source
+- medium
+- campaign
+- content
+- term
+- landing page
+- timestamp
+
+**Last touch**
+- source
+- medium
+- campaign
+- content
+- term
+- landing page
+- timestamp
+
+If the project architecture already has a suitable attribution model, reuse it instead of creating unnecessary duplicate models.
+
+---
+
+# 4. ASSESSMENT SUBMISSION
+
+When the user completes the Business Reality Assessment:
+
+copy the persisted attribution information into the `AssessmentSubmission`.
+
+The submission should retain:
+
+### First touch
+- first_utm_source
+- first_utm_medium
+- first_utm_campaign
+- first_utm_content
+- first_utm_term
+- first_landing_page
+- first_touch_at
+
+### Last touch
+- last_utm_source
+- last_utm_medium
+- last_utm_campaign
+- last_utm_content
+- last_utm_term
+- last_landing_page
+- last_touch_at
+
+Also retain the existing:
+
+- assessment score
+- result/category
+- name
+- email/contact details
+- submission date
+- existing assessment answers
+- existing assessment reference
+
+Do NOT break or rename existing assessment fields unnecessarily.
+
+Create a migration if model fields need to be added.
+
+Run the migration.
+
+---
+
+# 5. DO NOT LOSE UTM WHEN MOVING THROUGH THE ASSESSMENT
+
+Test this exact scenario:
+
+User enters:
+
+`/assessment/?utm_source=facebook&utm_medium=paid_social&utm_campaign=fga_campaign`
+
+Then moves through multiple assessment steps.
+
+The final assessment submission must still contain:
+
+- facebook
+- paid_social
+- fga_campaign
+
+even though the final submission URL may contain no UTM parameters.
+
+---
+
+# 6. ASSESSMENT RESULT PAGE
+
+The result page should continue using the same `AssessmentSubmission`.
+
+Do not expose UTM parameters publicly on the result page unless the existing design specifically requires it.
+
+The important requirement is that the attribution remains attached to the submission.
+
+---
+
+# 7. BOOKING FLOW
+
+When a user proceeds from the assessment result to booking:
+
+the booking/CTA system must retain the association with the existing `AssessmentSubmission`.
+
+The existing assessment eligibility logic must remain unchanged.
+
+Do NOT create a second lead/submission record just because the user books.
+
+The booking interaction should reference the existing assessment submission.
+
+---
+
+# 8. WHATSAPP FLOW
+
+The existing BPA WhatsApp strategy-call flow must continue working.
+
+When an eligible user clicks the BPA strategy-call/WhatsApp action:
+
+`CTAInteraction` should retain the link to the relevant `AssessmentSubmission`.
+
+The submission already contains the UTM attribution.
+
+Therefore the client can see:
+
+**Lead**
+→ Assessment
+→ Score
+→ UTM source/campaign
+→ WhatsApp strategy-call interaction
+
+Do NOT put the full UTM data into the WhatsApp message.
+
+Do NOT put email, phone number, full assessment answers, or sensitive data into the WhatsApp URL.
+
+The existing personalized WhatsApp message and assessment reference should remain unchanged.
+
+---
+
+# 9. CTAINTERACTION
+
+Use the existing `CTAInteraction` model rather than creating another tracking model unnecessarily.
+
+For the existing BPA strategy-call interaction, make sure the linked `AssessmentSubmission` allows the client/admin to trace:
+
+**CTA interaction → Assessment → UTM attribution**
+
+Preserve the existing:
+
+- action
+- submission relationship
+- IP
+- user agent
+- referrer
+- UTM tracking
+- timestamp
+
+If UTM fields already exist in `CTAInteraction`, reuse them consistently.
+
+Do not create duplicate UTM fields unless there is a real architectural reason.
+
+---
+
+# 10. ADMIN VISIBILITY
+
+Update Django Admin so the client can easily understand where leads came from.
+
+For `AssessmentSubmission`, make the important attribution information visible/searchable/filterable where practical:
+
+- Name
+- Assessment reference
+- Score
+- Result/category
+- Submission date
+- First UTM source
+- First UTM medium
+- First UTM campaign
+- Last UTM source
+- Last UTM campaign
+- Referrer
+
+For `CTAInteraction`, retain visibility of:
+
+- action
+- linked submission
+- UTM source
+- UTM medium
+- UTM campaign
+- timestamp
+
+Do not make the admin interface unnecessarily complicated.
+
+---
+
+# 11. DIRECT / ORGANIC USERS
+
+The system must work correctly when there are NO UTM parameters.
+
+For example:
+
+User directly enters:
+
+`https://example.com/`
+
+There should be no fake values such as:
+
+`utm_source=unknown`
+
+unless the project already intentionally uses such a convention.
+
+Simply leave UTM values blank/NULL.
+
+The assessment and booking flow must work normally for organic/direct visitors.
+
+---
+
+# 12. REFERRER
+
+Capture the HTTP referrer when available.
+
+Example:
+
+Facebook → Website
+
+The referrer may provide additional attribution information.
+
+Do not rely on referrer as a replacement for UTM parameters.
+
+UTM remains the primary campaign attribution mechanism.
+
+---
+
+# 13. SECURITY / DATA QUALITY
+
+Validate and sanitize incoming UTM values.
+
+Do not trust arbitrary URL parameters blindly.
+
+Set reasonable maximum lengths for stored UTM values so someone cannot submit extremely large strings.
+
+Do not store unnecessary personal information in UTM fields.
+
+UTM values are attribution metadata, not user identity.
+
+---
+
+# 14. SESSION / COOKIE BEHAVIOR
+
+Use the existing Django session architecture if possible.
+
+Avoid introducing unnecessary third-party tracking services.
+
+Do not add a new analytics platform just for UTM persistence.
+
+If cookies are used, use first-party cookies and follow the project's existing consent/privacy approach.
+
+Do not interfere with existing authentication, assessment sessions, or booking sessions.
+
+---
+
+# 15. IMPORTANT: DO NOT BREAK EXISTING SYSTEMS
+
+Before changing anything, inspect the existing implementation.
+
+There is already:
+
+- `AssessmentSubmission`
+- `CTAInteraction`
+- session-based assessment linking
+- BPA strategy-call endpoint
+- WhatsApp redirect
+- existing UTM-related handling in `bpa_strategy_call`
+- FGA cohort system
+- assessment eligibility enforcement
+
+Reuse these systems wherever possible.
+
+Do NOT create duplicate:
+- assessment submissions
+- CTA tracking models
+- session systems
+- UTM tracking systems
+
+Integrate UTM tracking into the existing architecture.
+
+---
+
+# 16. TEST THESE EXACT SCENARIOS
+
+### Test 1 — Facebook campaign
+
+Open:
+
+`/?utm_source=facebook&utm_medium=paid_social&utm_campaign=fga_test&utm_content=creative_01&utm_term=founders`
+
+Navigate:
+
+Homepage
+→ Explore
+→ FGA
+→ Assessment
+
+Complete the assessment.
+
+Verify the `AssessmentSubmission` contains the correct UTM values.
+
+---
+
+### Test 2 — UTM disappears from URL
+
+Start with:
+
+`/?utm_source=facebook&utm_medium=paid_social&utm_campaign=test_campaign`
+
+Navigate through several pages until the assessment submission.
+
+The final submission must still contain the original UTM values.
+
+---
+
+### Test 3 — First-touch preservation
+
+First visit:
+
+`facebook / paid_social / campaign_A`
+
+Later visit in the same attribution journey:
+
+`google / cpc / campaign_B`
+
+Verify:
+
+**First touch = Facebook / campaign_A**
+
+**Last touch = Google / campaign_B**
+
+Do not overwrite first-touch data.
+
+---
+
+### Test 4 — Organic visitor
+
+Visit the website without UTM parameters.
+
+Complete the assessment.
+
+Verify:
+- assessment works
+- submission works
+- no fake UTM values are created
+- booking still works
+
+---
+
+### Test 5 — Assessment → BPA → WhatsApp
+
+Start with a tagged campaign:
+
+Facebook
+→ Website
+→ Assessment
+→ Complete assessment
+→ Result
+→ BPA
+→ Book Your Strategy Call / WhatsApp
+
+Verify that the final `CTAInteraction` is linked to the same `AssessmentSubmission`.
+
+Verify the submission still contains the original UTM attribution.
+
+Verify the WhatsApp message still works exactly as before.
+
+---
+
+### Test 6 — BPA assessment enforcement
+
+A visitor with no completed assessment:
+
+BPA
+→ Book Your Strategy Call
+
+must still be redirected to the assessment page.
+
+UTM implementation must NOT bypass or weaken the existing server-side assessment enforcement.
+
+---
+
+### Test 7 — Direct endpoint access
+
+A user without a completed assessment must still be blocked from directly accessing the BPA strategy-call endpoint.
+
+---
+
+# 17. CODE QUALITY
+
+Keep the implementation centralized.
+
+Prefer creating a reusable helper/service/context mechanism such as:
+
+`capture_utm_parameters()`
+
+or an equivalent clean architecture appropriate to the existing project.
+
+Do not copy/paste UTM extraction code into multiple views.
+
+The same attribution logic should be used consistently across:
+
+- homepage
+- assessment
+- result
+- FGA/BPA
+- booking
+- WhatsApp
+
+Add comments explaining the first-touch/last-touch behavior.
+
+---
+
+# 18. FINAL REPORT
+
+After implementation, report:
+
+1. Files changed
+2. Models changed
+3. Migration created/applied
+4. How UTM persistence works
+5. How first-touch attribution works
+6. How last-touch attribution works
+7. How `AssessmentSubmission` stores attribution
+8. How `CTAInteraction` connects to the submission
+9. How WhatsApp retains the assessment relationship
+10. Exact test results for all 7 scenarios
+11. Any limitations or assumptions
+
+Most importantly, do not just tell me that UTM tracking is implemented.
+
+Actually test the complete:
+
+**Facebook → Website → UTM → Persistence → Assessment → Result → Booking/WhatsApp**
+
+journey end-to-end.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+We now have a Systeme.io development account and a Public API key.
+
+I want to implement the Systeme.io integration in this Django project.
+
+IMPORTANT SECURITY RULE:
+Do NOT put the actual Systeme.io API key directly into Python code, templates, Git, or any tracked file.
+
+The API key must be stored in an environment variable:
+
+SYSTEME_IO_API_KEY=...
+
+Use the existing project's environment/configuration pattern if one already exists.
+
+I will configure the actual key locally.
+
+SYSTEME.IO INTEGRATION GOAL
+
+Build a clean Django service layer that communicates with Systeme.io's Public API.
+
+The existing Django application must remain the source of truth for:
+- AssessmentSubmission
+- assessment answers
+- score
+- qualification route
+- UTM attribution
+- booking status
+- CTA interactions
+
+Systeme.io should act as the external CRM/marketing layer.
+
+DO NOT replace any existing Django data with Systeme.io data.
+
+--------------------------------------------------
+PHASE 1 — INSPECT BEFORE CODING
+--------------------------------------------------
+
+First inspect:
+
+1. Existing AssessmentSubmission model
+2. Existing UTM fields and helpers
+3. Existing FGA/BPA qualification logic
+4. Existing Calendly booking flow
+5. Existing BPA WhatsApp flow
+6. Existing settings/environment configuration
+7. Existing requirements/documentation for Systeme.io
+8. Existing project architecture and naming conventions
+
+Also inspect the current Systeme.io Public API documentation before choosing endpoint URLs or request formats.
+
+Do not guess API endpoints.
+
+Do not modify code during this inspection phase.
+
+Report:
+- exact integration requirements
+- required Systeme.io resources
+- required contact fields
+- required tags
+- required custom fields
+- exact events that should trigger synchronization
+- API endpoints needed
+- files that will need modification
+
+Then proceed with implementation only after confirming the architecture is consistent with the documented requirements.
+
+--------------------------------------------------
+PHASE 2 — CREATE A SYSTEME.IO SERVICE LAYER
+--------------------------------------------------
+
+Create a dedicated integration/service module.
+
+For example:
+
+core/integrations/systeme_io.py
+
+Use a reusable service/class rather than putting API requests directly inside Django views.
+
+The service should handle:
+
+- authentication
+- API base URL
+- HTTP requests
+- timeout handling
+- response validation
+- API error handling
+- logging
+- create/update contact
+- find existing contact by email
+- assign tags
+- retrieve/create/use required custom fields if appropriate
+
+Use the existing project's dependencies and coding style.
+
+Do NOT introduce unnecessary packages if Python's existing HTTP tooling/dependencies are sufficient.
+
+--------------------------------------------------
+PHASE 3 — CONFIGURATION
+--------------------------------------------------
+
+Add configuration through environment variables.
+
+At minimum:
+
+SYSTEME_IO_API_KEY
+
+Do not expose this value anywhere in:
+- templates
+- JavaScript
+- API responses
+- logs
+- Git
+- admin pages
+
+Make the application fail safely if the API key is missing.
+
+The website itself must continue working if Systeme.io is temporarily unavailable.
+
+--------------------------------------------------
+PHASE 4 — CONTACT SYNCHRONIZATION
+--------------------------------------------------
+
+When the appropriate lead event occurs according to the client specification:
+
+1. Take the existing AssessmentSubmission.
+2. Validate that it contains the required contact information.
+3. Find the corresponding Systeme.io contact by email if possible.
+4. Create the contact if it does not exist.
+5. Update the contact if it already exists.
+6. Assign the appropriate tags.
+7. Populate the required custom fields.
+
+Do NOT create duplicate contacts every time the same user interacts with the website.
+
+Email should be treated as the primary contact matching field unless the Systeme.io API/documentation requires another approach.
+
+--------------------------------------------------
+PHASE 5 — DATA MAPPING
+--------------------------------------------------
+
+Create a centralized mapping between Django and Systeme.io.
+
+Potential fields:
+
+Django → Systeme.io
+
+full_name → contact name
+email → contact email
+phone → contact phone
+
+assessment reference → custom field
+assessment score → custom field
+qualification route → custom field
+FGA/BPA → qualification custom field/tag
+
+first_utm_source → custom field
+first_utm_medium → custom field
+first_utm_campaign → custom field
+first_utm_content → custom field
+first_utm_term → custom field
+
+last_utm_source → custom field
+last_utm_medium → custom field
+last_utm_campaign → custom field
+last_utm_content → custom field
+last_utm_term → custom field
+
+IMPORTANT:
+Only implement fields that are actually required by the client specification and supported by the Systeme.io account/API.
+
+Do not create unnecessary custom fields.
+
+--------------------------------------------------
+PHASE 6 — TAGGING
+--------------------------------------------------
+
+Use centralized tag names/constants.
+
+For example, only if supported by the actual specification:
+
+Nexora Consulting
+FGA Qualified
+BPA Qualified
+Assessment Completed
+FGA Booked
+BPA Strategy Call
+
+Do not blindly create all of these.
+
+First determine which tags are actually required.
+
+Avoid duplicate tag creation or repeated assignment.
+
+--------------------------------------------------
+PHASE 7 — EVENT FLOW
+--------------------------------------------------
+
+Do NOT synchronize every page view.
+
+The integration should be tied to meaningful conversion events.
+
+The likely flow is:
+
+Assessment completed
+        ↓
+Create/update Systeme.io contact
+        ↓
+Add qualification tag
+        ↓
+Store assessment information
+
+Then:
+
+FGA booking confirmed
+        ↓
+Update Systeme.io contact/tag
+
+BPA strategy-call/WhatsApp conversion
+        ↓
+Update Systeme.io contact/tag
+
+BUT:
+
+Use the actual client specification to determine which of these events should be implemented.
+
+Do not assume an event is required merely because it exists in the Django application.
+
+--------------------------------------------------
+PHASE 8 — CALENDLY
+--------------------------------------------------
+
+Existing Calendly webhook logic is the source of truth for actual booking status.
+
+Do NOT mark a Systeme.io contact as "booked" merely because the Calendly widget was viewed or a date/time was selected.
+
+Only use the existing successful Calendly webhook event for an actual booking-related synchronization if the specification requires it.
+
+Do not modify existing Calendly webhook behavior unnecessarily.
+
+--------------------------------------------------
+PHASE 9 — BPA
+--------------------------------------------------
+
+Do not bypass existing BPA assessment protection.
+
+Existing logic must remain:
+
+No valid completed assessment
+        ↓
+Cannot access strategy-call flow
+
+Valid assessment
+        ↓
+BPA strategy call / WhatsApp
+
+If Systeme.io synchronization is required for BPA, use the existing AssessmentSubmission and CTAInteraction data.
+
+Do not weaken or bypass the current server-side protection.
+
+--------------------------------------------------
+PHASE 10 — FAILURE HANDLING
+--------------------------------------------------
+
+Systeme.io must NOT become a single point of failure for the website.
+
+If Systeme.io API fails:
+
+- Django should still save the assessment.
+- Django should still save UTM data.
+- Existing assessment result should still work.
+- Existing FGA/BPA routing should still work.
+- Existing Calendly flow should still work.
+- Existing BPA WhatsApp flow should still work.
+
+Log the integration failure safely without logging the API key.
+
+Prefer a controlled retry/failed-sync mechanism if the existing architecture supports it.
+
+Do not silently lose a lead.
+
+If necessary, create a local synchronization status/error record so failed Systeme.io synchronization can be retried later.
+
+Do not add a complex queue system unless the project actually needs it.
+
+--------------------------------------------------
+PHASE 11 — TESTING
+--------------------------------------------------
+
+Add automated tests for:
+
+1. API key missing
+2. Successful contact creation
+3. Existing contact update
+4. Duplicate prevention
+5. Tag assignment
+6. Custom field mapping
+7. FGA qualification mapping
+8. BPA qualification mapping
+9. UTM mapping
+10. Systeme.io API failure
+11. Existing assessment still works when Systeme.io is unavailable
+12. Calendly webhook behavior remains unchanged
+13. BPA protection remains unchanged
+14. API key is never exposed in logs/responses
+
+IMPORTANT:
+
+Do not make real Systeme.io API calls from automated tests.
+
+Mock the external API.
+
+For manual integration testing, provide a separate safe test procedure using the development Systeme.io account.
+
+--------------------------------------------------
+PHASE 12 — MANUAL TEST MODE
+--------------------------------------------------
+
+Create a safe way to verify the integration locally.
+
+For example, an internal management command or development-only test endpoint if appropriate.
+
+It should allow me to test:
+
+Django AssessmentSubmission
+        ↓
+Systeme.io API
+        ↓
+Contact created/updated
+        ↓
+Tag assigned
+        ↓
+Custom fields populated
+
+Do not expose a testing endpoint publicly in production.
+
+--------------------------------------------------
+IMPORTANT PRESERVATION RULES
+--------------------------------------------------
+
+Do NOT break or rewrite:
+
+- Assessment questions
+- Assessment scoring
+- Assessment result logic
+- UTM first-touch tracking
+- UTM last-touch tracking
+- FGA cohort logic
+- Calendly embed
+- Calendly webhook
+- BPA server-side protection
+- BPA WhatsApp flow
+- CTAInteraction tracking
+- CSRF protection
+
+Make the Systeme.io integration additive and isolated.
+
+--------------------------------------------------
+DELIVERABLE
+--------------------------------------------------
+
+After implementation report:
+
+1. Files created
+2. Files modified
+3. Environment variables added
+4. Systeme.io API endpoints used
+5. Contact fields created/used
+6. Tags created/used
+7. Event → Systeme.io mapping
+8. Error handling
+9. Tests added
+10. Test results
+11. Manual testing steps
+12. Exact Systeme.io dashboard configuration I need to perform
+
+Do not claim the integration is complete until the API behavior has been tested against the development Systeme.io account.
+

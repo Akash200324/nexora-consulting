@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .forms import AssessmentSubmissionForm
 from .models import AssessmentSubmission, CTAInteraction
+from core.utm import get_attribution_from_session, apply_attribution_to_submission
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 def assessment_landing(request):
     return render(request, 'assessment/assessment_landing.html', {'is_assessment': True})
@@ -14,6 +16,7 @@ def assessment_view(request):
 def assessment_section_01(request):
     return render(request, 'assessment/section_01/assessment_section_01.html', {'is_assessment': True})
 
+@ensure_csrf_cookie
 def assessment_section_02(request):
     if request.method == 'POST':
         try:
@@ -35,6 +38,7 @@ def assessment_section_02(request):
 def assessment_section_03(request):
     return render(request, 'assessment/section_03/assessment_section_03.html', {'is_assessment': True})
 
+@ensure_csrf_cookie
 def assessment_section_04(request):
     if request.method == 'POST':
         try:
@@ -194,7 +198,22 @@ def assessment_section_04(request):
                 submission.business_pressure_matrix = matrix_data
                 submission.primary_constraint = primary_constraint
                 submission.secondary_bottlenecks = secondary_bottlenecks
+                
+                # Apply UTM attribution from session
+                session_attribution = get_attribution_from_session(request)
+                submission = apply_attribution_to_submission(submission, session_attribution)
+                
                 submission.save()
+                
+                # Try to sync with Systeme.io
+                try:
+                    from core.integrations.systeme_io import SystemeIoService
+                    service = SystemeIoService()
+                    service.sync_assessment_submission(submission)
+                except Exception as e:
+                    import logging
+                    logger = logging.getLogger(__name__)
+                    logger.error(f"Systeme.io sync failed for submission {submission.id}: {e}")
                 
                 # Clear session answers, but store submission ID for Section 5
                 if 'assessment_answers' in request.session:
@@ -244,11 +263,20 @@ import hmac
 import hashlib
 import base64
 
+@ensure_csrf_cookie
 def assessment_fga(request):
     submission_id = request.session.get('assessment_submission_id')
+    submission = None
+    if submission_id:
+        try:
+            submission = AssessmentSubmission.objects.get(id=submission_id)
+        except AssessmentSubmission.DoesNotExist:
+            pass
+
     return render(request, 'assessment/section_05/fga.html', {
         'is_assessment': True,
         'submission_id': submission_id,
+        'submission': submission,
         'calendly_event_url': settings.CALENDLY_FGA_EVENT_URL
     })
 
@@ -308,6 +336,16 @@ def calendly_webhook(request):
                         submission.calendly_event_uri = payload.get('event')
                         submission.calendly_invitee_uri = payload.get('uri')
                         submission.save()
+                        
+                        try:
+                            from core.integrations.systeme_io import SystemeIoService
+                            service = SystemeIoService()
+                            if submission.consent:
+                                service.add_tag_to_contact(submission.email, "FGA Booked")
+                        except Exception as e:
+                            import logging
+                            logger = logging.getLogger(__name__)
+                            logger.error(f"Systeme.io FGA Booked tag failed for submission {submission.id}: {e}")
                     elif event_type == 'invitee.canceled':
                         submission.booking_status = 'canceled'
                         submission.save()
@@ -325,8 +363,55 @@ def calendly_webhook(request):
     
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
-
-
+def fga_track_interaction(request):
+    if request.method == 'POST':
+        submission_id = request.session.get('assessment_submission_id')
+        if not submission_id:
+            return JsonResponse({'error': 'No active session'}, status=403)
+            
+        try:
+            submission = AssessmentSubmission.objects.get(id=submission_id)
+        except AssessmentSubmission.DoesNotExist:
+            return JsonResponse({'error': 'Invalid submission ID'}, status=403)
+            
+        try:
+            data = json.loads(request.body)
+            event_type = data.get('event')
+            
+            # Map calendly events to meaningful actions
+            action_map = {
+                'calendly.event_type_viewed': 'calendly_viewed',
+                'calendly.date_and_time_selected': 'calendly_time_selected'
+            }
+            
+            action = action_map.get(event_type)
+            if not action:
+                return JsonResponse({'success': True, 'message': 'Event ignored'})
+                
+            x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+            if x_forwarded_for:
+                ip = x_forwarded_for.split(',')[0].strip()
+            else:
+                ip = request.META.get('REMOTE_ADDR')
+                
+            # Create pre-booking tracking record
+            CTAInteraction.objects.create(
+                source='FGA_Calendly',
+                action=action,
+                status='started',
+                user_agent=request.META.get('HTTP_USER_AGENT'),
+                ip_address=ip,
+                referrer=request.META.get('HTTP_REFERER'),
+                submission=submission
+            )
+            return JsonResponse({'success': True})
+            
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+            
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 def bpa_strategy_call(request):
     submission_id = request.session.get('assessment_submission_id')
@@ -347,12 +432,21 @@ def bpa_strategy_call(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
 
-    # Preserve UTM parameters
-    utm_source = request.GET.get('utm_source') or request.session.get('utm_source')
-    utm_medium = request.GET.get('utm_medium') or request.session.get('utm_medium')
-    utm_campaign = request.GET.get('utm_campaign') or request.session.get('utm_campaign')
-    utm_term = request.GET.get('utm_term') or request.session.get('utm_term')
-    utm_content = request.GET.get('utm_content') or request.session.get('utm_content')
+    # Preserve UTM parameters from submission or session
+    if submission:
+        utm_source = submission.last_utm_source
+        utm_medium = submission.last_utm_medium
+        utm_campaign = submission.last_utm_campaign
+        utm_term = submission.last_utm_term
+        utm_content = submission.last_utm_content
+    else:
+        session_attribution = get_attribution_from_session(request)
+        last_touch = session_attribution.get('last_touch') or {}
+        utm_source = last_touch.get('utm_source')
+        utm_medium = last_touch.get('utm_medium')
+        utm_campaign = last_touch.get('utm_campaign')
+        utm_term = last_touch.get('utm_term')
+        utm_content = last_touch.get('utm_content')
 
     # Record Interaction
     interaction = CTAInteraction.objects.create(
@@ -369,6 +463,16 @@ def bpa_strategy_call(request):
         utm_content=utm_content,
         submission=submission
     )
+
+    if submission and submission.consent:
+        try:
+            from core.integrations.systeme_io import SystemeIoService
+            service = SystemeIoService()
+            service.add_tag_to_contact(submission.email, "BPA Strategy Call")
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Systeme.io BPA Strategy Call tag failed for submission {submission.id}: {e}")
 
     # WhatsApp logic
     whatsapp_number = getattr(settings, 'WHATSAPP_BUSINESS_NUMBER', '918590031893')

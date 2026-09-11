@@ -355,16 +355,44 @@
         
         <div class="w-full bg-[#E8DED0] border border-[#B89A67]/30 rounded-xl p-2 md:p-8 lg:p-12 fga-anim-card-container">
             <!-- Calendly inline widget begin -->
-            <div id="calendly-embed" class="calendly-inline-widget w-full" data-url="{{ calendly_event_url }}?utm_source={{ submission_id }}" style="height: 700px; transition: height 0.3s ease;"></div>
+            <div id="calendly-embed" class="calendly-inline-widget w-full" data-url="{{ calendly_event_url }}?utm_source={{ submission_id }}{% if submission %}&name={{ submission.full_name|urlencode }}&email={{ submission.email|urlencode }}{% endif %}" style="height: 700px; transition: height 0.3s ease;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             <script>
                 window.addEventListener('message', function(e) {
-                    if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.page_height') {
-                        const widget = document.getElementById('calendly-embed');
-                        if (widget && e.data.payload && e.data.payload.height) {
-                            // Automatically adjust height to perfectly fit the Calendly content (no min-height restrictions)
-                            // This eliminates both the internal scrollbar AND any empty space at the bottom
-                            widget.style.height = e.data.payload.height + 'px';
+                    if (e.origin === 'https://calendly.com' && e.data) {
+                        if (e.data.event === 'calendly.page_height') {
+                            const widget = document.getElementById('calendly-embed');
+                            if (widget && e.data.payload && e.data.payload.height) {
+                                // Automatically adjust height to perfectly fit the Calendly content (no min-height restrictions)
+                                // This eliminates both the internal scrollbar AND any empty space at the bottom
+                                widget.style.height = e.data.payload.height + 'px';
+                            }
+                        } else if (e.data.event === 'calendly.event_type_viewed' || e.data.event === 'calendly.date_and_time_selected') {
+                            // Helper to get CSRF token
+                            const getCookie = (name) => {
+                                let cookieValue = null;
+                                if (document.cookie && document.cookie !== '') {
+                                    const cookies = document.cookie.split(';');
+                                    for (let i = 0; i < cookies.length; i++) {
+                                        const cookie = cookies[i].trim();
+                                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                            break;
+                                        }
+                                    }
+                                }
+                                return cookieValue;
+                            };
+                            
+                            // Send interaction tracking
+                            fetch('/assessment/fga/track-interaction/', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRFToken': getCookie('csrftoken')
+                                },
+                                body: JSON.stringify({ event: e.data.event })
+                            }).catch(err => console.error('Tracking error:', err));
                         }
                     }
                 });

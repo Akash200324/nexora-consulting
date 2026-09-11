@@ -42,6 +42,24 @@ class AssessmentSubmission(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    # UTM Tracking: First Touch
+    first_utm_source = models.CharField(max_length=255, blank=True, null=True)
+    first_utm_medium = models.CharField(max_length=255, blank=True, null=True)
+    first_utm_campaign = models.CharField(max_length=255, blank=True, null=True)
+    first_utm_content = models.CharField(max_length=255, blank=True, null=True)
+    first_utm_term = models.CharField(max_length=255, blank=True, null=True)
+    first_landing_page = models.URLField(max_length=2000, blank=True, null=True)
+    first_touch_at = models.DateTimeField(blank=True, null=True)
+
+    # UTM Tracking: Last Touch
+    last_utm_source = models.CharField(max_length=255, blank=True, null=True)
+    last_utm_medium = models.CharField(max_length=255, blank=True, null=True)
+    last_utm_campaign = models.CharField(max_length=255, blank=True, null=True)
+    last_utm_content = models.CharField(max_length=255, blank=True, null=True)
+    last_utm_term = models.CharField(max_length=255, blank=True, null=True)
+    last_landing_page = models.URLField(max_length=2000, blank=True, null=True)
+    last_touch_at = models.DateTimeField(blank=True, null=True)
+
     def __str__(self):
         return f"{self.full_name} - {self.company} (Score: {self.assessment_score})"
 

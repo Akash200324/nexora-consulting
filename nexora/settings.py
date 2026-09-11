@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.UTMMiddleware',
 ]
 
 ROOT_URLCONF = 'nexora.urls'
@@ -131,6 +132,7 @@ STATICFILES_DIRS = [
 CALENDLY_ACCESS_TOKEN = env('CALENDLY_ACCESS_TOKEN', default='')
 CALENDLY_FGA_EVENT_URL = env('CALENDLY_FGA_EVENT_URL', default='')
 CALENDLY_WEBHOOK_SIGNING_KEY = env('CALENDLY_WEBHOOK_SIGNING_KEY', default='')
+SYSTEME_IO_API_KEY = env('SYSTEME_IO_API_KEY', default='')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
