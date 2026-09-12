@@ -114,7 +114,7 @@ class SystemeIoService:
         if not tags:
             return None
         for t in tags:
-            if t.get('name') == name:
+            if t.get('name', '').lower() == name.lower():
                 return t.get('id')
         logger.warning(f"Systeme.io tag '{name}' not found.")
         return None

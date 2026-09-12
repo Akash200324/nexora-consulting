@@ -172,57 +172,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const questionsData = [
             {
                 title: "How often does your business require your personal involvement to keep day-to-day operations moving?",
-                options: [
-                    "The business operates independently without my involvement.",
-                    "I need to step in for specific situations.",
-                    "My team regularly depends on me.",
-                    "The business relies heavily on me to keep things moving."
-                ]
+                options: ["", "", "", "", ""]
             },
             {
                 title: "How often do operational tasks take you away from working on the strategic growth of your business?",
-                options: [
-                    "I am able to focus primarily on strategy and growth.",
-                    "Operational work occasionally takes my attention away.",
-                    "Operations regularly take up significant strategic time.",
-                    "Operational tasks consume most of my working time."
-                ]
+                options: ["", "", "", "", ""]
             },
             {
                 title: "How often do you experience uncertainty about where your next month's revenue will come from?",
-                options: [
-                    "Our revenue is highly predictable.",
-                    "We experience occasional uncertainty.",
-                    "Revenue uncertainty affects our planning.",
-                    "We regularly struggle to predict where revenue will come from."
-                ]
+                options: ["", "", "", "", ""]
             },
             {
                 title: "How often do your current systems or processes struggle to keep up with the growth of your business?",
-                options: [
-                    "Our systems consistently support our growth.",
-                    "Minor system issues appear as we grow.",
-                    "Our systems create noticeable operational pressure.",
-                    "Our systems struggle significantly when the business grows."
-                ]
+                options: ["", "", "", "", ""]
             },
             {
                 title: "How often do you find yourself working IN the business instead of working ON the business?",
-                options: [
-                    "I have enough time to focus on leadership and strategy.",
-                    "I occasionally get pulled into operational work.",
-                    "I regularly spend more time operating than leading.",
-                    "I am almost entirely focused on running the business."
-                ]
+                options: ["", "", "", "", ""]
             },
             {
                 title: "How often do you feel that significant business growth would create additional pressure on you or your team?",
-                options: [
-                    "We are well prepared to handle significant growth.",
-                    "Growth would create a few manageable challenges.",
-                    "Growth would create considerable operational pressure.",
-                    "Significant growth would seriously strain the business."
-                ]
+                options: ["", "", "", "", ""]
             }
         ];
 
